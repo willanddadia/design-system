@@ -22,7 +22,7 @@
   "author": "Willand <willanddadia@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/willanddadia/design-system.git"
+    "url": "git+https://github.com/willanddadia/design-system.git"
   },
   "bugs": {
     "url": "https://github.com/willanddadia/design-system/issues"
