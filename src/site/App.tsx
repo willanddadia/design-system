@@ -262,8 +262,12 @@ export default function App() {
             <h2 className="text-sm font-semibold capitalize">{currentPage === 'intro' ? 'Overview' : currentPage}</h2>
           </div>
           <div className="flex items-center gap-4">
-            <Button variant="ghost" size="sm" className="text-xs">Docs</Button>
-            <Button variant="ghost" size="sm" className="text-xs">GitHub</Button>
+            <a href="https://github.com/willanddadia/design-system#readme" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" size="sm" className="text-xs">Docs</Button>
+            </a>
+            <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer">
+              <Button variant="ghost" size="sm" className="text-xs">GitHub</Button>
+            </a>
           </div>
         </StickyHeader>
 
@@ -276,14 +280,14 @@ export default function App() {
           <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
             <p>© 2026 Design System. Open for contribution.</p>
             <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-primary transition-colors">
+              <a href="https://github.com/willanddadia/design-system#readme" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 Documentation
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
+              <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
                 GitHub
               </a>
-              <a href="#" className="hover:text-primary transition-colors">
-                Discord
+              <a href="https://www.npmjs.com/package/@will-and/design-system" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                NPM
               </a>
             </div>
           </div>

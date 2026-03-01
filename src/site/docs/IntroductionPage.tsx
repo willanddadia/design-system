@@ -73,9 +73,21 @@ export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void })
         <p className="text-muted-foreground mb-6">
           Explore our growing library of components and start building your next project today.
         </p>
-        <Button size="lg" onClick={onGetStarted}>
-          Explore Components
-        </Button>
+        <div className="flex flex-wrap gap-4">
+          <Button size="lg" onClick={onGetStarted}>
+            Explore Components
+          </Button>
+          <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer">
+            <Button size="lg" variant="outline">
+              GitHub repository
+            </Button>
+          </a>
+          <a href="https://www.npmjs.com/package/@will-and/design-system" target="_blank" rel="noopener noreferrer">
+            <Button size="lg" variant="outline">
+              View on NPM
+            </Button>
+          </a>
+        </div>
       </Section>
     </div>
   );
