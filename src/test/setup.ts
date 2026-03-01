@@ -11,3 +11,8 @@ expect.extend(matchers);
 afterEach(() => {
     cleanup();
 });
+
+declare module 'vitest' {
+    export interface Assertion<T = any> extends matchers.AxeMatchers { }
+    export interface AsymmetricMatchersContaining extends matchers.AxeMatchers { }
+}

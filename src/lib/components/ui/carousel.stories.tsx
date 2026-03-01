@@ -5,7 +5,7 @@ import * as ComponentDeps from './carousel';
 const ComponentName =
   Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
 const Component =
-  ComponentName === 'default' ? ComponentDeps.default : ComponentDeps[ComponentName];
+  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
 
 export const Default: Story = (props) => {
   if (!Component) return <div>Could not auto-resolve component export.</div>;
