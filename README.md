@@ -1,11 +1,11 @@
-# @wild/design-system
+# @will-and/design-system
 
 A reusable design system built with React and Tailwind CSS. The original Figma project is available at [Figma](https://www.figma.com/design/qrE7A2wiwBsegKoGj147N5/Design-system).
 
 ## Installation
 
 ```bash
-npm install @wild/design-system
+npm install @will-and/design-system
 ```
 
 ## Usage
@@ -14,10 +14,10 @@ Import components and **also import the stylesheet** — the CSS is not injected
 
 ```tsx
 // 1. Import styles (required — do this once in your app entry point)
-import '@wild/design-system/style.css';
+import '@will-and/design-system/style.css';
 
 // 2. Import components
-import { Button, Input, Card } from '@wild/design-system';
+import { Button, Input, Card } from '@will-and/design-system';
 
 export default function App() {
   return <Button>Click me</Button>;
