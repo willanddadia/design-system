@@ -20,6 +20,7 @@ import {
 import { IntroductionPage } from './docs/IntroductionPage';
 import { ColorsPage } from './docs/ColorsPage';
 import { TypographyPage } from './docs/TypographyPage';
+import { TokensPage } from './docs/TokensPage';
 import { ButtonPage } from './docs/ButtonPage';
 import { BadgePage } from './docs/BadgePage';
 import { CardPage } from './docs/CardPage';
@@ -31,6 +32,7 @@ import { TablePage } from './docs/TablePage';
 
 type PageId =
   | 'intro'
+  | 'tokens'
   | 'colors'
   | 'typography'
   | 'button'
@@ -87,21 +89,27 @@ const navSections: NavSection[] = [
 ];
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('intro');
+  const [currentPage] = useState<PageId>('intro');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
-    setIsSidebarOpen(false);
   }, [currentPage]);
+
+  const handlePageChange = (page: PageId) => {
+    handlePageChange(page);
+    setIsSidebarOpen(false);
+  };
 
   const renderPage = () => {
     switch (currentPage) {
       case 'intro':
-        return <IntroductionPage onGetStarted={() => setCurrentPage('button')} />;
+        return <IntroductionPage onGetStarted={() => handlePageChange('button')} />;
       case 'colors':
         return <ColorsPage />;
+      case 'tokens':
+        return <TokensPage />;
       case 'typography':
         return <TypographyPage />;
       case 'button':
@@ -121,7 +129,7 @@ export default function App() {
       case 'layout':
         return <LayoutPage />;
       default:
-        return <IntroductionPage onGetStarted={() => setCurrentPage('button')} />;
+        return <IntroductionPage onGetStarted={() => handlePageChange('button')} />;
     }
   };
 
@@ -178,7 +186,7 @@ export default function App() {
                     return (
                       <button
                         key={item.id}
-                        onClick={() => setCurrentPage(item.id)}
+                        onClick={() => handlePageChange(item.id)}
                         className={`
                           w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
                           group relative overflow-hidden

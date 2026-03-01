@@ -283,7 +283,7 @@ export function FormPage() {
             <Switch
               label="Dark mode"
               checked={switchOn}
-              onCheckedChange={(checked) => setSwitchOn(checked)}
+              onCheckedChange={(checked: boolean) => setSwitchOn(checked)}
             />
             <Switch label="Disabled option" disabled />
           </div>

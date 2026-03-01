@@ -14,7 +14,7 @@ export { Flex, type FlexProps } from './lib/components/layout/Flex';
 export { Grid, type GridProps } from './lib/components/layout/Grid';
 export { Modal, type ModalProps } from './lib/components/overlays/Modal';
 export { Padded, type PaddedProps } from './lib/components/layout/Padded';
-export { SelectBox, type SelectBoxProps, type SelectBoxOption } from './lib/components/ui/SelectBox';
+export { SelectBox, type SelectBoxProps, type SelectBoxOption, } from './lib/components/ui/SelectBox';
 export * from './lib/components/ui/accordion';
 export * from './lib/components/ui/alert-dialog';
 export * from './lib/components/ui/alert';

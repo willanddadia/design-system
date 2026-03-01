@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
-export declare function Section({ title, description, children }: {
+export declare function Section({ title, description, children, }: {
     title: string;
     description?: string;
     children: ReactNode;
 }): import("react/jsx-runtime").JSX.Element;
-export declare function Example({ title, code, children }: {
+export declare function Example({ title, code, children, }: {
     title?: string;
     code?: string;
     children: ReactNode;
@@ -18,7 +18,7 @@ export interface PropDef {
 export declare function PropTable({ props }: {
     props: PropDef[];
 }): import("react/jsx-runtime").JSX.Element;
-export declare function PageHero({ title, description, badge }: {
+export declare function PageHero({ title, description, badge, }: {
     title: string;
     description: string;
     badge?: string;

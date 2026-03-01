@@ -11,8 +11,10 @@ export function Section({
   children: ReactNode;
 }) {
   return (
-    <section className="mb-12">
-      <h2 className="mb-1">{title}</h2>
+    <section className="mb-12" aria-labelledby={title.toLowerCase().replace(/\s+/g, '-')}>
+      <h2 id={title.toLowerCase().replace(/\s+/g, '-')} className="mb-1">
+        {title}
+      </h2>
       {description && <p className="text-muted-foreground mb-6">{description}</p>}
       {!description && <div className="mb-6" />}
       {children}
@@ -101,7 +103,7 @@ export function PageHero({
   badge?: string;
 }) {
   return (
-    <div className="mb-10 pb-8 border-b-2 border-border">
+    <div className="mb-10 pb-8 border-b-2 border-border" role="banner">
       {badge && (
         <span className="inline-block mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground bg-muted px-3 py-1 rounded-full">
           {badge}

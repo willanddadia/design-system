@@ -31,11 +31,25 @@ export default defineConfig({
       fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: [
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        'lucide-react',
+        'clsx',
+        'tailwind-merge',
+        'class-variance-authority',
+        /^@radix-ui\/react-/,
+      ],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsxRuntime',
+          'lucide-react': 'LucideReact',
+          clsx: 'clsx',
+          'tailwind-merge': 'tailwindMerge',
+          'class-variance-authority': 'cva',
         },
       },
     },
