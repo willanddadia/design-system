@@ -1,5 +1,5 @@
-import { BorderedTable, BorderlessTable } from '../components/Table';
-import { Badge } from '../components/Badge';
+import { DataTable } from '../components/ui/data-table';
+import { Badge } from '../components/ui/badge';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const tableProps = [
@@ -52,18 +52,18 @@ export function TablePage() {
             <Section title="Bordered Table" description="The default style with clear separation between cells.">
                 <Example
                     title="Default Bordered"
-                    code={`<BorderedTable data={data} columns={columns} />`}
+                    code={`<DataTable data={data} columns={columns} />`}
                 >
-                    <BorderedTable data={data} columns={columns} />
+                    <DataTable data={data} columns={columns} />
                 </Example>
             </Section>
 
             <Section title="Borderless Table" description="A cleaner look without internal borders, often used with stripes.">
                 <Example
                     title="Striped Borderless"
-                    code={`<BorderlessTable data={data} columns={columns} striped />`}
+                    code={`<DataTable data={data} columns={columns} bordered={false} striped />`}
                 >
-                    <BorderlessTable data={data} columns={columns} striped />
+                    <DataTable data={data} columns={columns} bordered={false} striped />
                 </Example>
             </Section>
 

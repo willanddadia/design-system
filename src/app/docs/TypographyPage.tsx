@@ -1,5 +1,5 @@
 import { Section, Example, PageHero } from './DocLayout';
-import { Card } from '../components/Card';
+import { Card } from '../components/ui/card';
 
 export function TypographyPage() {
     return (

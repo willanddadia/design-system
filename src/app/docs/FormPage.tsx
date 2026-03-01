@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Input } from '../components/Input';
-import { Textarea } from '../components/Textarea';
-import { Select } from '../components/Select';
+import { Input } from '../components/ui/input';
+import { Textarea } from '../components/ui/textarea';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '../components/ui/select';
 import { Dropdown } from '../components/Dropdown';
-import { Switch } from '../components/Switch';
+import { Switch } from '../components/ui/switch';
 import { SelectBox } from '../components/SelectBox';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const inputProps = [
-    { name: 'inputSize', type: "'sm' | 'md' | 'lg'", default: "'md'", description: 'Controls the height and font size of the input.' },
+    { name: 'fieldSize', type: "'sm' | 'default' | 'md' | 'lg'", default: "'default'", description: 'Controls the height and font size of the input.' },
     { name: 'error', type: 'boolean', default: 'false', description: 'Applies a destructive border color for error states.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Prevents interaction and reduces opacity.' },
     { name: 'placeholder', type: 'string', default: '—', description: 'Placeholder text shown when the input is empty.' },
@@ -68,14 +68,16 @@ export function FormPage() {
             <Section title="Input" description="Standard text input with three sizes and error/disabled states.">
                 <Example
                     title="Sizes"
-                    code={`<Input inputSize="sm" placeholder="Small..." />
-<Input inputSize="md" placeholder="Medium..." />
-<Input inputSize="lg" placeholder="Large..." />`}
+                    code={`<Input fieldSize="sm" placeholder="Small..." />
+<Input fieldSize="default" placeholder="Default..." />
+<Input fieldSize="md" placeholder="Medium..." />
+<Input fieldSize="lg" placeholder="Large..." />`}
                 >
                     <div className="space-y-3 max-w-sm">
-                        <Input inputSize="sm" placeholder="Small input..." />
-                        <Input inputSize="md" placeholder="Medium input..." />
-                        <Input inputSize="lg" placeholder="Large input..." />
+                        <Input fieldSize="sm" placeholder="Small input..." />
+                        <Input fieldSize="default" placeholder="Default input..." />
+                        <Input fieldSize="md" placeholder="Medium input..." />
+                        <Input fieldSize="lg" placeholder="Large input..." />
                     </div>
                 </Example>
                 <Example
@@ -110,27 +112,38 @@ export function FormPage() {
                 <PropTable props={dropdownProps} />
             </Section>
 
-            {/* Select (native) */}
-            <Section title="Select (Native)" description="Native HTML <select> element styled to match the design system.">
+            {/* Select (Radix-based) */}
+            <Section title="Select" description="Accessible select component built with Radix UI.">
                 <Example
-                    title="Default + Error"
+                    title="Controlled Select"
                     code={`<Select>
-  <option value="">Select...</option>
-  <option value="1">Option 1</option>
-</Select>
-<Select error>
-  <option value="">Select...</option>
+  <SelectTrigger>
+    <SelectValue placeholder="Select a framework" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="react">React</SelectItem>
+    <SelectItem value="vue">Vue</SelectItem>
+  </SelectContent>
 </Select>`}
                 >
                     <div className="space-y-3 max-w-sm">
                         <Select>
-                            <option value="">Select a framework...</option>
-                            <option value="react">React</option>
-                            <option value="vue">Vue</option>
-                            <option value="svelte">Svelte</option>
+                            <SelectTrigger>
+                                <SelectValue placeholder="Select a framework..." />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="react">React</SelectItem>
+                                <SelectItem value="vue">Vue</SelectItem>
+                                <SelectItem value="svelte">Svelte</SelectItem>
+                            </SelectContent>
                         </Select>
-                        <Select error>
-                            <option value="">Error state...</option>
+                        <Select>
+                            <SelectTrigger error>
+                                <SelectValue placeholder="Error state..." />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="error">Error</SelectItem>
+                            </SelectContent>
                         </Select>
                     </div>
                 </Example>
@@ -140,14 +153,16 @@ export function FormPage() {
             <Section title="Textarea" description="Multi-line text input with size variants.">
                 <Example
                     title="Sizes"
-                    code={`<Textarea size="sm" placeholder="Small..." />
-<Textarea size="md" placeholder="Medium..." />
-<Textarea size="lg" placeholder="Large..." />`}
+                    code={`<Textarea fieldSize="sm" placeholder="Small..." />
+<Textarea fieldSize="default" placeholder="Default..." />
+<Textarea fieldSize="md" placeholder="Medium..." />
+<Textarea fieldSize="lg" placeholder="Large..." />`}
                 >
                     <div className="space-y-3 max-w-sm">
-                        <Textarea size="sm" placeholder="Small textarea..." />
-                        <Textarea size="md" placeholder="Medium textarea..." />
-                        <Textarea size="lg" placeholder="Large textarea..." />
+                        <Textarea fieldSize="sm" placeholder="Small textarea..." />
+                        <Textarea fieldSize="default" placeholder="Default textarea..." />
+                        <Textarea fieldSize="md" placeholder="Medium textarea..." />
+                        <Textarea fieldSize="lg" placeholder="Large textarea..." />
                     </div>
                 </Example>
             </Section>
@@ -162,7 +177,7 @@ export function FormPage() {
                 >
                     <div className="space-y-3">
                         <Switch label="Enable notifications" />
-                        <Switch label="Dark mode" checked={switchOn} onChange={(e) => setSwitchOn(e.target.checked)} />
+                        <Switch label="Dark mode" checked={switchOn} onCheckedChange={(checked) => setSwitchOn(checked)} />
                         <Switch label="Disabled option" disabled />
                     </div>
                 </Example>

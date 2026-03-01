@@ -1,6 +1,6 @@
 import { PageHero, Section } from './DocLayout';
-import { Card, CardHeader, CardTitle, CardContent } from '../components/Card';
-import { Button } from '../components/Button';
+import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
 import { Package, Smartphone, Palette, ShieldCheck } from 'lucide-react';
 
 export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void }) {

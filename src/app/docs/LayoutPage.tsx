@@ -2,7 +2,8 @@ import { Flex } from '../components/Flex';
 import { Grid } from '../components/Grid';
 import { Container } from '../components/Container';
 import { Padded } from '../components/Padded';
-import { Badge } from '../components/Badge';
+import { Badge } from '../components/ui/badge';
+import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const flexProps = [

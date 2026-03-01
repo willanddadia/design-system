@@ -7,9 +7,10 @@ import { cn } from "./utils";
 
 function Switch({
   className,
+  label,
   ...props
-}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
-  return (
+}: React.ComponentProps<typeof SwitchPrimitive.Root> & { label?: string }) {
+  const switchNode = (
     <SwitchPrimitive.Root
       data-slot="switch"
       className={cn(
@@ -25,6 +26,15 @@ function Switch({
         )}
       />
     </SwitchPrimitive.Root>
+  );
+
+  if (!label) return switchNode;
+
+  return (
+    <label className="flex items-center gap-3 cursor-pointer">
+      {switchNode}
+      {label && <span className="text-sm font-medium">{label}</span>}
+    </label>
   );
 }
 

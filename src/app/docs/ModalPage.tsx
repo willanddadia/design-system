@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Button } from '../components/Button';
-import { Input } from '../components/Input';
-import { Textarea } from '../components/Textarea';
+import { Button } from '../components/ui/button';
+import { Input } from '../components/ui/input';
+import { Textarea } from '../components/ui/textarea';
 import { Flex } from '../components/Flex';
 import { FullscreenModal, PopupModal, SideModal } from '../components/Modal';
 import { Section, Example, PropTable, PageHero } from './DocLayout';

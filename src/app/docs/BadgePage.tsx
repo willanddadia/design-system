@@ -1,4 +1,4 @@
-import { Badge } from '../components/Badge';
+import { Badge } from '../components/ui/badge';
 import { Flex } from '../components/Flex';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
