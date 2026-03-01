@@ -68,8 +68,35 @@ export function AlertPage() {
         </Example>
       </Section>
 
+      <Section title="Closable" description="Alerts can be closed by providing an onClose callback.">
+        <Example
+          title="Closable Alert"
+          code={`const [show, setShow] = useState(true);
+
+{show && (
+  <Alert variant="info" onClose={() => setShow(false)} title="Closable Alert">
+    You can close this alert by clicking the X in the corner.
+  </Alert>
+)}`}
+        >
+          <div className="space-y-4">
+            <Alert variant="default" onClose={() => { }} title="Closable Demo">
+              This is a demonstration of a closable alert.
+            </Alert>
+          </div>
+        </Example>
+      </Section>
+
       <Section title="Props">
-        <PropTable props={props} />
+        <PropTable props={[
+          ...props,
+          {
+            name: 'onClose',
+            type: '() => void',
+            default: '—',
+            description: 'Callback triggered when the close button is clicked.',
+          }
+        ]} />
       </Section>
     </div>
   );

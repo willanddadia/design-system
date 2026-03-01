@@ -14,6 +14,8 @@ import {
   Menu,
   X,
   ChevronRight,
+  Smartphone,
+  Monitor,
 } from 'lucide-react';
 
 // Import Pages
@@ -31,6 +33,8 @@ import { LayoutPage } from './docs/LayoutPage';
 import { TablePage } from './docs/TablePage';
 import { CalendarPage } from './docs/CalendarPage';
 import { LoadingPage } from './docs/LoadingPage';
+import { MobileSamplePage } from './docs/MobileSamplePage';
+import { WebSamplePage } from './docs/WebSamplePage';
 
 import { StickyHeader } from '@lib/components/layout/StickyHeader';
 import { StickyFooter } from '@lib/components/layout/StickyFooter';
@@ -50,7 +54,9 @@ type PageId =
   | 'loading'
   | 'form'
   | 'modal'
-  | 'layout';
+  | 'layout'
+  | 'mobile'
+  | 'web';
 
 interface NavItem {
   id: PageId;
@@ -70,6 +76,8 @@ const navSections: NavSection[] = [
       { id: 'intro', label: 'Introduction', icon: Package },
       { id: 'colors', label: 'Colors', icon: Palette },
       { id: 'typography', label: 'Typography', icon: Type },
+      { id: 'mobile', label: 'Mobile Sample', icon: Smartphone },
+      { id: 'web', label: 'Web Sample', icon: Monitor },
     ],
   },
   {
@@ -99,20 +107,28 @@ const navSections: NavSection[] = [
 ];
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState<PageId>('intro');
+  // Helper to get initial page from hash
+  const getInitialPage = (): PageId => {
+    const hash = window.location.hash.replace('#', '') as PageId;
+    const allItems = navSections.flatMap((s) => s.items);
+    if (hash && allItems.some((i) => i.id === hash)) {
+      return hash;
+    }
+    return 'intro';
+  };
+
+  const [currentPage, setCurrentPage] = useState<PageId>(getInitialPage());
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Handle hash changes for routing
+  // Handle hash changes for routing (e.g. back button)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') as PageId;
-      if (hash && navSections.some(s => s.items.some(i => i.id === hash))) {
+      const allItems = navSections.flatMap((s) => s.items);
+      if (hash && allItems.some((i) => i.id === hash)) {
         setCurrentPage(hash);
       }
     };
-
-    // Initial load
-    handleHashChange();
 
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -120,10 +136,7 @@ export default function App() {
 
   // Update hash when currentPage changes
   useEffect(() => {
-    const currentHash = window.location.hash.replace('#', '');
-    if (currentHash !== currentPage) {
-      window.location.hash = currentPage;
-    }
+    window.location.hash = currentPage;
   }, [currentPage]);
 
   const handlePageChange = (page: PageId) => {
@@ -161,6 +174,10 @@ export default function App() {
         return <ModalPage />;
       case 'layout':
         return <LayoutPage />;
+      case 'mobile':
+        return <MobileSamplePage />;
+      case 'web':
+        return <WebSamplePage />;
       default:
         return <IntroductionPage onGetStarted={() => handlePageChange('button')} />;
     }
