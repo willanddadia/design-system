@@ -1,6 +1,6 @@
 {
   "name": "@will-and/design-system",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A reusable design system built with React and Tailwind CSS",
   "type": "module",
   "main": "./dist/index.umd.js",
