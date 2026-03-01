@@ -118,8 +118,15 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
+  // Update hash when currentPage changes
+  useEffect(() => {
+    const currentHash = window.location.hash.replace('#', '');
+    if (currentHash !== currentPage) {
+      window.location.hash = currentPage;
+    }
+  }, [currentPage]);
+
   const handlePageChange = (page: PageId) => {
-    window.location.hash = page;
     setCurrentPage(page);
     setIsSidebarOpen(false);
   };
