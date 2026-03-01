@@ -17,6 +17,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '@lib': path.resolve(__dirname, './src/lib'),
+      '@site': path.resolve(__dirname, './src/site'),
     },
   },
   build: process.env.BUILD_APP ? {
