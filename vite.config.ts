@@ -19,7 +19,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  build: {
+  build: process.env.BUILD_APP ? {
+    outDir: 'dist-docs',
+  } : {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'DesignSystem',

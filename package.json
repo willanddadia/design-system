@@ -20,6 +20,7 @@
   ],
   "scripts": {
     "build": "vite build",
+    "build:site": "BUILD_APP=true vite build",
     "prepublishOnly": "vite build",
     "dev": "vite",
     "ladle": "ladle serve",
