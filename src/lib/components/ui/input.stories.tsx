@@ -1,24 +1,23 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './input';
+import { Input } from './input';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Sizes: Story = () => (
+  <div className="space-y-3 max-w-sm">
+    <Input fieldSize="sm" placeholder="Small input..." />
+    <Input fieldSize="default" placeholder="Default input..." />
+    <Input fieldSize="md" placeholder="Medium input..." />
+    <Input fieldSize="lg" placeholder="Large input..." />
+  </div>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
+export const States: Story = () => (
+  <div className="space-y-3 max-w-sm">
+    <Input error placeholder="Error state" />
+    <Input disabled placeholder="Disabled" />
+    <Input defaultValue="Read only" readOnly />
+  </div>
+);
 
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Input',
 };
-
-export default { title: 'UI/Input' };

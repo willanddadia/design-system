@@ -1,24 +1,55 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from './card';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Variants: Story = () => (
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <Card variant="default">
+      <CardHeader>
+        <CardTitle>Default</CardTitle>
+        <CardDescription>No border, clean surface</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Body text goes here.</p>
+      </CardContent>
+    </Card>
+    <Card variant="bordered">
+      <CardHeader>
+        <CardTitle>Bordered</CardTitle>
+        <CardDescription>Solid 2px border for definition</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Body text goes here.</p>
+      </CardContent>
+    </Card>
+    <Card variant="elevated">
+      <CardHeader>
+        <CardTitle>Elevated</CardTitle>
+        <CardDescription>Drop shadow for depth</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Body text goes here.</p>
+      </CardContent>
+    </Card>
+  </div>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
+export const Composition: Story = () => (
+  <Card variant="bordered" className="max-w-md">
+    <CardHeader>
+      <CardTitle>Account Settings</CardTitle>
+      <CardDescription>Manage your profile and preferences</CardDescription>
+    </CardHeader>
+    <CardContent>
+      <div className="space-y-4">
+        <p>Content area for any child elements.</p>
+        <div className="p-4 bg-muted rounded-lg">
+          Nested content or form elements could go here.
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+);
 
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Card',
 };
-
-export default { title: 'UI/Card' };

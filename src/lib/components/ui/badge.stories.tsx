@@ -1,24 +1,31 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './badge';
+import { Badge } from './badge';
+import { Flex } from '../layout/Flex';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Variants: Story = () => (
+  <Flex gap="sm" wrap>
+    <Badge variant="default">Default</Badge>
+    <Badge variant="secondary">Secondary</Badge>
+    <Badge variant="success">Success</Badge>
+    <Badge variant="destructive">Destructive</Badge>
+    <Badge variant="outline">Outline</Badge>
+  </Flex>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
+export const UsageInContext: Story = () => (
+  <div className="space-y-2">
+    <p className="flex items-center gap-2">
+      Order #1042 <Badge variant="success">Delivered</Badge>
+    </p>
+    <p className="flex items-center gap-2">
+      Order #1041 <Badge variant="default">Processing</Badge>
+    </p>
+    <p className="flex items-center gap-2">
+      Order #1040 <Badge variant="destructive">Failed</Badge>
+    </p>
+  </div>
+);
 
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Badge',
 };
-
-export default { title: 'UI/Badge' };

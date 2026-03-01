@@ -1,24 +1,78 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from './dropdown-menu';
+import { Button } from './button';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Basic: Story = () => (
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button variant="outline">Open Menu</Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent className="w-56">
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuGroup>
+        <DropdownMenuItem>
+          Profile
+          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          Billing
+          <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          Settings
+          <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          Keyboard shortcuts
+          <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuGroup>
+        <DropdownMenuItem>Team</DropdownMenuItem>
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem>Email</DropdownMenuItem>
+              <DropdownMenuItem>Message</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>More...</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
+        <DropdownMenuItem>
+          New Team
+          <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+        </DropdownMenuItem>
+      </DropdownMenuGroup>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>GitHub</DropdownMenuItem>
+      <DropdownMenuItem>Support</DropdownMenuItem>
+      <DropdownMenuItem disabled>API</DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem variant="destructive">
+        Log out
+        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+      </DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
-
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Dropdown Menu',
 };
-
-export default { title: 'UI/Dropdown Menu' };

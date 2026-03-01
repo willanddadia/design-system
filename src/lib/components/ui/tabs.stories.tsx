@@ -1,24 +1,64 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './card';
+import { Button } from './button';
+import { Input } from './input';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Basic: Story = () => (
+  <Tabs defaultValue="account" className="w-[400px]">
+    <TabsList className="grid w-full grid-cols-2">
+      <TabsTrigger value="account">Account</TabsTrigger>
+      <TabsTrigger value="password">Password</TabsTrigger>
+    </TabsList>
+    <TabsContent value="account">
+      <Card>
+        <CardHeader>
+          <CardTitle>Account</CardTitle>
+          <CardDescription>
+            Make changes to your account here. Click save when you&apos;re done.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="space-y-1">
+            <label className="text-sm font-medium">Name</label>
+            <Input id="name" defaultValue="Pedro Duarte" />
+          </div>
+          <div className="space-y-1">
+            <label className="text-sm font-medium">Username</label>
+            <Input id="username" defaultValue="@peduarte" />
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button>Save changes</Button>
+        </CardFooter>
+      </Card>
+    </TabsContent>
+    <TabsContent value="password">
+      <Card>
+        <CardHeader>
+          <CardTitle>Password</CardTitle>
+          <CardDescription>
+            Change your password here. After saving, you&apos;ll be logged out.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-2">
+          <div className="space-y-1">
+            <label className="text-sm font-medium">Current password</label>
+            <Input id="current" type="password" />
+          </div>
+          <div className="space-y-1">
+            <label className="text-sm font-medium">New password</label>
+            <Input id="new" type="password" />
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button>Save password</Button>
+        </CardFooter>
+      </Card>
+    </TabsContent>
+  </Tabs>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
-
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Tabs',
 };
-
-export default { title: 'UI/Tabs' };

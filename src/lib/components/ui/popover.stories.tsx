@@ -1,24 +1,44 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './popover';
+import { Popover, PopoverContent, PopoverTrigger } from './popover';
+import { Button } from './button';
+import { Input } from './input';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Basic: Story = () => (
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline">Open popover</Button>
+    </PopoverTrigger>
+    <PopoverContent className="w-80">
+      <div className="grid gap-4">
+        <div className="space-y-2">
+          <h4 className="font-medium leading-none">Dimensions</h4>
+          <p className="text-muted-foreground text-sm">
+            Set the dimensions for the layer.
+          </p>
+        </div>
+        <div className="grid gap-2">
+          <div className="grid grid-cols-3 items-center gap-4">
+            <label htmlFor="width" className="text-sm font-medium">Width</label>
+            <Input id="width" defaultValue="100%" className="col-span-2 h-8" />
+          </div>
+          <div className="grid grid-cols-3 items-center gap-4">
+            <label htmlFor="maxWidth" className="text-sm font-medium">Max. width</label>
+            <Input id="maxWidth" defaultValue="300px" className="col-span-2 h-8" />
+          </div>
+          <div className="grid grid-cols-3 items-center gap-4">
+            <label htmlFor="height" className="text-sm font-medium">Height</label>
+            <Input id="height" defaultValue="25px" className="col-span-2 h-8" />
+          </div>
+          <div className="grid grid-cols-3 items-center gap-4">
+            <label htmlFor="maxHeight" className="text-sm font-medium">Max. height</label>
+            <Input id="maxHeight" defaultValue="none" className="col-span-2 h-8" />
+          </div>
+        </div>
+      </div>
+    </PopoverContent>
+  </Popover>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
-
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Popover',
 };
-
-export default { title: 'UI/Popover' };

@@ -1,24 +1,43 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './select';
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from './select';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Basic: Story = () => (
+  <div className="space-y-3 max-w-sm">
+    <Select>
+      <SelectTrigger>
+        <SelectValue placeholder="Select a framework..." />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="react">React</SelectItem>
+        <SelectItem value="vue">Vue</SelectItem>
+        <SelectItem value="svelte">Svelte</SelectItem>
+      </SelectContent>
+    </Select>
+    <Select>
+      <SelectTrigger error>
+        <SelectValue placeholder="Error state..." />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="error">Error</SelectItem>
+      </SelectContent>
+    </Select>
+    <Select disabled>
+      <SelectTrigger>
+        <SelectValue placeholder="Disabled state..." />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectItem value="disabled">Disabled</SelectItem>
+      </SelectContent>
+    </Select>
+  </div>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
-
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Select',
 };
-
-export default { title: 'UI/Select' };

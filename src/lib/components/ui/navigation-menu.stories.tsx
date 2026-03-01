@@ -1,24 +1,87 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './navigation-menu';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from './navigation-menu';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Basic: Story = () => (
+  <NavigationMenu>
+    <NavigationMenuList>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+            <li className="row-span-3">
+              <NavigationMenuLink asChild>
+                <a
+                  className="flex h-full w-full select-none flex-col justify-end rounded-md bg-linear-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                  href="/"
+                >
+                  <div className="mb-2 mt-4 text-lg font-medium">
+                    shadcn/ui
+                  </div>
+                  <p className="text-sm leading-tight text-muted-foreground">
+                    Beautifully designed components built with Radix UI and
+                    Tailwind CSS.
+                  </p>
+                </a>
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink asChild>
+                <a href="/" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                  <div className="text-sm font-medium leading-none">Introduction</div>
+                  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">Re-usable components built using Radix UI and Tailwind CSS.</p>
+                </a>
+              </NavigationMenuLink>
+            </li>
+            <li>
+              <NavigationMenuLink asChild>
+                <a href="/" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                  <div className="text-sm font-medium leading-none">Installation</div>
+                  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">How to install dependencies and structure your app.</p>
+                </a>
+              </NavigationMenuLink>
+            </li>
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+            {[
+              { title: "Alert Dialog", href: "/", description: "A modal dialog that interrupts the user with important content and expects a response." },
+              { title: "Hover Card", href: "/", description: "For sighted users to preview content available behind a link." },
+              { title: "Progress", href: "/", description: "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar." },
+              { title: "Scroll-area", href: "/", description: "Augments native scroll functionality for custom-styled scrollbars and cross-browser consistency." },
+            ].map((component) => (
+              <li key={component.title}>
+                <NavigationMenuLink asChild>
+                  <a href={component.href} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                    <div className="text-sm font-medium leading-none">{component.title}</div>
+                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{component.description}</p>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+            ))}
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      <NavigationMenuItem>
+        <NavigationMenuLink className={navigationMenuTriggerStyle()} asChild>
+          <a href="/">Documentation</a>
+        </NavigationMenuLink>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+  </NavigationMenu>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
-
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Navigation Menu',
 };
-
-export default { title: 'UI/Navigation Menu' };

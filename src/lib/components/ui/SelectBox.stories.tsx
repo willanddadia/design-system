@@ -1,22 +1,36 @@
+import { useState } from 'react';
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './SelectBox';
+import { SelectBox } from './SelectBox';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+const options = [
+  { value: 'basic', label: 'Basic Plan', description: 'Great for individuals' },
+  { value: 'pro', label: 'Pro Plan', description: 'Advanced features for teams' },
+  { value: 'enterprise', label: 'Enterprise', description: 'Custom solutions' },
+];
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
-
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
+export const SingleSelection: Story = () => {
+  const [value, setValue] = useState('');
   return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
+    <SelectBox
+      options={options}
+      value={value}
+      onChange={(v) => setValue(v as string)}
+    />
   );
+};
+
+export const MultiSelection: Story = () => {
+  const [value, setValue] = useState<string[]>([]);
+  return (
+    <SelectBox
+      options={options}
+      value={value}
+      onChange={(v) => setValue(v as string[])}
+      multiple
+    />
+  );
+};
+
+export default {
+  title: 'UI/SelectBox',
 };

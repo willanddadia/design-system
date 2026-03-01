@@ -1,24 +1,30 @@
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './alert';
+import { Alert } from './alert';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const Variants: Story = () => (
+  <div className="space-y-3">
+    <Alert variant="default" title="Info">
+      This is an informational message for the user.
+    </Alert>
+    <Alert variant="success" title="Success">
+      Your changes have been saved successfully!
+    </Alert>
+    <Alert variant="warning" title="Warning">
+      Please review your settings before continuing.
+    </Alert>
+    <Alert variant="destructive" title="Error">
+      An error occurred while processing your request.
+    </Alert>
+  </div>
+);
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
+export const WithoutTitle: Story = () => (
+  <div className="space-y-3">
+    <Alert variant="success">Your changes have been saved.</Alert>
+    <Alert variant="destructive">Invalid credentials provided.</Alert>
+  </div>
+);
 
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
-  return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
-    </div>
-  );
+export default {
+  title: 'UI/Alert',
 };
-
-export default { title: 'UI/Alert' };

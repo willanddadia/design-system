@@ -1,24 +1,83 @@
+import { useForm } from 'react-hook-form';
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './form';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from './form';
+import { Input } from './input';
+import { Button } from './button';
+import { Alert } from './alert';
+import { useState } from 'react';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
+export const RegistrationForm: Story = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const form = useForm({
+    defaultValues: {
+      username: '',
+      email: '',
+    },
+  });
 
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
+  function onSubmit(values: any) {
+    console.log(values);
+    setSubmitted(true);
+  }
 
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
+  if (submitted) {
+    return (
+      <Alert variant="success" title="Success">
+        Form submitted! Check console for values.
+      </Alert>
+    );
+  }
+
   return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
+    <div className="max-w-md mx-auto p-6 border rounded-xl shadow-sm">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <FormField
+            control={form.control}
+            name="username"
+            rules={{ required: 'Username is required', minLength: { value: 3, message: 'Too short' } }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder="johndoe" {...field} />
+                </FormControl>
+                <FormDescription> This is your public display name. </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            rules={{ required: 'Email is required', pattern: { value: /^\S+@\S+$/i, message: 'Invalid email' } }}
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input placeholder="john@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full">
+            Submit
+          </Button>
+        </form>
+      </Form>
     </div>
   );
 };
 
-export default { title: 'UI/Form' };
+export default {
+  title: 'UI/Form',
+};

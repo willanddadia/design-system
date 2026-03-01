@@ -1,24 +1,23 @@
+import { useState } from 'react';
 import type { Story } from '@ladle/react';
-import * as ComponentDeps from './switch';
+import { Switch } from './switch';
 
-// Extract the main component or first exported valid React component
-const ComponentName =
-  Object.keys(ComponentDeps).find((key) => key !== 'default' && /^[A-Z]/.test(key)) || 'default';
-const Component =
-  ComponentName === 'default' ? (ComponentDeps as any).default : (ComponentDeps as any)[ComponentName];
-
-export const Default: Story = (props) => {
-  if (!Component) return <div>Could not auto-resolve component export.</div>;
-
-  // Try to render it. For components that require children or specific contexts,
-  // this might render empty or with an error, but it's a starting point for snapshots.
+export const States: Story = () => {
+  const [checked, setChecked] = useState(false);
   return (
-    <div className="p-8 border border-dashed border-gray-300 rounded-lg w-full min-h-[100px] flex items-center justify-center">
-      <Component {...props}>
-        <span>{ComponentName} Example</span>
-      </Component>
+    <div className="space-y-4">
+      <Switch label="Default switch" />
+      <Switch
+        label="Controlled switch"
+        checked={checked}
+        onCheckedChange={setChecked}
+      />
+      <Switch label="Disabled switch" disabled />
+      <Switch label="Checked disabled" checked disabled />
     </div>
   );
 };
 
-export default { title: 'UI/Switch' };
+export default {
+  title: 'UI/Switch',
+};
