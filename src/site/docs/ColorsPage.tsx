@@ -4,7 +4,7 @@ import { Button } from '@lib/components/ui/button';
 import { RefreshCcw, Pipette } from 'lucide-react';
 
 const DEFAULTS = {
-  primary: '#3b82f6',
+  primary: '#030213',
   secondary: '#f3f4f6',
   accent: '#34d399',
 };
