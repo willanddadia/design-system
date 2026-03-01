@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig } from 'vitest/config'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
@@ -20,6 +20,12 @@ export default defineConfig({
       '@lib': path.resolve(__dirname, './src/lib'),
       '@site': path.resolve(__dirname, './src/site'),
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+    include: ['src/**/*.test.{ts,tsx}'],
   },
   build: process.env.BUILD_APP ? {
     outDir: 'dist-docs',

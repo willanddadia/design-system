@@ -44,7 +44,9 @@
     "build:ladle": "ladle build",
     "test:snapshots": "playwright test",
     "lint": "eslint .",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,css,md}\"",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "class-variance-authority": "0.7.1",
@@ -74,6 +76,9 @@
     "@ladle/react": "^5.1.1",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/vite": "4.1.12",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -86,6 +91,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
+    "jsdom": "^28.1.0",
     "prettier": "^3.8.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -93,7 +99,9 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite": "6.3.5",
-    "vite-plugin-dts": "^4.5.4"
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.18",
+    "vitest-axe": "^0.1.0"
   },
   "peerDependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
