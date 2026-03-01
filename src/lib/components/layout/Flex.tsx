@@ -9,23 +9,26 @@ export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(
-  ({ 
-    direction = 'row', 
-    justify = 'start', 
-    align = 'start', 
-    wrap = false,
-    gap = 'none',
-    className = '', 
-    children, 
-    ...props 
-  }, ref) => {
+  (
+    {
+      direction = 'row',
+      justify = 'start',
+      align = 'start',
+      wrap = false,
+      gap = 'none',
+      className = '',
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const directions = {
       row: 'flex-row',
       col: 'flex-col',
       'row-reverse': 'flex-row-reverse',
       'col-reverse': 'flex-col-reverse',
     };
-    
+
     const justifies = {
       start: 'justify-start',
       center: 'justify-center',
@@ -34,7 +37,7 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
       around: 'justify-around',
       evenly: 'justify-evenly',
     };
-    
+
     const aligns = {
       start: 'items-start',
       center: 'items-center',
@@ -42,7 +45,7 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
       stretch: 'items-stretch',
       baseline: 'items-baseline',
     };
-    
+
     const gaps = {
       none: '',
       sm: 'gap-2',
@@ -50,7 +53,7 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
       lg: 'gap-6',
       xl: 'gap-8',
     };
-    
+
     return (
       <div
         ref={ref}
@@ -60,7 +63,7 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 Flex.displayName = 'Flex';

@@ -7,14 +7,7 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
-  ({ 
-    cols = 'auto', 
-    gap = 'md',
-    rows = 'auto',
-    className = '', 
-    children, 
-    ...props 
-  }, ref) => {
+  ({ cols = 'auto', gap = 'md', rows = 'auto', className = '', children, ...props }, ref) => {
     const columns = {
       1: 'grid-cols-1',
       2: 'grid-cols-2',
@@ -25,7 +18,7 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
       12: 'grid-cols-12',
       auto: 'grid-cols-[repeat(auto-fit,minmax(250px,1fr))]',
     };
-    
+
     const gaps = {
       none: '',
       sm: 'gap-2',
@@ -33,9 +26,9 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
       lg: 'gap-6',
       xl: 'gap-8',
     };
-    
+
     const rowsClass = rows === 'auto' ? '' : `grid-rows-${rows}`;
-    
+
     return (
       <div
         ref={ref}
@@ -45,7 +38,7 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 Grid.displayName = 'Grid';

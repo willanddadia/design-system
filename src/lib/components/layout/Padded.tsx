@@ -14,7 +14,7 @@ export const Padded = forwardRef<HTMLDivElement, PaddedProps>(
       lg: 'p-6',
       xl: 'p-8',
     };
-    
+
     return (
       <div
         ref={ref}
@@ -24,7 +24,7 @@ export const Padded = forwardRef<HTMLDivElement, PaddedProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 Padded.displayName = 'Padded';

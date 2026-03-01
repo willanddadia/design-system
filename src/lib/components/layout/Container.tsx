@@ -14,7 +14,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
       lg: 'm-6',
       xl: 'm-8',
     };
-    
+
     return (
       <div
         ref={ref}
@@ -24,7 +24,7 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
         {children}
       </div>
     );
-  }
+  },
 );
 
 Container.displayName = 'Container';

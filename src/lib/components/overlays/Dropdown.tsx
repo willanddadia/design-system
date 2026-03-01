@@ -30,7 +30,7 @@ export function Dropdown({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const selectedOption = options.find(opt => opt.value === value);
+  const selectedOption = options.find((opt) => opt.value === value);
 
   const sizes = {
     sm: 'h-9 px-3 text-sm',
@@ -73,9 +73,7 @@ export function Dropdown({
         `}
       >
         <span>{selectedOption ? selectedOption.label : placeholder}</span>
-        <ChevronDown 
-          className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} 
-        />
+        <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
@@ -93,9 +91,7 @@ export function Dropdown({
               `}
             >
               <span>{option.label}</span>
-              {option.value === value && (
-                <Check className="w-5 h-5 text-primary" />
-              )}
+              {option.value === value && <Check className="w-5 h-5 text-primary" />}
             </button>
           ))}
         </div>

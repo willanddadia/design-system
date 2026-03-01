@@ -1,5 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Package, Palette, Type, Layout, MousePointer2, Tag, CreditCard, AlertCircle, Table as TableIcon, CheckSquare, Layers, Menu, X, ChevronRight } from 'lucide-react';
+import {
+  Package,
+  Palette,
+  Type,
+  Layout,
+  MousePointer2,
+  Tag,
+  CreditCard,
+  AlertCircle,
+  Table as TableIcon,
+  CheckSquare,
+  Layers,
+  Menu,
+  X,
+  ChevronRight,
+} from 'lucide-react';
 
 // Import Pages
 import { IntroductionPage } from './docs/IntroductionPage';
@@ -15,9 +30,17 @@ import { LayoutPage } from './docs/LayoutPage';
 import { TablePage } from './docs/TablePage';
 
 type PageId =
-  | 'intro' | 'colors' | 'typography'
-  | 'button' | 'badge' | 'card' | 'alert' | 'table'
-  | 'form' | 'modal' | 'layout';
+  | 'intro'
+  | 'colors'
+  | 'typography'
+  | 'button'
+  | 'badge'
+  | 'card'
+  | 'alert'
+  | 'table'
+  | 'form'
+  | 'modal'
+  | 'layout';
 
 interface NavItem {
   id: PageId;
@@ -37,7 +60,7 @@ const navSections: NavSection[] = [
       { id: 'intro', label: 'Introduction', icon: Package },
       { id: 'colors', label: 'Colors', icon: Palette },
       { id: 'typography', label: 'Typography', icon: Type },
-    ]
+    ],
   },
   {
     title: 'Components',
@@ -47,26 +70,20 @@ const navSections: NavSection[] = [
       { id: 'card', label: 'Card', icon: CreditCard },
       { id: 'alert', label: 'Alert', icon: AlertCircle },
       { id: 'table', label: 'Table', icon: TableIcon },
-    ]
+    ],
   },
   {
     title: 'Forms',
-    items: [
-      { id: 'form', label: 'Form Elements', icon: CheckSquare },
-    ]
+    items: [{ id: 'form', label: 'Form Elements', icon: CheckSquare }],
   },
   {
     title: 'Overlays',
-    items: [
-      { id: 'modal', label: 'Modal', icon: Layers },
-    ]
+    items: [{ id: 'modal', label: 'Modal', icon: Layers }],
   },
   {
     title: 'Layout',
-    items: [
-      { id: 'layout', label: 'Layout Wrappers', icon: Layout },
-    ]
-  }
+    items: [{ id: 'layout', label: 'Layout Wrappers', icon: Layout }],
+  },
 ];
 
 export default function App() {
@@ -81,18 +98,30 @@ export default function App() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'intro': return <IntroductionPage onGetStarted={() => setCurrentPage('button')} />;
-      case 'colors': return <ColorsPage />;
-      case 'typography': return <TypographyPage />;
-      case 'button': return <ButtonPage />;
-      case 'badge': return <BadgePage />;
-      case 'card': return <CardPage />;
-      case 'alert': return <AlertPage />;
-      case 'table': return <TablePage />;
-      case 'form': return <FormPage />;
-      case 'modal': return <ModalPage />;
-      case 'layout': return <LayoutPage />;
-      default: return <IntroductionPage onGetStarted={() => setCurrentPage('button')} />;
+      case 'intro':
+        return <IntroductionPage onGetStarted={() => setCurrentPage('button')} />;
+      case 'colors':
+        return <ColorsPage />;
+      case 'typography':
+        return <TypographyPage />;
+      case 'button':
+        return <ButtonPage />;
+      case 'badge':
+        return <BadgePage />;
+      case 'card':
+        return <CardPage />;
+      case 'alert':
+        return <AlertPage />;
+      case 'table':
+        return <TablePage />;
+      case 'form':
+        return <FormPage />;
+      case 'modal':
+        return <ModalPage />;
+      case 'layout':
+        return <LayoutPage />;
+      default:
+        return <IntroductionPage onGetStarted={() => setCurrentPage('button')} />;
     }
   };
 
@@ -113,12 +142,14 @@ export default function App() {
       </header>
 
       {/* Sidebar Sidebar */}
-      <aside className={`
+      <aside
+        className={`
         fixed inset-0 z-30 md:relative md:z-0
         w-full md:w-72 border-r-2 border-border bg-card
         transform transition-transform duration-200 md:transform-none
         ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
-      `}>
+      `}
+      >
         <div className="h-full flex flex-col">
           {/* Logo Section */}
           <div className="hidden md:flex items-center gap-3 px-8 py-10 border-b-2 border-border/50">
@@ -127,7 +158,9 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-lg font-bold leading-none">Design System</h1>
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">v1.0.0 Alpha</p>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground mt-1">
+                v1.0.0 Alpha
+              </p>
             </div>
           </div>
 
@@ -149,13 +182,19 @@ export default function App() {
                         className={`
                           w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
                           group relative overflow-hidden
-                          ${isActive
-                            ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10'
-                            : 'hover:bg-accent text-foreground/70 hover:text-foreground'}
+                          ${
+                            isActive
+                              ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10'
+                              : 'hover:bg-accent text-foreground/70 hover:text-foreground'
+                          }
                         `}
                       >
-                        <Icon className={`w-4 h-4 transition-transform duration-200 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
-                        <span className="text-[13px] font-medium flex-1 text-left">{item.label}</span>
+                        <Icon
+                          className={`w-4 h-4 transition-transform duration-200 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}
+                        />
+                        <span className="text-[13px] font-medium flex-1 text-left">
+                          {item.label}
+                        </span>
                         {isActive && <ChevronRight className="w-3 h-3 opacity-50" />}
                       </button>
                     );
@@ -184,9 +223,15 @@ export default function App() {
           <footer className="mt-24 pt-10 border-t-2 border-border flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
             <p>© 2026 Design System. Open for contribution.</p>
             <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-primary transition-colors">Documentation</a>
-              <a href="#" className="hover:text-primary transition-colors">GitHub</a>
-              <a href="#" className="hover:text-primary transition-colors">Discord</a>
+              <a href="#" className="hover:text-primary transition-colors">
+                Documentation
+              </a>
+              <a href="#" className="hover:text-primary transition-colors">
+                GitHub
+              </a>
+              <a href="#" className="hover:text-primary transition-colors">
+                Discord
+              </a>
             </div>
           </footer>
         </div>
