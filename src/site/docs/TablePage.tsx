@@ -1,5 +1,6 @@
 import { DataTable } from '@lib/components/data/data-table';
 import { Badge } from '@lib/components/ui/badge';
+import { TableSearch, TableFilter, TablePagination } from '@lib/components/ui/table';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const tableProps = [
@@ -78,6 +79,32 @@ export function TablePage() {
           code={`<DataTable data={data} columns={columns} bordered={false} striped />`}
         >
           <DataTable data={data} columns={columns} bordered={false} striped />
+        </Example>
+      </Section>
+
+      <Section
+        title="Table Controls"
+        description="Enhance your tables with built-in search, filter, and pagination components."
+      >
+        <Example
+          title="Search, Filter, and Pagination"
+          code={`<div className="space-y-4">
+  <div className="flex items-center justify-between">
+    <TableSearch className="max-w-xs" />
+    <TableFilter />
+  </div>
+  <DataTable data={data} columns={columns} />
+  <TablePagination currentPage={1} totalPages={5} onPageChange={(p) => console.log(p)} />
+</div>`}
+        >
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <TableSearch className="max-w-xs" />
+              <TableFilter />
+            </div>
+            <DataTable data={data} columns={columns} />
+            <TablePagination currentPage={1} totalPages={5} onPageChange={(p: number) => console.log(p)} />
+          </div>
         </Example>
       </Section>
 

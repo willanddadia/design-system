@@ -29,6 +29,12 @@ import { FormPage } from './docs/FormPage';
 import { ModalPage } from './docs/ModalPage';
 import { LayoutPage } from './docs/LayoutPage';
 import { TablePage } from './docs/TablePage';
+import { CalendarPage } from './docs/CalendarPage';
+import { LoadingPage } from './docs/LoadingPage';
+
+import { StickyHeader } from '@lib/components/layout/StickyHeader';
+import { StickyFooter } from '@lib/components/layout/StickyFooter';
+import { Button } from '@lib/components/ui/button';
 
 type PageId =
   | 'intro'
@@ -40,6 +46,8 @@ type PageId =
   | 'card'
   | 'alert'
   | 'table'
+  | 'calendar'
+  | 'loading'
   | 'form'
   | 'modal'
   | 'layout';
@@ -72,6 +80,8 @@ const navSections: NavSection[] = [
       { id: 'card', label: 'Card', icon: CreditCard },
       { id: 'alert', label: 'Alert', icon: AlertCircle },
       { id: 'table', label: 'Table', icon: TableIcon },
+      { id: 'calendar', label: 'Calendar', icon: CheckSquare },
+      { id: 'loading', label: 'Loading', icon: Layers },
     ],
   },
   {
@@ -92,12 +102,24 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>('intro');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Scroll to top on page change
+  // Handle hash changes for routing
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [currentPage]);
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '') as PageId;
+      if (hash && navSections.some(s => s.items.some(i => i.id === hash))) {
+        setCurrentPage(hash);
+      }
+    };
+
+    // Initial load
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
 
   const handlePageChange = (page: PageId) => {
+    window.location.hash = page;
     setCurrentPage(page);
     setIsSidebarOpen(false);
   };
@@ -122,6 +144,10 @@ export default function App() {
         return <AlertPage />;
       case 'table':
         return <TablePage />;
+      case 'calendar':
+        return <CalendarPage />;
+      case 'loading':
+        return <LoadingPage />;
       case 'form':
         return <FormPage />;
       case 'modal':
@@ -136,7 +162,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background flex flex-col md:flex-row">
       {/* Mobile Header */}
-      <header className="md:hidden border-b-2 border-border bg-card px-4 py-4 flex items-center justify-between sticky top-0 z-40">
+      <StickyHeader className="md:hidden px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Package className="w-6 h-6 text-primary" />
           <span className="font-bold tracking-tight">Design System</span>
@@ -147,7 +173,7 @@ export default function App() {
         >
           {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
-      </header>
+      </StickyHeader>
 
       {/* Sidebar Sidebar */}
       <aside
@@ -222,12 +248,25 @@ export default function App() {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-background selection:bg-primary/10">
-        <div className="max-w-4xl mx-auto px-6 py-12 md:px-12 md:py-16">
-          {renderPage()}
+      <main className="flex-1 flex flex-col min-h-screen bg-background selection:bg-primary/10 relative">
+        {/* Desktop Sticky Header */}
+        <StickyHeader className="hidden md:flex px-12 py-4 items-center justify-between border-b-2">
+          <div className="flex items-center gap-2">
+            <h2 className="text-sm font-semibold capitalize">{currentPage === 'intro' ? 'Overview' : currentPage}</h2>
+          </div>
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm" className="text-xs">Docs</Button>
+            <Button variant="ghost" size="sm" className="text-xs">GitHub</Button>
+          </div>
+        </StickyHeader>
 
-          {/* Footer */}
-          <footer className="mt-24 pt-10 border-t-2 border-border flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+        <div className="flex-1 max-w-4xl mx-auto px-6 py-12 md:px-12 md:py-16 w-full">
+          {renderPage()}
+        </div>
+
+        {/* Sticky Footer */}
+        <StickyFooter className="px-12 py-4 mt-auto border-t-2">
+          <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
             <p>© 2026 Design System. Open for contribution.</p>
             <div className="flex items-center gap-6">
               <a href="#" className="hover:text-primary transition-colors">
@@ -240,8 +279,8 @@ export default function App() {
                 Discord
               </a>
             </div>
-          </footer>
-        </div>
+          </div>
+        </StickyFooter>
       </main>
     </div>
   );

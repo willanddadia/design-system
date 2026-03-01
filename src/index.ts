@@ -8,6 +8,7 @@ export * from './lib/components/ui/card';
 export * from './lib/components/ui/input';
 export * from './lib/components/ui/select';
 export * from './lib/components/ui/switch';
+export * from './lib/components/ui/loader';
 export * from './lib/components/ui/table';
 export * from './lib/components/data/data-table';
 export * from './lib/components/ui/textarea';
@@ -19,6 +20,8 @@ export { Flex, type FlexProps } from './lib/components/layout/Flex';
 export { Grid, type GridProps } from './lib/components/layout/Grid';
 export { Modal, type ModalProps } from './lib/components/overlays/Modal';
 export { Padded, type PaddedProps } from './lib/components/layout/Padded';
+export { StickyHeader } from './lib/components/layout/StickyHeader';
+export { StickyFooter } from './lib/components/layout/StickyFooter';
 export {
   SelectBox,
   type SelectBoxProps,

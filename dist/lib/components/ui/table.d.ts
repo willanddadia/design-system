@@ -1,3 +1,5 @@
+import { Input } from './input';
+import { Button } from './button';
 import * as React from 'react';
 declare function Table({ className, ...props }: React.ComponentProps<'table'>): import("react/jsx-runtime").JSX.Element;
 declare function TableHeader({ className, ...props }: React.ComponentProps<'thead'>): import("react/jsx-runtime").JSX.Element;
@@ -7,4 +9,12 @@ declare function TableRow({ className, ...props }: React.ComponentProps<'tr'>): 
 declare function TableHead({ className, ...props }: React.ComponentProps<'th'>): import("react/jsx-runtime").JSX.Element;
 declare function TableCell({ className, ...props }: React.ComponentProps<'td'>): import("react/jsx-runtime").JSX.Element;
 declare function TableCaption({ className, ...props }: React.ComponentProps<'caption'>): import("react/jsx-runtime").JSX.Element;
-export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption };
+declare function TableSearch({ className, ...props }: React.ComponentProps<typeof Input>): import("react/jsx-runtime").JSX.Element;
+declare function TableFilter({ className, children, ...props }: React.ComponentProps<typeof Button>): import("react/jsx-runtime").JSX.Element;
+declare function TablePagination({ currentPage, totalPages, onPageChange, className, }: {
+    currentPage: number;
+    totalPages: number;
+    onPageChange: (page: number) => void;
+    className?: string;
+}): import("react/jsx-runtime").JSX.Element;
+export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption, TableSearch, TableFilter, TablePagination, };

@@ -89,4 +89,108 @@ function TableCaption({ className, ...props }: React.ComponentProps<'caption'>) 
   );
 }
 
-export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption };
+import { Search, Filter } from 'lucide-react';
+import { Input } from './input';
+import { Button } from './button';
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from './pagination';
+
+// ... (previous table components)
+
+function TableSearch({ className, ...props }: React.ComponentProps<typeof Input>) {
+  return (
+    <div className="relative">
+      <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+      <Input
+        type="search"
+        placeholder="Search..."
+        className={cn('pl-8', className)}
+        {...props}
+      />
+    </div>
+  );
+}
+
+function TableFilter({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  return (
+    <Button variant="outline" size="sm" className={cn('gap-2', className)} {...props}>
+      <Filter className="h-4 w-4" />
+      {children || 'Filter'}
+    </Button>
+  );
+}
+
+function TablePagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+  className,
+}: {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  className?: string;
+}) {
+  return (
+    <Pagination className={cn('mt-4', className)}>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (currentPage > 1) onPageChange(currentPage - 1);
+            }}
+          />
+        </PaginationItem>
+        {[...Array(totalPages)].map((_, i) => (
+          <PaginationItem key={i}>
+            <PaginationLink
+              href="#"
+              isActive={currentPage === i + 1}
+              onClick={(e) => {
+                e.preventDefault();
+                onPageChange(i + 1);
+              }}
+            >
+              {i + 1}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+        <PaginationItem>
+          <PaginationNext
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              if (currentPage < totalPages) onPageChange(currentPage + 1);
+            }}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+  TableSearch,
+  TableFilter,
+  TablePagination,
+};

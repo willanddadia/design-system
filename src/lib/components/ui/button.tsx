@@ -33,16 +33,44 @@ const buttonVariants = cva(
   },
 );
 
+interface ButtonProps
+  extends React.ComponentProps<'button'>,
+  VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  href?: string;
+  target?: string;
+}
+
 function Button({
   className,
   variant,
   size,
   asChild = false,
+  leftIcon,
+  rightIcon,
+  href,
+  target,
+  children,
   ...props
-}: React.ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
+}: ButtonProps) {
+  if (href) {
+    return (
+      <a
+        href={href}
+        target={target}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        className={cn(buttonVariants({ variant, size, className }))}
+        data-slot="button"
+      >
+        {leftIcon}
+        {children}
+        {rightIcon}
+      </a>
+    );
+  }
+
   const Comp = asChild ? Slot : 'button';
 
   return (
@@ -50,7 +78,11 @@ function Button({
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {leftIcon}
+      {children}
+      {rightIcon}
+    </Comp>
   );
 }
 

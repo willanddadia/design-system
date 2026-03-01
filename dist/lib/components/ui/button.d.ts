@@ -4,7 +4,12 @@ declare const buttonVariants: (props?: ({
     variant?: "default" | "destructive" | "link" | "secondary" | "outline" | "ghost" | null | undefined;
     size?: "default" | "sm" | "md" | "lg" | "icon" | null | undefined;
 } & import('class-variance-authority/types').ClassProp) | undefined) => string;
-declare function Button({ className, variant, size, asChild, ...props }: React.ComponentProps<'button'> & VariantProps<typeof buttonVariants> & {
+interface ButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
     asChild?: boolean;
-}): import("react/jsx-runtime").JSX.Element;
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
+    href?: string;
+    target?: string;
+}
+declare function Button({ className, variant, size, asChild, leftIcon, rightIcon, href, target, children, ...props }: ButtonProps): import("react/jsx-runtime").JSX.Element;
 export { Button, buttonVariants };

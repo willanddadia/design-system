@@ -135,24 +135,55 @@ export function ButtonPage() {
         </Example>
       </Section>
 
-      <Section title="States">
+      <Section title="Icons" description="Add icons to the left or right of the button text.">
         <Example
-          title="Disabled"
-          code={`<Button disabled>Disabled</Button>
-<Button variant="outline" disabled>Disabled Outline</Button>`}
+          title="Left & Right Icons"
+          code={`<Button leftIcon={<Heart className="w-4 h-4" />}>Like</Button>
+<Button rightIcon={<Share2 className="w-4 h-4" />}>Share</Button>
+<Button leftIcon={<Search className="w-4 h-4" />} rightIcon={<ChevronRight className="w-4 h-4" />}>Search with icon</Button>`}
         >
           <Flex gap="sm">
-            <Button disabled>Disabled</Button>
-            <Button variant="outline" disabled>
-              Disabled Outline
+            <Button leftIcon={<Heart className="size-4" />}>Like</Button>
+            <Button rightIcon={<Share2 className="size-4" />}>Share</Button>
+            <Button
+              variant="outline"
+              leftIcon={<Search className="size-4" />}
+              rightIcon={<ChevronRight className="size-4" />}
+            >
+              Search
+            </Button>
+          </Flex>
+        </Example>
+      </Section>
+
+      <Section title="Link Support" description="Buttons can act as anchors using the href prop.">
+        <Example
+          title="Internal & External Links"
+          code={`<Button href="#colors">Go to Colors</Button>
+<Button href="https://google.com" target="_blank" variant="outline">Open Google</Button>`}
+        >
+          <Flex gap="sm">
+            <Button href="#colors">Go to Colors</Button>
+            <Button href="https://google.com" target="_blank" variant="outline">
+              Open Google
             </Button>
           </Flex>
         </Example>
       </Section>
 
       <Section title="Props">
-        <PropTable props={props} />
+        <PropTable
+          props={[
+            ...props,
+            { name: 'leftIcon', type: 'ReactNode', default: '—', description: 'Icon to display on the left.' },
+            { name: 'rightIcon', type: 'ReactNode', default: '—', description: 'Icon to display on the right.' },
+            { name: 'href', type: 'string', default: '—', description: 'Optional link URL.' },
+            { name: 'target', type: 'string', default: '—', description: 'Link target attribute.' },
+          ]}
+        />
       </Section>
     </div>
   );
 }
+
+import { ChevronRight } from 'lucide-react';

@@ -202,6 +202,46 @@ export function LayoutPage() {
         </Example>
         <PropTable props={paddedProps} />
       </Section>
+      {/* Sticky Header & Footer */}
+      <Section
+        title="Sticky Layout"
+        description="Helper components for creating sticky headers and footers with built-in backdrop blur."
+      >
+        <Example
+          title="Sticky Header & Footer"
+          code={`<StickyHeader className="p-4 border-b">Header Content</StickyHeader>
+<StickyFooter className="p-4 border-t">Footer Content</StickyFooter>`}
+        >
+          <div className="relative h-[200px] border-2 border-border rounded-xl overflow-y-auto bg-muted/10 custom-scrollbar">
+            <StickyHeader className="px-4 py-2 text-xs font-semibold border-b">
+              Simulation: Sticky Header
+            </StickyHeader>
+            <div className="p-4 space-y-4">
+              {[...Array(10)].map((_, i) => (
+                <div key={i} className="h-4 bg-muted rounded w-3/4" />
+              ))}
+            </div>
+            <StickyFooter className="px-4 py-2 text-xs font-semibold border-t">
+              Simulation: Sticky Footer
+            </StickyFooter>
+          </div>
+        </Example>
+      </Section>
+
+      <PropTable
+        props={[
+          {
+            name: 'blur',
+            type: 'boolean',
+            default: 'true',
+            description: 'Whether to apply backdrop-blur and a semi-transparent background.',
+          },
+          { name: 'children', type: 'ReactNode', default: '—', description: 'Header or footer content.' },
+        ]}
+      />
     </div>
   );
 }
+
+import { StickyHeader } from '@lib/components/layout/StickyHeader';
+import { StickyFooter } from '@lib/components/layout/StickyFooter';
