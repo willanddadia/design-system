@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Check } from 'lucide-react';
 
 export interface SelectBoxOption {
@@ -49,8 +48,8 @@ export function SelectBox({
             className={`
               w-full p-4 rounded-lg border-2 text-left
               transition-all
-              ${selected 
-                ? 'border-primary bg-primary/5' 
+              ${selected
+                ? 'border-primary bg-primary/5'
                 : 'border-border bg-card hover:border-primary/50 hover:bg-accent/50'
               }
             `}
@@ -59,8 +58,8 @@ export function SelectBox({
               <div className={`
                 w-5 h-5 rounded flex items-center justify-center shrink-0 mt-0.5
                 border-2 transition-colors
-                ${selected 
-                  ? 'bg-primary border-primary' 
+                ${selected
+                  ? 'bg-primary border-primary'
                   : 'border-border bg-background'
                 }
               `}>

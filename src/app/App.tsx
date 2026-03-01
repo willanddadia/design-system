@@ -15,7 +15,7 @@ import { FullscreenModal, PopupModal, SideModal } from './components/Modal';
 import { Flex } from './components/Flex';
 import { Grid } from './components/Grid';
 import { BorderedTable, BorderlessTable } from './components/Table';
-import { Palette, Type, Layout, Package, Box, Layers, Search, Heart, Share2, Settings, Trash2, Edit, Plus } from 'lucide-react';
+import { Palette, Type, Layout, Package, Box, Layers, Search, Heart, Share2, Settings, Trash2, Edit } from 'lucide-react';
 
 export default function App() {
   const [switchChecked, setSwitchChecked] = useState(false);
@@ -38,8 +38,8 @@ export default function App() {
     { key: 'id', header: 'ID' },
     { key: 'name', header: 'Name' },
     { key: 'email', header: 'Email' },
-    { 
-      key: 'role', 
+    {
+      key: 'role',
       header: 'Role',
       render: (item: typeof tableData[0]) => (
         <Badge variant={item.role === 'Admin' ? 'destructive' : 'secondary'}>
@@ -268,15 +268,15 @@ export default function App() {
                   <div className="space-y-4">
                     <div>
                       <label className="block mb-2">Small</label>
-                      <Input size="sm" placeholder="Small input..." />
+                      <Input inputSize="sm" placeholder="Small input..." />
                     </div>
                     <div>
                       <label className="block mb-2">Medium (Default)</label>
-                      <Input size="md" placeholder="Medium input..." />
+                      <Input inputSize="md" placeholder="Medium input..." />
                     </div>
                     <div>
                       <label className="block mb-2">Large</label>
-                      <Input size="lg" placeholder="Large input..." />
+                      <Input inputSize="lg" placeholder="Large input..." />
                     </div>
                     <div>
                       <label className="block mb-2">Error state</label>
@@ -299,7 +299,7 @@ export default function App() {
                   <div className="space-y-4">
                     <div>
                       <label className="block mb-2">Small</label>
-                      <Dropdown 
+                      <Dropdown
                         size="sm"
                         options={dropdownOptions}
                         value={dropdownValue}
@@ -308,7 +308,7 @@ export default function App() {
                     </div>
                     <div>
                       <label className="block mb-2">Medium (Default)</label>
-                      <Dropdown 
+                      <Dropdown
                         size="md"
                         options={dropdownOptions}
                         value={dropdownValue}
@@ -318,7 +318,7 @@ export default function App() {
                     </div>
                     <div>
                       <label className="block mb-2">Large</label>
-                      <Dropdown 
+                      <Dropdown
                         size="lg"
                         options={dropdownOptions}
                         value={dropdownValue}
@@ -327,7 +327,7 @@ export default function App() {
                     </div>
                     <div>
                       <label className="block mb-2">Error state</label>
-                      <Dropdown 
+                      <Dropdown
                         error
                         options={dropdownOptions}
                         placeholder="Select an option..."
@@ -395,8 +395,8 @@ export default function App() {
                 <CardContent>
                   <div className="space-y-4">
                     <Switch label="Enable notifications" />
-                    <Switch 
-                      label="Dark mode" 
+                    <Switch
+                      label="Dark mode"
                       checked={switchChecked}
                       onChange={(e) => setSwitchChecked(e.target.checked)}
                     />
@@ -411,7 +411,7 @@ export default function App() {
                   <CardDescription>Visual selection component for single choice</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <SelectBox 
+                  <SelectBox
                     options={selectBoxOptions}
                     value={selectBoxValue}
                     onChange={(val) => setSelectBoxValue(val as string)}
@@ -425,7 +425,7 @@ export default function App() {
                   <CardDescription>Visual selection component for multiple choices</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <SelectBox 
+                  <SelectBox
                     options={selectBoxOptions}
                     value={multiSelectValue}
                     onChange={(val) => setMultiSelectValue(val as string[])}
@@ -573,8 +573,8 @@ export default function App() {
             </Card>
 
             {/* Modal Components */}
-            <FullscreenModal 
-              isOpen={fullscreenOpen} 
+            <FullscreenModal
+              isOpen={fullscreenOpen}
               onClose={() => setFullscreenOpen(false)}
               title="Fullscreen Modal"
             >
@@ -588,8 +588,8 @@ export default function App() {
               </div>
             </FullscreenModal>
 
-            <PopupModal 
-              isOpen={popupOpen} 
+            <PopupModal
+              isOpen={popupOpen}
               onClose={() => setPopupOpen(false)}
               title="Popup Modal"
             >
@@ -603,8 +603,8 @@ export default function App() {
               </div>
             </PopupModal>
 
-            <SideModal 
-              isOpen={sideOpen} 
+            <SideModal
+              isOpen={sideOpen}
               onClose={() => setSideOpen(false)}
               title="Side Modal"
             >

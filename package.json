@@ -1,15 +1,39 @@
 {
-  "name": "@figma/my-make-file",
-  "private": true,
+  "name": "@wild/design-system",
   "version": "0.0.1",
+  "description": "A reusable design system built with React and Tailwind CSS",
   "type": "module",
+  "main": "./dist/index.umd.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/design-system.css",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js"
+    },
+    "./style.css": "./dist/design-system.css"
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build",
+    "prepublishOnly": "vite build",
     "dev": "vite",
     "ladle": "ladle serve",
     "build:ladle": "ladle build",
     "test:snapshots": "playwright test"
   },
+  "license": "MIT",
+  "keywords": [
+    "design-system",
+    "react",
+    "tailwindcss",
+    "components",
+    "ui"
+  ],
   "dependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.1",
@@ -70,21 +94,15 @@
     "@ladle/react": "^5.1.1",
     "@playwright/test": "^1.58.2",
     "@tailwindcss/vite": "4.1.12",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "4.7.0",
     "tailwindcss": "4.1.12",
-    "vite": "6.3.5"
+    "vite": "6.3.5",
+    "vite-plugin-dts": "^4.5.4"
   },
   "peerDependencies": {
-    "react": "18.3.1",
-    "react-dom": "18.3.1"
-  },
-  "peerDependenciesMeta": {
-    "react": {
-      "optional": true
-    },
-    "react-dom": {
-      "optional": true
-    }
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "pnpm": {
     "overrides": {
