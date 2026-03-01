@@ -89,7 +89,7 @@ const navSections: NavSection[] = [
 ];
 
 export default function App() {
-  const [currentPage] = useState<PageId>('intro');
+  const [currentPage, setCurrentPage] = useState<PageId>('intro');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Scroll to top on page change
@@ -98,7 +98,7 @@ export default function App() {
   }, [currentPage]);
 
   const handlePageChange = (page: PageId) => {
-    handlePageChange(page);
+    setCurrentPage(page);
     setIsSidebarOpen(false);
   };
 
@@ -190,10 +190,9 @@ export default function App() {
                         className={`
                           w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200
                           group relative overflow-hidden
-                          ${
-                            isActive
-                              ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10'
-                              : 'hover:bg-accent text-foreground/70 hover:text-foreground'
+                          ${isActive
+                            ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10'
+                            : 'hover:bg-accent text-foreground/70 hover:text-foreground'
                           }
                         `}
                       >
