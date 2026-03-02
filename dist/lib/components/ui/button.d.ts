@@ -2,7 +2,7 @@ import { VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 declare const buttonVariants: (props?: ({
     variant?: "default" | "destructive" | "link" | "secondary" | "outline" | "ghost" | null | undefined;
-    size?: "default" | "sm" | "md" | "lg" | "icon" | null | undefined;
+    size?: "default" | "none" | "sm" | "md" | "lg" | "icon" | null | undefined;
 } & import('class-variance-authority/types').ClassProp) | undefined) => string;
 interface ButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
     asChild?: boolean;
