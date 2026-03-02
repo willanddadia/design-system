@@ -1,17 +1,23 @@
 import * as React from 'react';
-
 import { cn } from '@lib/utils/utils';
+import { SpacingProps, getSpacingClasses } from '@lib/utils/spacing';
+
+export interface InputProps extends Omit<React.ComponentProps<'input'>, 'className'>, SpacingProps {
+  error?: boolean;
+  fieldSize?: 'default' | 'sm' | 'md' | 'lg';
+  internalClassName?: string;
+}
 
 function Input({
   type,
   error,
   fieldSize = 'default',
+  internalClassName,
+  // Spacing props
+  m, mt, mr, mb, ml, mx, my,
+  p, pt, pr, pb, pl, px, py,
   ...props
-}: Omit<React.ComponentProps<'input'>, 'className'> & {
-  error?: boolean;
-  fieldSize?: 'default' | 'sm' | 'md' | 'lg';
-  internalClassName?: string;
-}) {
+}: InputProps) {
   return (
     <input
       type={type}
@@ -23,7 +29,8 @@ function Input({
         'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
         'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
         'data-[size=sm]:h-8 data-[size=default]:h-9 data-[size=md]:h-11 data-[size=lg]:h-14',
-        props.internalClassName,
+        getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),
+        internalClassName,
       )}
       {...props}
     />

@@ -98,7 +98,7 @@ export function WebSamplePage() {
         <Container>
             <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
                 <Flex direction="col" gap="xl">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <Flex direction="col" mdDirection="row" mdAlign="center" justify="between" gap="md">
                         <Flex direction="col" gap="none">
                             <Heading size="4xl" weight="bold">
                                 Web Dashboard
@@ -117,7 +117,7 @@ export function WebSamplePage() {
                                 New Project
                             </Button>
                         </Flex>
-                    </div>
+                    </Flex>
 
                     {/* KPI Cards */}
                     <Grid cols={1} mdCols={2} lgCols={4} gap="md">
@@ -135,10 +135,10 @@ export function WebSamplePage() {
                                     $45,231.89
                                 </Text>
                                 <Paragraph size="xs" variant="success">
-                                    <div className="flex items-center mt-1">
+                                    <Flex align="center" mt={0.25}>
                                         <ArrowUpRight className="mr-1 size-3" />
                                         +20.1% from last month
-                                    </div>
+                                    </Flex>
                                 </Paragraph>
                             </CardContent>
                         </Card>
@@ -156,10 +156,10 @@ export function WebSamplePage() {
                                     +2350
                                 </Text>
                                 <Paragraph size="xs" variant="success">
-                                    <div className="flex items-center mt-1">
+                                    <Flex align="center" mt={0.25}>
                                         <ArrowUpRight className="mr-1 size-3" />
                                         +180.1% from last month
-                                    </div>
+                                    </Flex>
                                 </Paragraph>
                             </CardContent>
                         </Card>
@@ -177,10 +177,10 @@ export function WebSamplePage() {
                                     +12,234
                                 </Text>
                                 <Paragraph size="xs" variant="destructive">
-                                    <div className="flex items-center mt-1">
+                                    <Flex align="center" mt={0.25}>
                                         <ArrowDownRight className="mr-1 size-3" />
                                         -19% from last month
-                                    </div>
+                                    </Flex>
                                 </Paragraph>
                             </CardContent>
                         </Card>
@@ -198,10 +198,10 @@ export function WebSamplePage() {
                                     +573
                                 </Text>
                                 <Paragraph size="xs" variant="success">
-                                    <div className="flex items-center mt-1">
+                                    <Flex align="center" mt={0.25}>
                                         <ArrowUpRight className="mr-1 size-3" />
                                         +201 since last hour
-                                    </div>
+                                    </Flex>
                                 </Paragraph>
                             </CardContent>
                         </Card>
@@ -308,13 +308,13 @@ export function WebSamplePage() {
                                     <CardDescription>Manage and view your recent store transactions.</CardDescription>
                                 </Flex>
                                 <Flex align="center" gap="sm">
-                                    <div className="relative hidden md:flex">
+                                    <Flex align="center" gap="sm" internalClassName="relative hidden md:flex">
                                         <Search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
                                         <Input
                                             type="search"
                                             placeholder="Search transactions..."
                                         />
-                                    </div>
+                                    </Flex>
                                     <Button variant="outline" size="sm">
                                         <Filter className="mr-2 size-4" />
                                         Filters

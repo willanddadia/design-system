@@ -11,6 +11,7 @@ import {
 import { Dropdown } from '@lib/components/overlays/Dropdown';
 import { Switch } from '@lib/components/ui/switch';
 import { SelectBox } from '@lib/components/ui/SelectBox';
+import { Flex } from '@lib/components/layout/Flex';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const inputProps = [
@@ -152,22 +153,22 @@ export function FormPage() {
 <Input fieldSize="md" placeholder="Medium..." />
 <Input fieldSize="lg" placeholder="Large..." />`}
         >
-          <div className="space-y-3 max-w-sm">
+          <Flex direction="col" gap="sm" internalClassName="max-w-sm">
             <Input fieldSize="sm" placeholder="Small input..." />
             <Input fieldSize="default" placeholder="Default input..." />
             <Input fieldSize="md" placeholder="Medium input..." />
             <Input fieldSize="lg" placeholder="Large input..." />
-          </div>
+          </Flex>
         </Example>
         <Example
           title="States"
           code={`<Input error placeholder="Error state" />
 <Input disabled placeholder="Disabled" />`}
         >
-          <div className="space-y-3 max-w-sm">
+          <Flex direction="col" gap="sm" internalClassName="max-w-sm">
             <Input error placeholder="Error state" />
             <Input disabled placeholder="Disabled" />
-          </div>
+          </Flex>
         </Example>
         <PropTable props={inputProps} />
       </Section>
@@ -184,7 +185,7 @@ export function FormPage() {
 <Dropdown size="lg" options={options} value={val} onChange={setVal} />
 <Dropdown error options={options} placeholder="Error state" />`}
         >
-          <div className="space-y-3 max-w-sm">
+          <Flex direction="col" gap="sm" internalClassName="max-w-sm">
             <Dropdown
               size="sm"
               options={dropdownOptions}
@@ -207,7 +208,7 @@ export function FormPage() {
               placeholder="Large..."
             />
             <Dropdown error options={dropdownOptions} placeholder="Error state..." />
-          </div>
+          </Flex>
         </Example>
         <PropTable props={dropdownProps} />
       </Section>
@@ -226,7 +227,7 @@ export function FormPage() {
   </SelectContent>
 </Select>`}
         >
-          <div className="space-y-3 max-w-sm">
+          <Flex direction="col" gap="sm" internalClassName="max-w-sm">
             <Select>
               <SelectTrigger>
                 <SelectValue placeholder="Select a framework..." />
@@ -245,7 +246,7 @@ export function FormPage() {
                 <SelectItem value="error">Error</SelectItem>
               </SelectContent>
             </Select>
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -258,12 +259,12 @@ export function FormPage() {
 <Textarea fieldSize="md" placeholder="Medium..." />
 <Textarea fieldSize="lg" placeholder="Large..." />`}
         >
-          <div className="space-y-3 max-w-sm">
+          <Flex direction="col" gap="sm" internalClassName="max-w-sm">
             <Textarea fieldSize="sm" placeholder="Small textarea..." />
             <Textarea fieldSize="default" placeholder="Default textarea..." />
             <Textarea fieldSize="md" placeholder="Medium textarea..." />
             <Textarea fieldSize="lg" placeholder="Large textarea..." />
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -278,7 +279,7 @@ export function FormPage() {
 <Switch label="Dark mode" checked={on} onChange={(e) => setOn(e.target.checked)} />
 <Switch label="Disabled" disabled />`}
         >
-          <div className="space-y-3">
+          <Flex direction="col" gap="sm">
             <Switch label="Enable notifications" />
             <Switch
               label="Dark mode"
@@ -286,7 +287,7 @@ export function FormPage() {
               onCheckedChange={(checked: boolean) => setSwitchOn(checked)}
             />
             <Switch label="Disabled option" disabled />
-          </div>
+          </Flex>
         </Example>
         <PropTable props={switchProps} />
       </Section>

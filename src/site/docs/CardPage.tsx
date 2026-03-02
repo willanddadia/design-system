@@ -1,4 +1,5 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@lib/components/ui/card';
+import { Flex, Grid } from '@lib/components/layout';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const props = [
@@ -47,7 +48,7 @@ const subProps = [
 
 export function CardPage() {
   return (
-    <div>
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Layout"
         title="Card"
@@ -72,7 +73,7 @@ export function CardPage() {
   <CardContent><p>Drop shadow for depth.</p></CardContent>
 </Card>`}
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <Grid cols={1} mdCols={3} gap="md">
             <Card variant="default">
               <CardHeader>
                 <CardTitle>Default</CardTitle>
@@ -100,7 +101,7 @@ export function CardPage() {
                 <p>Body text goes here.</p>
               </CardContent>
             </Card>
-          </div>
+          </Grid>
         </Example>
       </Section>
 
@@ -120,7 +121,7 @@ export function CardPage() {
   </CardContent>
 </Card>`}
         >
-          <div className="max-w-md">
+          <Flex direction="col" gap="none" internalClassName="max-w-md">
             <Card variant="bordered">
               <CardHeader>
                 <CardTitle>Account Settings</CardTitle>
@@ -130,7 +131,7 @@ export function CardPage() {
                 <p>Content area for any child elements.</p>
               </CardContent>
             </Card>
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -140,6 +141,6 @@ export function CardPage() {
       <Section title="Sub-component API">
         <PropTable props={subProps} />
       </Section>
-    </div>
+    </Flex>
   );
 }

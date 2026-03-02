@@ -38,6 +38,7 @@ import { WebSamplePage } from './docs/WebSamplePage';
 
 import { StickyHeader } from '@lib/components/layout/StickyHeader';
 import { StickyFooter } from '@lib/components/layout/StickyFooter';
+import { Flex } from '@lib/components/layout/Flex';
 import { Button } from '@lib/components/ui/button';
 
 type PageId =
@@ -187,18 +188,18 @@ export default function App() {
     <div className="min-h-screen bg-background flex flex-col md:flex-row">
       {/* Mobile Header */}
       <StickyHeader>
-        <div className="md:hidden px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+        <Flex align="center" justify="between" px={1} py={1} internalClassName="md:hidden">
+          <Flex align="center" gap="sm">
             <Package className="w-6 h-6 text-primary" />
             <span className="font-bold tracking-tight">Design System</span>
-          </div>
+          </Flex>
           <button
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
             className="p-2 hover:bg-accent rounded-lg transition-colors"
           >
             {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
-        </div>
+        </Flex>
       </StickyHeader>
 
       {/* Sidebar Sidebar */}
@@ -277,19 +278,19 @@ export default function App() {
       <main className="flex-1 flex flex-col min-h-screen bg-background selection:bg-primary/10 relative">
         {/* Desktop Sticky Header */}
         <StickyHeader>
-          <div className="hidden md:flex px-12 py-4 items-center justify-between border-b-2">
-            <div className="flex items-center gap-2">
+          <Flex align="center" justify="between" px={2} py={1} internalClassName="hidden md:flex px-12 border-b-2">
+            <Flex align="center" gap="sm">
               <h2 className="text-sm font-semibold capitalize">{currentPage === 'intro' ? 'Overview' : currentPage}</h2>
-            </div>
-            <div className="flex items-center gap-4">
+            </Flex>
+            <Flex align="center" gap="md">
               <a href="https://github.com/willanddadia/design-system#readme" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="sm">Docs</Button>
               </a>
               <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer">
                 <Button variant="ghost" size="sm">GitHub</Button>
               </a>
-            </div>
-          </div>
+            </Flex>
+          </Flex>
         </StickyHeader>
 
         <div className="flex-1 max-w-4xl mx-auto px-6 py-12 md:px-12 md:py-16 w-full">

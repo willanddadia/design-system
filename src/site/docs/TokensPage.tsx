@@ -1,4 +1,5 @@
 import { Section, PageHero } from './DocLayout';
+import { Flex, Grid, Padded } from '@lib/components/layout';
 
 const spacingTokens = [
   { name: 'xs', size: '0.25rem', px: '4px' },
@@ -30,7 +31,7 @@ const radiusTokens = [
 
 export function TokensPage() {
   return (
-    <div>
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Foundation"
         title="Design Tokens"
@@ -41,7 +42,7 @@ export function TokensPage() {
         title="Spacing"
         description="Our spacing scale is based on a 4px grid system. Use these tokens for padding, margins, and gaps."
       >
-        <div className="border-2 border-border rounded-xl overflow-hidden shadow-sm overflow-x-auto">
+        <Padded padding="none" bordered internalClassName="shadow-sm overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-muted/40 border-b-2 border-border">
               <tr>
@@ -67,25 +68,27 @@ export function TokensPage() {
               ))}
             </tbody>
           </table>
-        </div>
+        </Padded>
       </Section>
 
       <Section
         title="Border Radius"
         description="Consistent rounding helps create a cohesive feel across all UI elements."
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Grid cols={1} mdCols={2} gap="lg">
           {radiusTokens.map((token) => (
-            <div
+            <Padded
               key={token.name}
-              className="border-2 border-border rounded-xl p-6 bg-background shadow-sm group"
+              padding="lg"
+              bordered
+              internalClassName="bg-background shadow-sm group"
             >
-              <div className="flex items-center gap-6">
+              <Flex align="center" gap="lg">
                 <div
                   className="w-16 h-16 bg-primary transition-all duration-300 group-hover:rotate-6 shadow-md"
                   style={{ borderRadius: token.value }}
                 />
-                <div>
+                <Flex direction="col" gap="none">
                   <h4 className="font-semibold text-primary flex items-center gap-2">
                     {token.name}
                     <span className="text-[10px] font-mono text-muted-foreground bg-muted px-2 py-0.5 rounded uppercase">
@@ -96,12 +99,12 @@ export function TokensPage() {
                     {token.description}
                   </p>
                   <code className="text-[10px] block mt-2 text-primary/70">{token.value}</code>
-                </div>
-              </div>
-            </div>
+                </Flex>
+              </Flex>
+            </Padded>
           ))}
-        </div>
+        </Grid>
       </Section>
-    </div>
+    </Flex>
   );
 }

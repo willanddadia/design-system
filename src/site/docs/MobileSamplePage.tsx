@@ -43,15 +43,15 @@ export function MobileSamplePage() {
                     <div className="max-w-[390px] mx-auto border-8 border-border rounded-[3rem] overflow-hidden shadow-2xl bg-background aspect-[9/19.5] relative">
                         <div className="flex flex-col h-full">
                             {/* Status Bar */}
-                            <div className="h-10 px-6 flex items-center justify-between">
+                            <Flex align="center" justify="between" px={1.5} internalClassName="h-10">
                                 <Text size="xs" weight="semibold">
                                     9:41
                                 </Text>
-                                <div className="flex items-center gap-2">
+                                <Flex align="center" gap="sm">
                                     <div className="w-4 h-2.5 border border-foreground/20 rounded-[2px]" />
                                     <div className="w-3 h-3 border-t-2 border-r-2 border-foreground/20 rotate-45" />
-                                </div>
-                            </div>
+                                </Flex>
+                            </Flex>
 
                             {/* Header */}
                             <div className="px-6 py-4 flex items-center justify-between border-b border-border/50">

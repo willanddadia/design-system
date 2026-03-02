@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@lib/utils/utils';
+import { SpacingProps, getSpacingClasses } from '@lib/utils/spacing';
 
 const typographyVariants = cva('transition-colors', {
     variants: {
@@ -72,12 +73,13 @@ const typographyVariants = cva('transition-colors', {
 
 export interface TypographyProps
     extends Omit<React.HTMLAttributes<HTMLElement>, 'className'>,
-    VariantProps<typeof typographyVariants> {
+    VariantProps<typeof typographyVariants>, SpacingProps {
     asChild?: boolean;
     as?: React.ElementType;
+    internalClassName?: string;
 }
 
-const Text = React.forwardRef<HTMLElement, TypographyProps & { internalClassName?: string }>(
+const Text = React.forwardRef<HTMLElement, TypographyProps>(
     (
         {
             variant,
@@ -93,6 +95,9 @@ const Text = React.forwardRef<HTMLElement, TypographyProps & { internalClassName
             asChild = false,
             as: Component = 'p',
             internalClassName,
+            // Spacing props
+            m, mt, mr, mb, ml, mx, my,
+            p, pt, pr, pb, pl, px, py,
             ...props
         },
         ref,
@@ -113,6 +118,7 @@ const Text = React.forwardRef<HTMLElement, TypographyProps & { internalClassName
                         uppercase,
                         lowercase,
                     }),
+                    getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),
                     internalClassName
                 )}
                 ref={ref}

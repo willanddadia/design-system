@@ -1,6 +1,7 @@
 import { DataTable } from '@lib/components/data/data-table';
 import { Badge } from '@lib/components/ui/badge';
 import { TableSearch, TableFilter, TablePagination } from '@lib/components/ui/table';
+import { Flex, Padded } from '@lib/components/layout';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const tableProps = [
@@ -99,16 +100,16 @@ export function TablePage() {
   <TablePagination currentPage={1} totalPages={5} onPageChange={(p) => console.log(p)} />
 </div>`}
         >
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="max-w-xs w-full">
+          <Flex direction="col" gap="md">
+            <Flex align="center" justify="between">
+              <Flex direction="col" internalClassName="max-w-xs w-full">
                 <TableSearch />
-              </div>
+              </Flex>
               <TableFilter />
-            </div>
+            </Flex>
             <DataTable data={data} columns={columns} />
             <TablePagination currentPage={1} totalPages={5} onPageChange={(p: number) => console.log(p)} />
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -117,13 +118,13 @@ export function TablePage() {
       </Section>
 
       <Section title="Column Definition">
-        <div className="border-2 border-border rounded-xl overflow-hidden p-6 bg-muted/10 font-mono text-sm">
+        <Padded padding="lg" bordered internalClassName="overflow-hidden bg-muted/10 font-mono text-sm">
           <pre>{`interface Column<T> {
   key: string;       // Key in the data object
   header: string;    // Display title of the column
   render?: (item: T) => ReactNode; // Optional custom renderer
 }`}</pre>
-        </div>
+        </Padded>
       </Section>
     </div>
   );

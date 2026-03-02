@@ -1,8 +1,9 @@
 import { HTMLAttributes, forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { cn } from '@lib/utils/utils';
+import { SpacingProps, OverflowProps, getSpacingClasses, getOverflowClasses } from '@lib/utils/spacing';
 
-export interface FlexProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
+export interface FlexProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'>, SpacingProps, OverflowProps {
   direction?: 'row' | 'col' | 'row-reverse' | 'col-reverse';
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
@@ -29,6 +30,11 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
       asChild = false,
       internalClassName,
       children,
+      // Spacing props
+      m, mt, mr, mb, ml, mx, my,
+      p, pt, pr, pb, pl, px, py,
+      // Overflow props
+      overflow, overflowX, overflowY,
       ...props
     },
     ref,
@@ -83,6 +89,8 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
           mdDirectionClass,
           mdAlignClass,
           mdJustifyClass,
+          getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),
+          getOverflowClasses({ overflow, overflowX, overflowY }),
           internalClassName
         )}
         {...props}

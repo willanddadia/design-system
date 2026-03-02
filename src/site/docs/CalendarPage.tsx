@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Calendar } from '@lib/components/ui/calendar';
 import { Card } from '@lib/components/ui/card';
+import { Flex } from '@lib/components/layout/Flex';
+import { Text } from '@lib/components/ui/typography';
 import { Section, Example, PageHero } from './DocLayout';
 import { addDays, format } from 'date-fns';
 
@@ -34,7 +36,7 @@ export function CalendarPage() {
   internalClassName="rounded-md border shadow"
 />`}
                 >
-                    <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <Flex direction="col" mdDirection="row" gap="xl" align="start">
                         <Card internalClassName="p-0 border shadow-md">
                             <Calendar
                                 mode="single"
@@ -43,13 +45,13 @@ export function CalendarPage() {
                                 internalClassName="rounded-md"
                             />
                         </Card>
-                        <div className="flex-1 p-6 border-2 border-dashed border-border rounded-xl flex items-center justify-center bg-muted/20">
-                            <div className="text-center">
-                                <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-2">Selected Date</p>
-                                <p className="text-2xl font-bold">{date ? format(date, 'PPP') : 'No date selected'}</p>
-                            </div>
-                        </div>
-                    </div>
+                        <Flex align="center" justify="center" p={1.5} internalClassName="flex-1 border-2 border-dashed border-border rounded-xl bg-muted/20 h-full min-h-[300px]">
+                            <Flex direction="col" align="center" gap="sm">
+                                <Text size="sm" weight="medium" variant="muted" uppercase internalClassName="tracking-widest">Selected Date</Text>
+                                <Text size="2xl" weight="bold">{date ? format(date, 'PPP') : 'No date selected'}</Text>
+                            </Flex>
+                        </Flex>
+                    </Flex>
                 </Example>
             </Section>
 

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { Heading, Paragraph, Text } from '@lib/components/ui/typography';
-import { Padded } from '@lib/components/layout/index';
+import { Padded, Flex } from '@lib/components/layout/index';
 
 // ─── Section ────────────────────────────────────────────────────────────────
 export function Section({
@@ -16,16 +16,19 @@ export function Section({
   return (
     <Padded asChild padding="none">
       <section aria-labelledby={id}>
-        <Heading id={id} as="h2">
-          {title}
-        </Heading>
-        {description && (
-          <Paragraph variant="muted">
-            {description}
-          </Paragraph>
-        )}
-        {!description && <div className="mb-6" />}
-        {children}
+        <Flex direction="col" gap="sm">
+          <Heading id={id} as="h2">
+            {title}
+          </Heading>
+          {description && (
+            <Paragraph variant="muted">
+              {description}
+            </Paragraph>
+          )}
+          <Padded padding="none" pt={description ? 0.5 : 0}>
+            {children}
+          </Padded>
+        </Flex>
       </section>
     </Padded>
   );
@@ -45,18 +48,20 @@ export function Example({
     <Padded bordered padding="none">
       {/* Preview */}
       <Padded padding="lg">
-        {title && (
-          <Text
-            as="p"
-            variant="muted"
-            size="xs"
-            uppercase
-            weight="medium"
-          >
-            {title}
-          </Text>
-        )}
-        {children}
+        <Flex direction="col" gap="md">
+          {title && (
+            <Text
+              as="p"
+              variant="muted"
+              size="xs"
+              uppercase
+              weight="medium"
+            >
+              {title}
+            </Text>
+          )}
+          {children}
+        </Flex>
       </Padded>
       {/* Code */}
       {code && (
@@ -119,23 +124,25 @@ export function PageHero({
 }) {
   return (
     <Padded padding="none" role="banner">
-      {badge && (
-        <Text
-          as="span"
-          variant="muted"
-          size="xs"
-          weight="semibold"
-          uppercase
-        >
-          {badge}
-        </Text>
-      )}
-      <Heading as="h1">
-        {title}
-      </Heading>
-      <Paragraph variant="muted">
-        {description}
-      </Paragraph>
+      <Flex direction="col" gap="sm">
+        {badge && (
+          <Text
+            as="span"
+            variant="muted"
+            size="xs"
+            weight="semibold"
+            uppercase
+          >
+            {badge}
+          </Text>
+        )}
+        <Heading as="h1">
+          {title}
+        </Heading>
+        <Paragraph variant="muted">
+          {description}
+        </Paragraph>
+      </Flex>
     </Padded>
   );
 }

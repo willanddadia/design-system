@@ -35,14 +35,17 @@ const buttonVariants = cva(
   },
 );
 
+import { SpacingProps, getSpacingClasses } from '@lib/utils/spacing';
+
 interface ButtonProps
   extends Omit<React.ComponentProps<'button'>, 'className'>,
-  VariantProps<typeof buttonVariants> {
+  VariantProps<typeof buttonVariants>, SpacingProps {
   asChild?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
   href?: string;
   target?: string;
+  internalClassName?: string;
 }
 
 function Button({
@@ -55,8 +58,11 @@ function Button({
   target,
   children,
   internalClassName,
+  // Spacing props
+  m, mt, mr, mb, ml, mx, my,
+  p, pt, pr, pb, pl, px, py,
   ...props
-}: ButtonProps & { internalClassName?: string }) {
+}: ButtonProps) {
   const isExternalLink = variant === 'link' && target === '_blank';
   const finalRightIcon = rightIcon || (isExternalLink ? <ExternalLink className="size-3.5 opacity-70" /> : null);
 
@@ -66,7 +72,11 @@ function Button({
         href={href}
         target={target}
         rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-        className={cn(buttonVariants({ variant, size }), internalClassName)}
+        className={cn(
+          buttonVariants({ variant, size }),
+          getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),
+          internalClassName
+        )}
         data-slot="button"
       >
         {leftIcon}
@@ -81,7 +91,11 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size }), internalClassName)}
+      className={cn(
+        buttonVariants({ variant, size }),
+        getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),
+        internalClassName
+      )}
       {...props}
     >
       {asChild ? children : (

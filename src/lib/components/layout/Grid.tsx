@@ -1,17 +1,38 @@
 import { HTMLAttributes, forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { cn } from '@lib/utils/utils';
+import { SpacingProps, OverflowProps, getSpacingClasses, getOverflowClasses } from '@lib/utils/spacing';
 
-export interface GridProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
+export interface GridProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'>, SpacingProps, OverflowProps {
   cols?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
   mdCols?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
   lgCols?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
   gap?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   rows?: 'auto' | number;
   asChild?: boolean;
+  internalClassName?: string;
 }
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
-  ({ cols = 'auto', mdCols, lgCols, gap = 'md', rows = 'auto', asChild = false, children, ...props }, ref) => {
+  (
+    {
+      cols = 'auto',
+      mdCols,
+      lgCols,
+      gap = 'md',
+      rows = 'auto',
+      asChild = false,
+      children,
+      internalClassName,
+      // Spacing props
+      m, mt, mr, mb, ml, mx, my,
+      p, pt, pr, pb, pl, px, py,
+      // Overflow props
+      overflow, overflowX, overflowY,
+      ...props
+    },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : 'div';
     const columns = {
       1: 'grid-cols-1',
@@ -45,7 +66,19 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
     return (
       <Comp
         ref={ref}
-        className={`grid ${columns[cols]} ${gaps[gap]} ${rowsClass} ${mdColsClass} ${lgColsClass}`}
+        className={cn(
+          'grid',
+          // @ts-ignore - dynamic index
+          columns[cols],
+          // @ts-ignore - dynamic index
+          gaps[gap],
+          rowsClass,
+          mdColsClass,
+          lgColsClass,
+          getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),
+          getOverflowClasses({ overflow, overflowX, overflowY }),
+          internalClassName
+        )}
         {...props}
       >
         {children}

@@ -1,6 +1,8 @@
+import { SpacingProps } from '../../utils/spacing';
 import * as React from 'react';
 import * as LabelPrimitive from '@radix-ui/react-label';
-declare function Label({ internalClassName, ...props }: Omit<React.ComponentProps<typeof LabelPrimitive.Root>, 'className'> & {
+export interface LabelProps extends Omit<React.ComponentProps<typeof LabelPrimitive.Root>, 'className'>, SpacingProps {
     internalClassName?: string;
-}): import("react/jsx-runtime").JSX.Element;
+}
+declare function Label({ internalClassName, m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py, ...props }: LabelProps): import("react/jsx-runtime").JSX.Element;
 export { Label };

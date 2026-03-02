@@ -11,6 +11,16 @@ const layoutProps = [
   { name: 'wrap', type: 'boolean', default: 'false', description: 'Whether to wrap children.' },
 ];
 
+const spacingProps = [
+  { name: 'm, mt, mr, mb, ml, mx, my', type: '-2 to 2 (0.25 increments)', default: '-', description: 'Margin props (values in rem).' },
+  { name: 'p, pt, pr, pb, pl, px, py', type: '-2 to 2 (0.25 increments)', default: '-', description: 'Padding props (values in rem).' },
+];
+
+const overflowProps = [
+  { name: 'overflow', type: "'auto' | 'hidden' | 'visible' | 'scroll'", default: '-', description: 'Overflow control.' },
+  { name: 'overflowX / overflowY', type: "'auto' | 'hidden' | 'visible' | 'scroll'", default: '-', description: 'X/Y axis overflow control.' },
+];
+
 export function LayoutPage() {
   return (
     <div className="space-y-12">
@@ -32,13 +42,13 @@ export function LayoutPage() {
   <div className="w-12 h-12 bg-primary/60 rounded-md" />
 </Flex>`}
         >
-          <div className="border border-dashed border-border p-4 rounded-xl">
+          <Padded padding="md" bordered internalClassName="border-dashed">
             <Flex gap="md" align="center" justify="between">
               <div className="w-12 h-12 bg-primary rounded-md" />
               <div className="w-12 h-12 bg-primary/80 rounded-md" />
               <div className="w-12 h-12 bg-primary/60 rounded-md" />
             </Flex>
-          </div>
+          </Padded>
         </Example>
 
         <Example
@@ -161,6 +171,14 @@ export function LayoutPage() {
             </StickyFooter>
           </div>
         </Example>
+      </Section>
+
+      <Section title="Spacing Props">
+        <PropTable props={spacingProps} />
+      </Section>
+
+      <Section title="Overflow Props">
+        <PropTable props={overflowProps} />
       </Section>
 
       <Section title="Flex Props">

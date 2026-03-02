@@ -1,4 +1,6 @@
-declare function Skeleton({ internalClassName, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & {
+import { SpacingProps } from '../../utils/spacing';
+export interface SkeletonProps extends Omit<React.ComponentProps<'div'>, 'className'>, SpacingProps {
     internalClassName?: string;
-}): import("react/jsx-runtime").JSX.Element;
+}
+declare function Skeleton({ internalClassName, m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py, ...props }: SkeletonProps): import("react/jsx-runtime").JSX.Element;
 export { Skeleton };

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Section, PageHero } from './DocLayout';
 import { Button } from '@lib/components/ui/button';
+import { Flex, Grid, Padded } from '@lib/components/layout';
 import { RefreshCcw, Pipette } from 'lucide-react';
 
 const DEFAULTS = {
@@ -114,7 +115,7 @@ export function ColorsPage() {
   ];
 
   return (
-    <div className="space-y-12">
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Foundation"
         title="Colors"
@@ -125,15 +126,15 @@ export function ColorsPage() {
         title="Interactive Theme Customizer"
         description="Modify the brand colors below to see them update live across the entire design system documentation."
       >
-        <div className="bg-muted/10 border-2 border-border rounded-2xl p-6 md:p-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Padded padding="xl" bordered internalClassName="bg-muted/10">
+          <Grid cols={1} mdCols={3} gap="lg">
             {(Object.keys(DEFAULTS) as Array<keyof typeof DEFAULTS>).map((key) => (
-              <div key={key} className="space-y-3">
+              <Flex key={key} direction="col" gap="sm">
                 <label className="text-sm font-bold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
                   <Pipette className="size-3.5" />
                   {key}
                 </label>
-                <div className="flex items-center gap-3">
+                <Flex align="center" gap="sm">
                   <div className="relative group size-12 shrink-0">
                     <input
                       type="color"
@@ -146,7 +147,7 @@ export function ColorsPage() {
                       style={{ backgroundColor: colors[key] }}
                     />
                   </div>
-                  <div className="flex-1 space-y-1">
+                  <Flex direction="col" gap="none" internalClassName="flex-1">
                     <input
                       type="text"
                       value={colors[key]}
@@ -154,12 +155,12 @@ export function ColorsPage() {
                       className="w-full bg-transparent text-lg font-mono font-bold uppercase outline-none focus:text-primary transition-colors"
                     />
                     <p className="text-[10px] text-muted-foreground font-medium">CSS: var(--{key})</p>
-                  </div>
-                </div>
-              </div>
+                  </Flex>
+                </Flex>
+              </Flex>
             ))}
-          </div>
-          <div className="mt-8 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+          </Grid>
+          <Flex direction="col" mdDirection="row" align="center" justify="between" gap="md" mt={2} pt={1.5} internalClassName="border-t border-border/50">
             <p className="text-xs text-muted-foreground italic">
               Changes are applied to the <code>:root</code> element via inline styles.
             </p>
@@ -171,13 +172,13 @@ export function ColorsPage() {
             >
               Reset to Defaults
             </Button>
-          </div>
-        </div>
+          </Flex>
+        </Padded>
       </Section>
 
       {colorGroups.map((group) => (
         <Section key={group.title} title={group.title}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Grid cols={1} mdCols={2} lgCols={4} gap="md">
             {group.colors.map((color) => (
               <div
                 key={color.variable}
@@ -187,7 +188,7 @@ export function ColorsPage() {
                   className="h-24 border-b-2 border-border transition-transform group-hover:scale-110 duration-500 ease-out"
                   style={{ backgroundColor: color.hex }}
                 />
-                <div className="p-4 relative">
+                <Padded padding="md" internalClassName="relative">
                   <h4 className="flex items-center justify-between font-bold">
                     {color.name}
                     <span className="text-[10px] font-mono text-muted-foreground uppercase bg-muted px-1.5 py-0.5 rounded">
@@ -198,12 +199,12 @@ export function ColorsPage() {
                     var(--{color.variable})
                   </p>
                   <p className="text-xs text-muted-foreground leading-snug line-clamp-2">{color.description}</p>
-                </div>
+                </Padded>
               </div>
             ))}
-          </div>
+          </Grid>
         </Section>
       ))}
-    </div>
+    </Flex>
   );
 }

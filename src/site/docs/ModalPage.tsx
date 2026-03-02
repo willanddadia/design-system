@@ -3,6 +3,8 @@ import { Button } from '@lib/components/ui/button';
 import { Input } from '@lib/components/ui/input';
 import { Textarea } from '@lib/components/ui/textarea';
 import { Flex } from '@lib/components/layout/Flex';
+import { Grid } from '@lib/components/layout/Grid';
+import { Padded } from '@lib/components/layout/Padded';
 import { FullscreenModal, PopupModal, SideModal } from '@lib/components/overlays/Modal';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
@@ -73,7 +75,7 @@ export function ModalPage() {
       </Section>
 
       <Section title="When to use each variant">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <Grid cols={1} mdCols={3} gap="md">
           {[
             {
               name: 'PopupModal',
@@ -88,12 +90,12 @@ export function ModalPage() {
               desc: 'Detail panels, navigation drawers, filter sidebars. Slides from the right.',
             },
           ].map((m) => (
-            <div key={m.name} className="border-2 border-border rounded-xl p-5">
+            <Padded key={m.name} padding="md" bordered>
               <p className="font-mono text-sm font-semibold text-primary mb-2">{m.name}</p>
               <p className="text-sm text-muted-foreground">{m.desc}</p>
-            </div>
+            </Padded>
           ))}
-        </div>
+        </Grid>
       </Section>
 
       <Section title="Props">
@@ -102,7 +104,7 @@ export function ModalPage() {
 
       {/* Modals rendered */}
       <PopupModal isOpen={popupOpen} onClose={() => setPopupOpen(false)} title="Confirm Action">
-        <div className="space-y-4">
+        <Flex direction="col" gap="md">
           <p>Are you sure you want to proceed? This action cannot be undone.</p>
           <Flex gap="md" justify="end">
             <Button variant="outline" onClick={() => setPopupOpen(false)}>
@@ -110,7 +112,7 @@ export function ModalPage() {
             </Button>
             <Button onClick={() => setPopupOpen(false)}>Confirm</Button>
           </Flex>
-        </div>
+        </Flex>
       </PopupModal>
 
       <FullscreenModal
@@ -118,34 +120,34 @@ export function ModalPage() {
         onClose={() => setFullOpen(false)}
         title="Fullscreen Modal"
       >
-        <div className="space-y-4 max-w-xl">
+        <Flex direction="col" gap="md" internalClassName="max-w-xl">
           <p>This modal covers the entire screen — ideal for immersive workflows.</p>
           <Input placeholder="Enter some text..." />
           <Flex gap="md">
             <Button onClick={() => setFullOpen(false)}>Close</Button>
             <Button variant="secondary">Save Changes</Button>
           </Flex>
-        </div>
+        </Flex>
       </FullscreenModal>
 
       <SideModal isOpen={sideOpen} onClose={() => setSideOpen(false)} title="Side Panel">
-        <div className="space-y-4">
+        <Flex direction="col" gap="md">
           <p>Slides in from the right. Great for detail panels and filter drawers.</p>
-          <div className="space-y-2">
+          <Flex direction="col" gap="sm">
             <label>Name</label>
             <Input placeholder="Enter your name..." />
-          </div>
-          <div className="space-y-2">
+          </Flex>
+          <Flex direction="col" gap="sm">
             <label>Message</label>
             <Textarea placeholder="Enter your message..." />
-          </div>
+          </Flex>
           <Flex gap="md" justify="end">
             <Button variant="outline" onClick={() => setSideOpen(false)}>
               Cancel
             </Button>
             <Button onClick={() => setSideOpen(false)}>Submit</Button>
           </Flex>
-        </div>
+        </Flex>
       </SideModal>
     </div>
   );

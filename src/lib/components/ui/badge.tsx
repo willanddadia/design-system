@@ -24,15 +24,34 @@ const badgeVariants = cva(
   },
 );
 
+import { SpacingProps, getSpacingClasses } from '@lib/utils/spacing';
+
+export interface BadgeProps extends Omit<React.ComponentProps<'span'>, 'className'>, VariantProps<typeof badgeVariants>, SpacingProps {
+  asChild?: boolean;
+  internalClassName?: string;
+}
+
 function Badge({
   variant,
   asChild = false,
+  internalClassName,
+  // Spacing props
+  m, mt, mr, mb, ml, mx, my,
+  p, pt, pr, pb, pl, px, py,
   ...props
-}: Omit<React.ComponentProps<'span'>, 'className'> & VariantProps<typeof badgeVariants> & { asChild?: boolean; internalClassName?: string }) {
+}: BadgeProps) {
   const Comp = asChild ? Slot : 'span';
 
   return (
-    <Comp data-slot="badge" className={cn(badgeVariants({ variant }), props.internalClassName)} {...props} />
+    <Comp
+      data-slot="badge"
+      className={cn(
+        badgeVariants({ variant }),
+        getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),
+        internalClassName
+      )}
+      {...props}
+    />
   );
 }
 

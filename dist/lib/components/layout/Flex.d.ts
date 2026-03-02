@@ -1,5 +1,6 @@
 import { HTMLAttributes } from 'react';
-export interface FlexProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
+import { SpacingProps, OverflowProps } from '../../utils/spacing';
+export interface FlexProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'>, SpacingProps, OverflowProps {
     direction?: 'row' | 'col' | 'row-reverse' | 'col-reverse';
     justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
     align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';

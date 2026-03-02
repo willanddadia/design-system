@@ -11,7 +11,7 @@ const avatarProps = [
 
 export function AvatarPage() {
     return (
-        <div className="space-y-12">
+        <Flex direction="col" gap="xl">
             <PageHero
                 badge="Components"
                 title="Avatar"
@@ -62,6 +62,6 @@ export function AvatarPage() {
             <Section title="Props">
                 <PropTable props={avatarProps} />
             </Section>
-        </div>
+        </Flex>
     );
 }

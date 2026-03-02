@@ -5,6 +5,7 @@ import { Button } from '@lib/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@lib/components/ui/card';
 import { Flex } from '@lib/components/layout/Flex';
 import { Grid } from '@lib/components/layout/Grid';
+import { Text } from '@lib/components/ui/typography';
 import { Section, Example, PageHero, PropTable } from './DocLayout';
 
 export function LoadingPage() {
@@ -70,10 +71,10 @@ export function LoadingPage() {
   <Content />
 </div>`}
                 >
-                    <div className="relative border-2 border-border rounded-xl p-8 bg-card h-48 flex flex-col justify-center items-center text-center">
+                    <Flex direction="col" align="center" justify="center" p={2} internalClassName="relative border-2 border-border rounded-xl bg-card h-48">
                         <LoadingOverlay />
-                        <p className="text-muted-foreground">This content is being updated...</p>
-                    </div>
+                        <Text variant="muted">This content is being updated...</Text>
+                    </Flex>
                 </Example>
             </Section>
 
@@ -108,15 +109,15 @@ export function LoadingPage() {
                                 <Skeleton internalClassName="h-32 w-full mt-4" />
                             </CardContent>
                         </Card>
-                        <div className="flex gap-4 items-start">
+                        <Flex gap="md" align="start">
                             <Skeleton internalClassName="size-12 rounded-full shrink-0" />
-                            <div className="flex-1 space-y-2">
+                            <Flex direction="col" gap="sm" internalClassName="flex-1">
                                 <Skeleton internalClassName="h-4 w-1/4" />
                                 <Skeleton internalClassName="h-4 w-full" />
                                 <Skeleton internalClassName="h-4 w-full" />
                                 <Skeleton internalClassName="h-4 w-1/2" />
-                            </div>
-                        </div>
+                            </Flex>
+                        </Flex>
                     </Grid>
                 </Example>
             </Section>

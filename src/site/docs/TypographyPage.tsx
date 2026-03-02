@@ -1,4 +1,5 @@
 import { Heading, Paragraph, Span, Text } from '@lib/components/ui/typography';
+import { Flex, Padded } from '@lib/components/layout';
 import { Section, Example, PageHero, PropTable } from './DocLayout';
 
 const props = [
@@ -30,7 +31,7 @@ const props = [
 
 export function TypographyPage() {
   return (
-    <div>
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Foundation"
         title="Typography"
@@ -47,12 +48,12 @@ export function TypographyPage() {
 <Heading as="h2">Heading 2</Heading>
 <Heading as="h3">Heading 3</Heading>`}
         >
-          <div className="space-y-4">
+          <Flex direction="col" gap="md">
             <Heading as="h1">Heading 1</Heading>
             <Heading as="h2">Heading 2</Heading>
             <Heading as="h3">Heading 3</Heading>
             <Heading as="h4">Heading 4</Heading>
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -69,7 +70,7 @@ export function TypographyPage() {
   Smaller muted paragraph for secondary content.
 </Paragraph>`}
         >
-          <div className="space-y-2">
+          <Flex direction="col" gap="sm">
             <Paragraph>
               Typography components make it easy to maintain consistency while allowing for granular adjustments.
               This paragraph includes a <Span weight="bold" underline variant="primary">primary bold span</Span> to highlight important details.
@@ -77,7 +78,7 @@ export function TypographyPage() {
             <Paragraph variant="muted" size="sm">
               Muted text is often used for secondary metadata or legal disclaimers.
             </Paragraph>
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -91,20 +92,20 @@ export function TypographyPage() {
   Centered Title
 </Text>`}
         >
-          <div className="border p-8 rounded-xl bg-card">
+          <Padded padding="xl" bordered internalClassName="bg-card">
             <Text size="4xl" weight="black" uppercase align="center">
               Custom Dashboard
             </Text>
             <Text align="center" variant="muted" italic>
               Last updated 2 minutes ago
             </Text>
-          </div>
+          </Padded>
         </Example>
       </Section>
 
       <Section title="Props">
         <PropTable props={props} />
       </Section>
-    </div>
+    </Flex>
   );
 }
