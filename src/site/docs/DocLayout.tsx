@@ -96,17 +96,36 @@ export function Example({
       {/* Code Block */}
       {
         code && (
-          <div className="w-full border-t border-border/80 bg-[#0d0d0d]">
-            <div className="flex justify-between items-center px-4 py-2 bg-white/5 border-b border-white/5">
+          <div className="w-full border-t border-border/80 bg-[#0d0d0d] group/code relative overflow-hidden">
+            <div className="flex justify-between items-center px-4 py-2 bg-white/5 border-b border-white/5 relative z-10">
               <span className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] font-mono">
                 Source Code
               </span>
+              <button
+                onClick={() => navigator.clipboard.writeText(code)}
+                className="text-[10px] font-bold text-emerald-400/50 hover:text-emerald-400 uppercase tracking-widest font-mono transition-colors"
+              >
+                Copy
+              </button>
             </div>
-            <div className="p-5 overflow-x-auto">
+            <div
+              className="p-5 overflow-x-auto relative z-10 selection:bg-emerald-500 selection:text-white cursor-pointer"
+              onClick={(e) => {
+                const range = document.createRange();
+                range.selectNodeContents(e.currentTarget);
+                const selection = window.getSelection();
+                if (selection) {
+                  selection.removeAllRanges();
+                  selection.addRange(range);
+                }
+              }}
+            >
               <pre className="text-[13px] leading-relaxed font-mono">
-                <code className="text-orange-300 font-medium">{code}</code>
+                <code className="text-orange-400 font-medium">{code}</code>
               </pre>
             </div>
+            {/* Subtle glow on hover */}
+            <div className="absolute inset-0 bg-orange-500/5 opacity-0 group-hover/code:opacity-100 transition-opacity pointer-events-none" />
           </div>
         )
       }

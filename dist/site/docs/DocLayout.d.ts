@@ -4,10 +4,12 @@ export declare function Section({ title, description, children, }: {
     description?: string;
     children: ReactNode;
 }): import("react/jsx-runtime").JSX.Element;
-export declare function Example({ title, code, children, }: {
+export declare function Example({ title, code, children, className, previewClassName, }: {
     title?: string;
     code?: string;
     children: ReactNode;
+    className?: string;
+    previewClassName?: string;
 }): import("react/jsx-runtime").JSX.Element;
 export interface PropDef {
     name: string;

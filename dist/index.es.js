@@ -64,18 +64,19 @@ function iN({
   onClose: t,
   title: n,
   children: r,
-  ...a
+  internalClassName: a,
+  ...o
 }) {
-  const o = lu[e] || lu.default;
+  const i = lu[e] || lu.default;
   return /* @__PURE__ */ U(
     "div",
     {
       "data-slot": "alert",
       role: "alert",
-      className: w(bg({ variant: e })),
-      ...a,
+      className: w(bg({ variant: e }), a),
+      ...o,
       children: [
-        /* @__PURE__ */ f(o, {}),
+        /* @__PURE__ */ f(i, {}),
         /* @__PURE__ */ U("div", { className: "col-start-2 flex flex-col gap-1 min-w-0", children: [
           n && /* @__PURE__ */ f(yg, { children: n }),
           r
@@ -93,25 +94,26 @@ function iN({
     }
   );
 }
-function yg({ ...e }) {
+function yg({ internalClassName: e, ...t }) {
   return /* @__PURE__ */ f(
     "div",
     {
       "data-slot": "alert-title",
-      className: w("line-clamp-1 min-h-4 font-medium tracking-tight"),
-      ...e
+      className: w("line-clamp-1 min-h-4 font-medium tracking-tight", e),
+      ...t
     }
   );
 }
-function sN({ ...e }) {
+function sN({ internalClassName: e, ...t }) {
   return /* @__PURE__ */ f(
     "div",
     {
       "data-slot": "alert-description",
       className: w(
-        "text-muted-foreground grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed"
+        "text-muted-foreground grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed",
+        e
       ),
-      ...e
+      ...t
     }
   );
 }
@@ -1315,9 +1317,7 @@ const Ag = Ct(
         ref: Y,
         className: w(
           "grid",
-          // @ts-ignore - dynamic index
           F[e],
-          // @ts-ignore - dynamic index
           T[r],
           W,
           j,
@@ -1431,7 +1431,6 @@ const $g = Ct(
     {
       ref: S,
       className: w(
-        // @ts-ignore - dynamic index
         {
           none: "",
           sm: "p-2",
