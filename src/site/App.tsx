@@ -187,8 +187,8 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background flex flex-col md:flex-row">
       {/* Mobile Header */}
-      <StickyHeader>
-        <Flex align="center" justify="between" px={1} py={1} internalClassName="md:hidden">
+      <StickyHeader internalClassName="md:hidden">
+        <Flex align="center" justify="between" px={1} py={1}>
           <Flex align="center" gap="sm">
             <Package className="w-6 h-6 text-primary" />
             <span className="font-bold tracking-tight">Design System</span>
@@ -277,8 +277,8 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col min-h-screen bg-background selection:bg-primary/10 relative">
         {/* Desktop Sticky Header */}
-        <StickyHeader>
-          <Flex align="center" justify="between" px={2} py={1} internalClassName="hidden md:flex px-12 border-b-2">
+        <StickyHeader internalClassName="hidden md:block">
+          <Flex align="center" justify="between" px={1.5} py={1} internalClassName="px-12 border-b-2">
             <Flex align="center" gap="sm">
               <h2 className="text-sm font-semibold capitalize">{currentPage === 'intro' ? 'Overview' : currentPage}</h2>
             </Flex>
