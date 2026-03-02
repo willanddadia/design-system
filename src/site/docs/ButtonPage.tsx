@@ -98,7 +98,7 @@ export function ButtonPage() {
         >
           <Flex direction="col" gap="md">
             <Flex direction="col" gap="sm">
-              <Text variant="muted" size="xs" uppercase weight="medium" className="tracking-widest">
+              <Text variant="muted" size="xs" uppercase weight="medium">
                 Variants
               </Text>
               <Flex gap="sm" align="center">
@@ -120,7 +120,7 @@ export function ButtonPage() {
               </Flex>
             </Flex>
             <Flex direction="col" gap="sm">
-              <Text variant="muted" size="xs" uppercase weight="medium" className="tracking-widest">
+              <Text variant="muted" size="xs" uppercase weight="medium">
                 Sizes (with icon size adjustment)
               </Text>
               <Flex gap="sm" align="center">

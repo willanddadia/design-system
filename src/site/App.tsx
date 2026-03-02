@@ -186,17 +186,19 @@ export default function App() {
   return (
     <div className="min-h-screen bg-background flex flex-col md:flex-row">
       {/* Mobile Header */}
-      <StickyHeader className="md:hidden px-4 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Package className="w-6 h-6 text-primary" />
-          <span className="font-bold tracking-tight">Design System</span>
+      <StickyHeader>
+        <div className="md:hidden px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Package className="w-6 h-6 text-primary" />
+            <span className="font-bold tracking-tight">Design System</span>
+          </div>
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="p-2 hover:bg-accent rounded-lg transition-colors"
+          >
+            {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
-        <button
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="p-2 hover:bg-accent rounded-lg transition-colors"
-        >
-          {isSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </StickyHeader>
 
       {/* Sidebar Sidebar */}
@@ -274,17 +276,19 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col min-h-screen bg-background selection:bg-primary/10 relative">
         {/* Desktop Sticky Header */}
-        <StickyHeader className="hidden md:flex px-12 py-4 items-center justify-between border-b-2">
-          <div className="flex items-center gap-2">
-            <h2 className="text-sm font-semibold capitalize">{currentPage === 'intro' ? 'Overview' : currentPage}</h2>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href="https://github.com/willanddadia/design-system#readme" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="sm" className="text-xs">Docs</Button>
-            </a>
-            <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer">
-              <Button variant="ghost" size="sm" className="text-xs">GitHub</Button>
-            </a>
+        <StickyHeader>
+          <div className="hidden md:flex px-12 py-4 items-center justify-between border-b-2">
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-semibold capitalize">{currentPage === 'intro' ? 'Overview' : currentPage}</h2>
+            </div>
+            <div className="flex items-center gap-4">
+              <a href="https://github.com/willanddadia/design-system#readme" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="sm">Docs</Button>
+              </a>
+              <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer">
+                <Button variant="ghost" size="sm">GitHub</Button>
+              </a>
+            </div>
           </div>
         </StickyHeader>
 
@@ -293,19 +297,21 @@ export default function App() {
         </div>
 
         {/* Sticky Footer */}
-        <StickyFooter className="px-12 py-4 mt-auto border-t-2">
-          <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-            <p>© 2026 Design System. Open for contribution.</p>
-            <div className="flex items-center gap-6">
-              <a href="https://github.com/willanddadia/design-system#readme" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                Documentation
-              </a>
-              <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                GitHub
-              </a>
-              <a href="https://www.npmjs.com/package/@will-and/design-system" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
-                NPM
-              </a>
+        <StickyFooter>
+          <div className="px-12 py-4 mt-auto border-t-2">
+            <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+              <p>© 2026 Design System. Open for contribution.</p>
+              <div className="flex items-center gap-6">
+                <a href="https://github.com/willanddadia/design-system#readme" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  Documentation
+                </a>
+                <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  GitHub
+                </a>
+                <a href="https://www.npmjs.com/package/@will-and/design-system" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+                  NPM
+                </a>
+              </div>
             </div>
           </div>
         </StickyFooter>

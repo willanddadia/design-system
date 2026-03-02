@@ -1,7 +1,7 @@
 import { HTMLAttributes, forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
 
-export interface GridProps extends HTMLAttributes<HTMLDivElement> {
+export interface GridProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
   cols?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
   mdCols?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
   lgCols?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 'auto';
@@ -11,7 +11,7 @@ export interface GridProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
-  ({ cols = 'auto', mdCols, lgCols, gap = 'md', rows = 'auto', asChild = false, className = '', children, ...props }, ref) => {
+  ({ cols = 'auto', mdCols, lgCols, gap = 'md', rows = 'auto', asChild = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : 'div';
     const columns = {
       1: 'grid-cols-1',
@@ -45,7 +45,7 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
     return (
       <Comp
         ref={ref}
-        className={`grid ${columns[cols]} ${gaps[gap]} ${rowsClass} ${mdColsClass} ${lgColsClass} ${className}`}
+        className={`grid ${columns[cols]} ${gaps[gap]} ${rowsClass} ${mdColsClass} ${lgColsClass}`}
         {...props}
       >
         {children}

@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react';
-export interface PaddedProps extends HTMLAttributes<HTMLDivElement> {
+export interface PaddedProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
     padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
     bordered?: boolean;
     asChild?: boolean;

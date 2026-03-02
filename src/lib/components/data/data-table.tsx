@@ -27,19 +27,18 @@ export function DataTable<T extends Record<string, any>>({
   columns,
   bordered = true,
   striped = false,
-  className = '',
   ...props
-}: DataTableProps<T>) {
+}: Omit<DataTableProps<T>, 'className'>) {
   return (
     <div
-      className={cn('w-full overflow-auto rounded-lg', bordered && 'border', className)}
+      className={cn('w-full overflow-auto rounded-lg', bordered && 'border')}
       {...props}
     >
       <Table>
-        <TableHeader className="bg-muted/50">
+        <TableHeader internalClassName="bg-muted/50">
           <TableRow>
             {columns.map((column, index) => (
-              <TableHead key={column.key} className={cn(bordered && index !== 0 && 'border-l')}>
+              <TableHead key={column.key} internalClassName={cn(bordered && index !== 0 && 'border-l')}>
                 {column.header}
               </TableHead>
             ))}
@@ -47,11 +46,11 @@ export function DataTable<T extends Record<string, any>>({
         </TableHeader>
         <TableBody>
           {data.map((item, rowIndex) => (
-            <TableRow key={rowIndex} className={cn(striped && rowIndex % 2 === 1 && 'bg-muted/30')}>
+            <TableRow key={rowIndex} internalClassName={cn(striped && rowIndex % 2 === 1 && 'bg-muted/30')}>
               {columns.map((column, colIndex) => (
                 <TableCell
                   key={column.key}
-                  className={cn(bordered && colIndex !== 0 && 'border-l')}
+                  internalClassName={cn(bordered && colIndex !== 0 && 'border-l')}
                 >
                   {column.render ? column.render(item) : item[column.key]}
                 </TableCell>
@@ -62,7 +61,7 @@ export function DataTable<T extends Record<string, any>>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="h-24 text-center text-muted-foreground"
+                internalClassName="h-24 text-center text-muted-foreground"
               >
                 No data available
               </TableCell>

@@ -14,13 +14,13 @@ export function Section({
 }) {
   const id = title.toLowerCase().replace(/\s+/g, '-');
   return (
-    <Padded asChild padding="none" className="mb-12">
+    <Padded asChild padding="none">
       <section aria-labelledby={id}>
-        <Heading id={id} as="h2" className="mb-1">
+        <Heading id={id} as="h2">
           {title}
         </Heading>
         {description && (
-          <Paragraph variant="muted" className="mb-6 !mt-0">
+          <Paragraph variant="muted">
             {description}
           </Paragraph>
         )}
@@ -42,9 +42,9 @@ export function Example({
   children: ReactNode;
 }) {
   return (
-    <Padded bordered padding="none" className="overflow-hidden mb-6">
+    <Padded bordered padding="none">
       {/* Preview */}
-      <Padded padding="lg" className="bg-background">
+      <Padded padding="lg">
         {title && (
           <Text
             as="p"
@@ -52,7 +52,6 @@ export function Example({
             size="xs"
             uppercase
             weight="medium"
-            className="tracking-widest mb-4"
           >
             {title}
           </Text>
@@ -61,7 +60,7 @@ export function Example({
       </Padded>
       {/* Code */}
       {code && (
-        <Padded padding="none" className="border-t-2 border-border bg-muted/30">
+        <Padded padding="none">
           <pre className="p-4 text-sm overflow-x-auto leading-relaxed">
             <code className="text-foreground">{code}</code>
           </pre>
@@ -81,7 +80,7 @@ export interface PropDef {
 
 export function PropTable({ props }: { props: PropDef[] }) {
   return (
-    <Padded bordered padding="none" className="overflow-hidden">
+    <Padded bordered padding="none">
       <table className="w-full text-sm">
         <thead>
           <tr className="bg-muted/40 border-b-2 border-border">
@@ -119,7 +118,7 @@ export function PageHero({
   badge?: string;
 }) {
   return (
-    <Padded padding="none" className="mb-10 pb-8 border-b-2 border-border" role="banner">
+    <Padded padding="none" role="banner">
       {badge && (
         <Text
           as="span"
@@ -127,15 +126,14 @@ export function PageHero({
           size="xs"
           weight="semibold"
           uppercase
-          className="inline-block mb-3 tracking-widest bg-muted px-3 py-1 rounded-full"
         >
           {badge}
         </Text>
       )}
-      <Heading as="h1" className="mb-2">
+      <Heading as="h1">
         {title}
       </Heading>
-      <Paragraph variant="muted" className="max-w-2xl !mt-0">
+      <Paragraph variant="muted">
         {description}
       </Paragraph>
     </Padded>

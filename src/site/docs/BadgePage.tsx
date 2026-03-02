@@ -16,12 +16,6 @@ const props = [
     default: '—',
     description: 'Content inside the badge, usually a short label.',
   },
-  {
-    name: 'className',
-    type: 'string',
-    default: "''",
-    description: 'Additional CSS classes to merge.',
-  },
 ];
 
 export function BadgePage() {
@@ -61,13 +55,13 @@ export function BadgePage() {
       >
         <Example title="Inline with text">
           <Flex direction="col" gap="sm">
-            <Text as="p" className="flex items-center gap-2 !mt-0">
+            <Text as="p">
               Order #1042 <Badge variant="success">Delivered</Badge>
             </Text>
-            <Text as="p" className="flex items-center gap-2 !mt-0">
+            <Text as="p">
               Order #1041 <Badge variant="default">Processing</Badge>
             </Text>
-            <Text as="p" className="flex items-center gap-2 !mt-0">
+            <Text as="p">
               Order #1040 <Badge variant="destructive">Failed</Badge>
             </Text>
           </Flex>

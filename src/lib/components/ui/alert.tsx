@@ -30,13 +30,12 @@ const icons = {
 };
 
 function Alert({
-  className,
   variant = 'default',
   onClose,
   title,
   children,
   ...props
-}: React.ComponentProps<'div'> &
+}: Omit<React.ComponentProps<'div'>, 'className'> &
   VariantProps<typeof alertVariants> & {
     onClose?: () => void;
     title?: string;
@@ -47,7 +46,7 @@ function Alert({
     <div
       data-slot="alert"
       role="alert"
-      className={cn(alertVariants({ variant }), className)}
+      className={cn(alertVariants({ variant }))}
       {...props}
     >
       <Icon />
@@ -68,23 +67,22 @@ function Alert({
   );
 }
 
-function AlertTitle({ className, ...props }: React.ComponentProps<'div'>) {
+function AlertTitle({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>) {
   return (
     <div
       data-slot="alert-title"
-      className={cn('line-clamp-1 min-h-4 font-medium tracking-tight', className)}
+      className={cn('line-clamp-1 min-h-4 font-medium tracking-tight')}
       {...props}
     />
   );
 }
 
-function AlertDescription({ className, ...props }: React.ComponentProps<'div'>) {
+function AlertDescription({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>) {
   return (
     <div
       data-slot="alert-description"
       className={cn(
-        'text-muted-foreground grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
-        className,
+        'text-muted-foreground grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed'
       )}
       {...props}
     />

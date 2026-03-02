@@ -14,54 +14,54 @@ type SidebarContextProps = {
     toggleSidebar: () => void;
 };
 declare function useSidebar(): SidebarContextProps;
-declare function SidebarProvider({ defaultOpen, open: openProp, onOpenChange: setOpenProp, className, style, children, ...props }: React.ComponentProps<'div'> & {
+declare function SidebarProvider({ defaultOpen, open: openProp, onOpenChange: setOpenProp, style, children, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & {
     defaultOpen?: boolean;
     open?: boolean;
     onOpenChange?: (open: boolean) => void;
 }): import("react/jsx-runtime").JSX.Element;
-declare function Sidebar({ side, variant, collapsible, className, children, ...props }: React.ComponentProps<'div'> & {
+declare function Sidebar({ side, variant, collapsible, children, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & {
     side?: 'left' | 'right';
     variant?: 'sidebar' | 'floating' | 'inset';
     collapsible?: 'offcanvas' | 'icon' | 'none';
 }): import("react/jsx-runtime").JSX.Element;
-declare function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<typeof Button>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarRail({ className, ...props }: React.ComponentProps<'button'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarInset({ className, ...props }: React.ComponentProps<'main'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarHeader({ className, ...props }: React.ComponentProps<'div'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarFooter({ className, ...props }: React.ComponentProps<'div'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof Separator>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarContent({ className, ...props }: React.ComponentProps<'div'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarGroup({ className, ...props }: React.ComponentProps<'div'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarGroupLabel({ className, asChild, ...props }: React.ComponentProps<'div'> & {
+declare function SidebarTrigger({ onClick, ...props }: Omit<React.ComponentProps<typeof Button>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarRail({ ...props }: Omit<React.ComponentProps<'button'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarInset({ ...props }: Omit<React.ComponentProps<'main'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarInput({ ...props }: Omit<React.ComponentProps<typeof Input>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarHeader({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarFooter({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarSeparator({ ...props }: Omit<React.ComponentProps<typeof Separator>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarContent({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarGroup({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarGroupLabel({ asChild, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & {
     asChild?: boolean;
 }): import("react/jsx-runtime").JSX.Element;
-declare function SidebarGroupAction({ className, asChild, ...props }: React.ComponentProps<'button'> & {
+declare function SidebarGroupAction({ asChild, ...props }: Omit<React.ComponentProps<'button'>, 'className'> & {
     asChild?: boolean;
 }): import("react/jsx-runtime").JSX.Element;
-declare function SidebarGroupContent({ className, ...props }: React.ComponentProps<'div'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenu({ className, ...props }: React.ComponentProps<'ul'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenuItem({ className, ...props }: React.ComponentProps<'li'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarGroupContent({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarMenu({ ...props }: Omit<React.ComponentProps<'ul'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarMenuItem({ ...props }: Omit<React.ComponentProps<'li'>, 'className'>): import("react/jsx-runtime").JSX.Element;
 declare const sidebarMenuButtonVariants: (props?: ({
     variant?: "default" | "outline" | null | undefined;
     size?: "default" | "sm" | "lg" | null | undefined;
 } & import('class-variance-authority/types').ClassProp) | undefined) => string;
-declare function SidebarMenuButton({ asChild, isActive, variant, size, tooltip, className, ...props }: React.ComponentProps<'button'> & {
+declare function SidebarMenuButton({ asChild, isActive, variant, size, tooltip, ...props }: Omit<React.ComponentProps<'button'>, 'className'> & {
     asChild?: boolean;
     isActive?: boolean;
     tooltip?: string | React.ComponentProps<typeof TooltipContent>;
 } & VariantProps<typeof sidebarMenuButtonVariants>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenuAction({ className, asChild, showOnHover, ...props }: React.ComponentProps<'button'> & {
+declare function SidebarMenuAction({ asChild, showOnHover, ...props }: Omit<React.ComponentProps<'button'>, 'className'> & {
     asChild?: boolean;
     showOnHover?: boolean;
 }): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenuBadge({ className, ...props }: React.ComponentProps<'div'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenuSkeleton({ className, showIcon, ...props }: React.ComponentProps<'div'> & {
+declare function SidebarMenuBadge({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarMenuSkeleton({ showIcon, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & {
     showIcon?: boolean;
 }): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenuSub({ className, ...props }: React.ComponentProps<'ul'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenuSubItem({ className, ...props }: React.ComponentProps<'li'>): import("react/jsx-runtime").JSX.Element;
-declare function SidebarMenuSubButton({ asChild, size, isActive, className, ...props }: React.ComponentProps<'a'> & {
+declare function SidebarMenuSub({ ...props }: Omit<React.ComponentProps<'ul'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarMenuSubItem({ ...props }: Omit<React.ComponentProps<'li'>, 'className'>): import("react/jsx-runtime").JSX.Element;
+declare function SidebarMenuSubButton({ asChild, size, isActive, ...props }: Omit<React.ComponentProps<'a'>, 'className'> & {
     asChild?: boolean;
     size?: 'sm' | 'md';
     isActive?: boolean;

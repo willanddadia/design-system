@@ -90,7 +90,9 @@ export function TablePage() {
           title="Search, Filter, and Pagination"
           code={`<div className="space-y-4">
   <div className="flex items-center justify-between">
-    <TableSearch className="max-w-xs" />
+    <div className="max-w-xs w-full">
+      <TableSearch />
+    </div>
     <TableFilter />
   </div>
   <DataTable data={data} columns={columns} />
@@ -99,7 +101,9 @@ export function TablePage() {
         >
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <TableSearch className="max-w-xs" />
+              <div className="max-w-xs w-full">
+                <TableSearch />
+              </div>
               <TableFilter />
             </div>
             <DataTable data={data} columns={columns} />

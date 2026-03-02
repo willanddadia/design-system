@@ -92,7 +92,7 @@ export function TypographyPage() {
 </Text>`}
         >
           <div className="border p-8 rounded-xl bg-card">
-            <Text size="4xl" weight="black" uppercase align="center" className="tracking-tighter">
+            <Text size="4xl" weight="black" uppercase align="center">
               Custom Dashboard
             </Text>
             <Text align="center" variant="muted" italic>

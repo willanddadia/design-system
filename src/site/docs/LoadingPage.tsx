@@ -98,23 +98,23 @@ export function LoadingPage() {
                         <Card>
                             <CardHeader>
                                 <CardTitle>
-                                    <Skeleton className="h-6 w-1/2" />
+                                    <Skeleton internalClassName="h-6 w-1/2" />
                                 </CardTitle>
                             </CardHeader>
-                            <CardContent className="space-y-3">
-                                <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-3/4" />
-                                <Skeleton className="h-32 w-full mt-4" />
+                            <CardContent internalClassName="space-y-3">
+                                <Skeleton internalClassName="h-4 w-full" />
+                                <Skeleton internalClassName="h-4 w-full" />
+                                <Skeleton internalClassName="h-4 w-3/4" />
+                                <Skeleton internalClassName="h-32 w-full mt-4" />
                             </CardContent>
                         </Card>
                         <div className="flex gap-4 items-start">
-                            <Skeleton className="size-12 rounded-full shrink-0" />
+                            <Skeleton internalClassName="size-12 rounded-full shrink-0" />
                             <div className="flex-1 space-y-2">
-                                <Skeleton className="h-4 w-1/4" />
-                                <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-full" />
-                                <Skeleton className="h-4 w-1/2" />
+                                <Skeleton internalClassName="h-4 w-1/4" />
+                                <Skeleton internalClassName="h-4 w-full" />
+                                <Skeleton internalClassName="h-4 w-full" />
+                                <Skeleton internalClassName="h-4 w-1/2" />
                             </div>
                         </div>
                     </Grid>

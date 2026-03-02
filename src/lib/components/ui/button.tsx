@@ -36,7 +36,7 @@ const buttonVariants = cva(
 );
 
 interface ButtonProps
-  extends React.ComponentProps<'button'>,
+  extends Omit<React.ComponentProps<'button'>, 'className'>,
   VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   leftIcon?: React.ReactNode;
@@ -46,7 +46,6 @@ interface ButtonProps
 }
 
 function Button({
-  className,
   variant,
   size,
   asChild = false,
@@ -55,8 +54,9 @@ function Button({
   href,
   target,
   children,
+  internalClassName,
   ...props
-}: ButtonProps) {
+}: ButtonProps & { internalClassName?: string }) {
   const isExternalLink = variant === 'link' && target === '_blank';
   const finalRightIcon = rightIcon || (isExternalLink ? <ExternalLink className="size-3.5 opacity-70" /> : null);
 
@@ -66,7 +66,7 @@ function Button({
         href={href}
         target={target}
         rel={target === '_blank' ? 'noopener noreferrer' : undefined}
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size }), internalClassName)}
         data-slot="button"
       >
         {leftIcon}
@@ -81,12 +81,16 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, size }), internalClassName)}
       {...props}
     >
-      {leftIcon}
-      {children}
-      {finalRightIcon}
+      {asChild ? children : (
+        <>
+          {leftIcon}
+          {children}
+          {finalRightIcon}
+        </>
+      )}
     </Comp>
   );
 }

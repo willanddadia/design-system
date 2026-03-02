@@ -13,20 +13,19 @@ export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void })
         description="A professional UI library for building modern web applications with speed and consistency."
       />
 
-      <Grid cols={1} gap="lg" className="mb-12 md:grid-cols-2">
+      <Grid cols={1} gap="lg">
         <Card variant="bordered">
           <CardHeader>
             <Flex
               align="center"
               justify="center"
-              className="size-10 bg-primary/10 text-primary rounded-lg mb-4"
             >
               <Package className="size-6" />
             </Flex>
             <CardTitle>Atomic Components</CardTitle>
           </CardHeader>
           <CardContent>
-            <Paragraph variant="muted" className="!mt-0">
+            <Paragraph variant="muted">
               Highly reusable, focus-state compliant components built with accessibility in mind.
             </Paragraph>
           </CardContent>
@@ -37,14 +36,13 @@ export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void })
             <Flex
               align="center"
               justify="center"
-              className="size-10 bg-accent/10 text-accent rounded-lg mb-4"
             >
               <Palette className="size-6" />
             </Flex>
             <CardTitle>Design Tokens</CardTitle>
           </CardHeader>
           <CardContent>
-            <Paragraph variant="muted" className="!mt-0">
+            <Paragraph variant="muted">
               Consistent color, spacing, and typography systems managed through CSS variables.
             </Paragraph>
           </CardContent>
@@ -55,14 +53,13 @@ export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void })
             <Flex
               align="center"
               justify="center"
-              className="size-10 bg-green-500/10 text-green-600 rounded-lg mb-4"
             >
               <Smartphone className="size-6" />
             </Flex>
             <CardTitle>Fully Responsive</CardTitle>
           </CardHeader>
           <CardContent>
-            <Paragraph variant="muted" className="!mt-0">
+            <Paragraph variant="muted">
               Layout primitives that handle responsiveness automatically across all devices.
             </Paragraph>
           </CardContent>
@@ -73,14 +70,13 @@ export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void })
             <Flex
               align="center"
               justify="center"
-              className="size-10 bg-destructive/10 text-destructive rounded-lg mb-4"
             >
               <ShieldCheck className="size-6" />
             </Flex>
             <CardTitle>TypeScript Ready</CardTitle>
           </CardHeader>
           <CardContent>
-            <Paragraph variant="muted" className="!mt-0">
+            <Paragraph variant="muted">
               First-class TypeScript support with comprehensive prop definitions for all components.
             </Paragraph>
           </CardContent>
@@ -88,7 +84,7 @@ export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void })
       </Grid>
 
       <Section title="Ready to dive in?">
-        <Paragraph variant="muted" className="mb-6 !mt-0">
+        <Paragraph variant="muted">
           Explore our growing library of components and start building your next project today.
         </Paragraph>
         <Flex gap="md" wrap>

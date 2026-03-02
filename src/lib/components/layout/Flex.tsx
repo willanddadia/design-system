@@ -1,7 +1,8 @@
 import { HTMLAttributes, forwardRef } from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { cn } from '@lib/utils/utils';
 
-export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
+export interface FlexProps extends Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
   direction?: 'row' | 'col' | 'row-reverse' | 'col-reverse';
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   align?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
@@ -11,6 +12,7 @@ export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   mdAlign?: 'start' | 'center' | 'end' | 'stretch' | 'baseline';
   mdJustify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   asChild?: boolean;
+  internalClassName?: string;
 }
 
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(
@@ -24,8 +26,8 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
       mdDirection,
       mdAlign,
       mdJustify,
-      className = '',
       asChild = false,
+      internalClassName,
       children,
       ...props
     },
@@ -71,7 +73,18 @@ export const Flex = forwardRef<HTMLDivElement, FlexProps>(
     return (
       <Comp
         ref={ref}
-        className={`flex ${directions[direction]} ${justifies[justify]} ${aligns[align]} ${wrap ? 'flex-wrap' : ''} ${gaps[gap]} ${mdDirectionClass} ${mdAlignClass} ${mdJustifyClass} ${className}`}
+        className={cn(
+          'flex',
+          directions[direction],
+          justifies[justify],
+          aligns[align],
+          wrap && 'flex-wrap',
+          gaps[gap],
+          mdDirectionClass,
+          mdAlignClass,
+          mdJustifyClass,
+          internalClassName
+        )}
         {...props}
       >
         {children}

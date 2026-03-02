@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { cn } from '@lib/utils/utils';
 
-interface StickyHeaderProps extends React.ComponentProps<'header'> {
+interface StickyHeaderProps extends Omit<React.ComponentProps<'header'>, 'className'> {
     blur?: boolean;
 }
 
 export function StickyHeader({
-    className,
     blur = true,
     children,
     ...props
@@ -17,7 +16,6 @@ export function StickyHeader({
             className={cn(
                 'sticky top-0 z-40 w-full border-b backdrop-blur-md',
                 blur ? 'bg-background/80' : 'bg-background',
-                className,
             )}
             {...props}
         >

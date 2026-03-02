@@ -4,86 +4,86 @@ import * as React from 'react';
 
 import { cn } from '@lib/utils/utils';
 
-function Table({ className, ...props }: React.ComponentProps<'table'>) {
+function Table({ internalClassName, ...props }: Omit<React.ComponentProps<'table'>, 'className'> & { internalClassName?: string }) {
   return (
     <div data-slot="table-container" className="relative w-full overflow-x-auto">
       <table
         data-slot="table"
-        className={cn('w-full caption-bottom text-sm', className)}
+        className={cn('w-full caption-bottom text-sm', internalClassName)}
         {...props}
       />
     </div>
   );
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps<'thead'>) {
-  return <thead data-slot="table-header" className={cn('[&_tr]:border-b', className)} {...props} />;
+function TableHeader({ internalClassName, ...props }: Omit<React.ComponentProps<'thead'>, 'className'> & { internalClassName?: string }) {
+  return <thead data-slot="table-header" className={cn('[&_tr]:border-b', internalClassName)} {...props} />;
 }
 
-function TableBody({ className, ...props }: React.ComponentProps<'tbody'>) {
+function TableBody({ internalClassName, ...props }: Omit<React.ComponentProps<'tbody'>, 'className'> & { internalClassName?: string }) {
   return (
     <tbody
       data-slot="table-body"
-      className={cn('[&_tr:last-child]:border-0', className)}
+      className={cn('[&_tr:last-child]:border-0', internalClassName)}
       {...props}
     />
   );
 }
 
-function TableFooter({ className, ...props }: React.ComponentProps<'tfoot'>) {
+function TableFooter({ internalClassName, ...props }: Omit<React.ComponentProps<'tfoot'>, 'className'> & { internalClassName?: string }) {
   return (
     <tfoot
       data-slot="table-footer"
-      className={cn('bg-muted/50 border-t font-medium [&>tr]:last:border-b-0', className)}
+      className={cn('bg-muted/50 border-t font-medium [&>tr]:last:border-b-0', internalClassName)}
       {...props}
     />
   );
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<'tr'>) {
+function TableRow({ internalClassName, ...props }: Omit<React.ComponentProps<'tr'>, 'className'> & { internalClassName?: string }) {
   return (
     <tr
       data-slot="table-row"
       className={cn(
         'hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors',
-        className,
+        internalClassName
       )}
       {...props}
     />
   );
 }
 
-function TableHead({ className, ...props }: React.ComponentProps<'th'>) {
+function TableHead({ internalClassName, ...props }: Omit<React.ComponentProps<'th'>, 'className'> & { internalClassName?: string }) {
   return (
     <th
       data-slot="table-head"
       className={cn(
         'text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
-        className,
+        internalClassName
       )}
       {...props}
     />
   );
 }
 
-function TableCell({ className, ...props }: React.ComponentProps<'td'>) {
+function TableCell({ internalClassName, ...props }: Omit<React.ComponentProps<'td'>, 'className'> & { internalClassName?: string }) {
   return (
     <td
       data-slot="table-cell"
       className={cn(
         'p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]',
-        className,
+        internalClassName
       )}
       {...props}
     />
   );
 }
 
-function TableCaption({ className, ...props }: React.ComponentProps<'caption'>) {
+function TableCaption({ internalClassName, ...props }: Omit<React.ComponentProps<'caption'>, 'className'> & { internalClassName?: string }) {
   return (
     <caption
       data-slot="table-caption"
-      className={cn('text-muted-foreground mt-4 text-sm', className)}
+      className={cn('text-muted-foreground mt-4 text-sm', internalClassName)}
       {...props}
     />
   );
@@ -103,14 +103,13 @@ import {
 
 // ... (previous table components)
 
-function TableSearch({ className, ...props }: React.ComponentProps<typeof Input>) {
+function TableSearch({ ...props }: Omit<React.ComponentProps<typeof Input>, 'className'>) {
   return (
     <div className="relative">
       <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         type="search"
         placeholder="Search..."
-        className={cn('pl-8', className)}
         {...props}
       />
     </div>
@@ -118,12 +117,11 @@ function TableSearch({ className, ...props }: React.ComponentProps<typeof Input>
 }
 
 function TableFilter({
-  className,
   children,
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: Omit<React.ComponentProps<typeof Button>, 'className'>) {
   return (
-    <Button variant="outline" size="sm" className={cn('gap-2', className)} {...props}>
+    <Button variant="outline" size="sm" {...props}>
       <Filter className="h-4 w-4" />
       {children || 'Filter'}
     </Button>
@@ -134,15 +132,13 @@ function TablePagination({
   currentPage,
   totalPages,
   onPageChange,
-  className,
 }: {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  className?: string;
 }) {
   return (
-    <Pagination className={cn('mt-4', className)}>
+    <Pagination>
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious

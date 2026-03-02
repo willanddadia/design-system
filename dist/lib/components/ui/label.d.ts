@@ -1,4 +1,6 @@
 import * as React from 'react';
 import * as LabelPrimitive from '@radix-ui/react-label';
-declare function Label({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>): import("react/jsx-runtime").JSX.Element;
+declare function Label({ internalClassName, ...props }: Omit<React.ComponentProps<typeof LabelPrimitive.Root>, 'className'> & {
+    internalClassName?: string;
+}): import("react/jsx-runtime").JSX.Element;
 export { Label };

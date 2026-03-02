@@ -129,20 +129,20 @@ function Carousel({
   );
 }
 
-function CarouselContent({ className, ...props }: React.ComponentProps<'div'>) {
+function CarouselContent({ internalClassName, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & { internalClassName?: string }) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
     <div ref={carouselRef} className="overflow-hidden" data-slot="carousel-content">
       <div
-        className={cn('flex', orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)}
+        className={cn('flex', orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', internalClassName)}
         {...props}
       />
     </div>
   );
 }
 
-function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
+function CarouselItem({ internalClassName, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & { internalClassName?: string }) {
   const { orientation } = useCarousel();
 
   return (
@@ -153,7 +153,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
       className={cn(
         'min-w-0 shrink-0 grow-0 basis-full',
         orientation === 'horizontal' ? 'pl-4' : 'pt-4',
-        className,
+        internalClassName,
       )}
       {...props}
     />
@@ -161,11 +161,11 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function CarouselPrevious({
-  className,
+  internalClassName,
   variant = 'outline',
   size = 'icon',
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: Omit<React.ComponentProps<typeof Button>, 'className'> & { internalClassName?: string }) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
@@ -173,12 +173,12 @@ function CarouselPrevious({
       data-slot="carousel-previous"
       variant={variant}
       size={size}
-      className={cn(
+      internalClassName={cn(
         'absolute size-8 rounded-full',
         orientation === 'horizontal'
           ? 'top-1/2 -left-12 -translate-y-1/2'
           : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
-        className,
+        internalClassName,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
@@ -191,11 +191,11 @@ function CarouselPrevious({
 }
 
 function CarouselNext({
-  className,
+  internalClassName,
   variant = 'outline',
   size = 'icon',
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: Omit<React.ComponentProps<typeof Button>, 'className'> & { internalClassName?: string }) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
@@ -203,12 +203,12 @@ function CarouselNext({
       data-slot="carousel-next"
       variant={variant}
       size={size}
-      className={cn(
+      internalClassName={cn(
         'absolute size-8 rounded-full',
         orientation === 'horizontal'
           ? 'top-1/2 -right-12 -translate-y-1/2'
           : '-bottom-12 left-1/2 -translate-x-1/2 rotate-90',
-        className,
+        internalClassName,
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}

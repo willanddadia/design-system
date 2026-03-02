@@ -31,16 +31,16 @@ export function CalendarPage() {
   mode="single"
   selected={date}
   onSelect={setDate}
-  className="rounded-md border shadow"
+  internalClassName="rounded-md border shadow"
 />`}
                 >
                     <div className="flex flex-col md:flex-row gap-8 items-start">
-                        <Card className="p-0 border shadow-md">
+                        <Card internalClassName="p-0 border shadow-md">
                             <Calendar
                                 mode="single"
                                 selected={date}
                                 onSelect={setDate}
-                                className="rounded-md"
+                                internalClassName="rounded-md"
                             />
                         </Card>
                         <div className="flex-1 p-6 border-2 border-dashed border-border rounded-xl flex items-center justify-center bg-muted/20">
@@ -63,15 +63,15 @@ export function CalendarPage() {
   mode="range"
   selected={range}
   onSelect={setRange}
-  className="rounded-md border"
+  internalClassName="rounded-md border"
 />`}
                 >
-                    <Card className="inline-block border shadow-md">
+                    <Card internalClassName="inline-block border shadow-md">
                         <Calendar
                             mode="range"
                             selected={range}
                             onSelect={(r: any) => setRange(r)}
-                            className="rounded-md"
+                            internalClassName="rounded-md"
                         />
                     </Card>
                 </Example>

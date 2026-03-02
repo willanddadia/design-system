@@ -10,4 +10,4 @@ export interface DataTableProps<T> extends Omit<HTMLAttributes<HTMLDivElement>, 
     bordered?: boolean;
     striped?: boolean;
 }
-export declare function DataTable<T extends Record<string, any>>({ data, columns, bordered, striped, className, ...props }: DataTableProps<T>): import("react/jsx-runtime").JSX.Element;
+export declare function DataTable<T extends Record<string, any>>({ data, columns, bordered, striped, ...props }: Omit<DataTableProps<T>, 'className'>): import("react/jsx-runtime").JSX.Element;

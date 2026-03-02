@@ -71,16 +71,15 @@ const typographyVariants = cva('transition-colors', {
 });
 
 export interface TypographyProps
-    extends React.HTMLAttributes<HTMLElement>,
+    extends Omit<React.HTMLAttributes<HTMLElement>, 'className'>,
     VariantProps<typeof typographyVariants> {
     asChild?: boolean;
     as?: React.ElementType;
 }
 
-const Text = React.forwardRef<HTMLElement, TypographyProps>(
+const Text = React.forwardRef<HTMLElement, TypographyProps & { internalClassName?: string }>(
     (
         {
-            className,
             variant,
             size,
             weight,
@@ -93,6 +92,7 @@ const Text = React.forwardRef<HTMLElement, TypographyProps>(
             lowercase,
             asChild = false,
             as: Component = 'p',
+            internalClassName,
             ...props
         },
         ref,
@@ -113,7 +113,7 @@ const Text = React.forwardRef<HTMLElement, TypographyProps>(
                         uppercase,
                         lowercase,
                     }),
-                    className,
+                    internalClassName
                 )}
                 ref={ref}
                 {...props}
@@ -143,12 +143,13 @@ const Heading = React.forwardRef<HTMLHeadingElement, TypographyProps>(
 Heading.displayName = 'Heading';
 
 const Paragraph = React.forwardRef<HTMLParagraphElement, TypographyProps>(
-    ({ as = 'p', className, ...props }, ref) => {
+    ({ as = 'p', asChild, ...props }, ref) => {
         return (
             <Text
                 as={as}
-                className={cn('leading-relaxed [&:not(:first-child)]:mt-6', className)}
+                asChild={asChild}
                 ref={ref}
+                internalClassName={asChild ? undefined : "leading-relaxed [&:not(:first-child)]:mt-6"}
                 {...props}
             />
         );

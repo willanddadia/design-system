@@ -16,12 +16,6 @@ const props = [
     description:
       'Card content. Compose with CardHeader, CardTitle, CardDescription, and CardContent.',
   },
-  {
-    name: 'className',
-    type: 'string',
-    default: "''",
-    description: 'Additional classes for custom overrides.',
-  },
 ];
 
 const subProps = [
@@ -126,15 +120,17 @@ export function CardPage() {
   </CardContent>
 </Card>`}
         >
-          <Card variant="bordered" className="max-w-md">
-            <CardHeader>
-              <CardTitle>Account Settings</CardTitle>
-              <CardDescription>Manage your profile and preferences</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Content area for any child elements.</p>
-            </CardContent>
-          </Card>
+          <div className="max-w-md">
+            <Card variant="bordered">
+              <CardHeader>
+                <CardTitle>Account Settings</CardTitle>
+                <CardDescription>Manage your profile and preferences</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Content area for any child elements.</p>
+              </CardContent>
+            </Card>
+          </div>
         </Example>
       </Section>
 
