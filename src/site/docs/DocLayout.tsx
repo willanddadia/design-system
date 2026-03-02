@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+import { Heading, Paragraph, Text } from '@lib/components/ui/typography';
+import { Padded } from '@lib/components/layout/index';
 
 // ─── Section ────────────────────────────────────────────────────────────────
 export function Section({
@@ -10,15 +12,22 @@ export function Section({
   description?: string;
   children: ReactNode;
 }) {
+  const id = title.toLowerCase().replace(/\s+/g, '-');
   return (
-    <section className="mb-12" aria-labelledby={title.toLowerCase().replace(/\s+/g, '-')}>
-      <h2 id={title.toLowerCase().replace(/\s+/g, '-')} className="mb-1">
-        {title}
-      </h2>
-      {description && <p className="text-muted-foreground mb-6">{description}</p>}
-      {!description && <div className="mb-6" />}
-      {children}
-    </section>
+    <Padded asChild padding="none" className="mb-12">
+      <section aria-labelledby={id}>
+        <Heading id={id} as="h2" className="mb-1">
+          {title}
+        </Heading>
+        {description && (
+          <Paragraph variant="muted" className="mb-6 !mt-0">
+            {description}
+          </Paragraph>
+        )}
+        {!description && <div className="mb-6" />}
+        {children}
+      </section>
+    </Padded>
   );
 }
 
@@ -33,25 +42,32 @@ export function Example({
   children: ReactNode;
 }) {
   return (
-    <div className="border-2 border-border rounded-xl overflow-hidden mb-6">
+    <Padded bordered padding="none" className="overflow-hidden mb-6">
       {/* Preview */}
-      <div className="p-6 bg-background">
+      <Padded padding="lg" className="bg-background">
         {title && (
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-medium">
+          <Text
+            as="p"
+            variant="muted"
+            size="xs"
+            uppercase
+            weight="medium"
+            className="tracking-widest mb-4"
+          >
             {title}
-          </p>
+          </Text>
         )}
         {children}
-      </div>
+      </Padded>
       {/* Code */}
       {code && (
-        <div className="border-t-2 border-border bg-muted/30">
+        <Padded padding="none" className="border-t-2 border-border bg-muted/30">
           <pre className="p-4 text-sm overflow-x-auto leading-relaxed">
             <code className="text-foreground">{code}</code>
           </pre>
-        </div>
+        </Padded>
       )}
-    </div>
+    </Padded>
   );
 }
 
@@ -65,7 +81,7 @@ export interface PropDef {
 
 export function PropTable({ props }: { props: PropDef[] }) {
   return (
-    <div className="border-2 border-border rounded-xl overflow-hidden">
+    <Padded bordered padding="none" className="overflow-hidden">
       <table className="w-full text-sm">
         <thead>
           <tr className="bg-muted/40 border-b-2 border-border">
@@ -88,7 +104,7 @@ export function PropTable({ props }: { props: PropDef[] }) {
           ))}
         </tbody>
       </table>
-    </div>
+    </Padded>
   );
 }
 
@@ -103,14 +119,25 @@ export function PageHero({
   badge?: string;
 }) {
   return (
-    <div className="mb-10 pb-8 border-b-2 border-border" role="banner">
+    <Padded padding="none" className="mb-10 pb-8 border-b-2 border-border" role="banner">
       {badge && (
-        <span className="inline-block mb-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground bg-muted px-3 py-1 rounded-full">
+        <Text
+          as="span"
+          variant="muted"
+          size="xs"
+          weight="semibold"
+          uppercase
+          className="inline-block mb-3 tracking-widest bg-muted px-3 py-1 rounded-full"
+        >
           {badge}
-        </span>
+        </Text>
       )}
-      <h1 className="mb-2">{title}</h1>
-      <p className="text-muted-foreground max-w-2xl">{description}</p>
-    </div>
+      <Heading as="h1" className="mb-2">
+        {title}
+      </Heading>
+      <Paragraph variant="muted" className="max-w-2xl !mt-0">
+        {description}
+      </Paragraph>
+    </Padded>
   );
 }

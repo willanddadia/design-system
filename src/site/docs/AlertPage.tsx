@@ -1,4 +1,5 @@
 import { Alert } from '@lib/components/ui/alert';
+import { Flex } from '@lib/components/layout';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const props = [
@@ -24,7 +25,7 @@ const props = [
 
 export function AlertPage() {
   return (
-    <div>
+    <Flex direction="col" gap="none">
       <PageHero
         badge="Feedback"
         title="Alert"
@@ -39,7 +40,7 @@ export function AlertPage() {
 <Alert variant="warning" title="Warning">Review settings before continuing.</Alert>
 <Alert variant="destructive" title="Error">Something went wrong.</Alert>`}
         >
-          <div className="space-y-3">
+          <Flex direction="col" gap="sm">
             <Alert variant="default" title="Info">
               This is an informational message for the user.
             </Alert>
@@ -52,7 +53,7 @@ export function AlertPage() {
             <Alert variant="destructive" title="Error">
               An error occurred while processing your request.
             </Alert>
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -79,11 +80,11 @@ export function AlertPage() {
   </Alert>
 )}`}
         >
-          <div className="space-y-4">
+          <Flex direction="col" gap="md">
             <Alert variant="default" onClose={() => { }} title="Closable Demo">
               This is a demonstration of a closable alert.
             </Alert>
-          </div>
+          </Flex>
         </Example>
       </Section>
 
@@ -98,6 +99,6 @@ export function AlertPage() {
           }
         ]} />
       </Section>
-    </div>
+    </Flex>
   );
 }

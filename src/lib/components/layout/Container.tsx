@@ -1,12 +1,15 @@
 import { HTMLAttributes, forwardRef } from 'react';
+import { Slot } from '@radix-ui/react-slot';
 
 export interface ContainerProps extends HTMLAttributes<HTMLDivElement> {
   margin?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   bordered?: boolean;
+  asChild?: boolean;
 }
 
 export const Container = forwardRef<HTMLDivElement, ContainerProps>(
-  ({ margin = 'none', bordered = false, className = '', children, ...props }, ref) => {
+  ({ margin = 'none', bordered = false, asChild = false, className = '', children, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'div';
     const margins = {
       none: '',
       sm: 'm-2',
@@ -16,13 +19,13 @@ export const Container = forwardRef<HTMLDivElement, ContainerProps>(
     };
 
     return (
-      <div
+      <Comp
         ref={ref}
         className={`${margins[margin]} ${bordered ? 'border-2 border-border rounded-lg' : ''} ${className}`}
         {...props}
       >
         {children}
-      </div>
+      </Comp>
     );
   },
 );

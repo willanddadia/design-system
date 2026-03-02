@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { ExternalLink } from 'lucide-react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@lib/utils/utils';
@@ -19,6 +20,7 @@ const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline',
       },
       size: {
+        none: 'p-0 h-auto',
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
         sm: 'h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5',
         md: 'h-11 rounded-md px-6 has-[>svg]:px-4',
@@ -55,6 +57,9 @@ function Button({
   children,
   ...props
 }: ButtonProps) {
+  const isExternalLink = variant === 'link' && target === '_blank';
+  const finalRightIcon = rightIcon || (isExternalLink ? <ExternalLink className="size-3.5 opacity-70" /> : null);
+
   if (href) {
     return (
       <a
@@ -66,7 +71,7 @@ function Button({
       >
         {leftIcon}
         {children}
-        {rightIcon}
+        {finalRightIcon}
       </a>
     );
   }
@@ -81,7 +86,7 @@ function Button({
     >
       {leftIcon}
       {children}
-      {rightIcon}
+      {finalRightIcon}
     </Comp>
   );
 }

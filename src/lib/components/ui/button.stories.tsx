@@ -52,12 +52,15 @@ export const LoadingState: Story = () => (
 );
 
 export const Link: Story = () => (
-  <Flex gap="sm">
-    <Button href="https://google.com" target="_blank">
-      External Link
+  <Flex gap="sm" wrap>
+    <Button href="https://google.com" target="_blank" variant="link">
+      External Link (Auto Icon)
     </Button>
-    <Button href="#target" variant="outline">
-      Internal Anchor
+    <Button href="https://google.com" target="_blank" variant="outline">
+      External Link (Outline, No Auto Icon)
+    </Button>
+    <Button href="#target" variant="link">
+      Internal Link
     </Button>
   </Flex>
 );

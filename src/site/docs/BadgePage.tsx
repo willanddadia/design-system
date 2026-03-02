@@ -1,5 +1,6 @@
 import { Badge } from '@lib/components/ui/badge';
-import { Flex } from '@lib/components/layout/Flex';
+import { Flex } from '@lib/components/layout';
+import { Text } from '@lib/components/ui/typography';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const props = [
@@ -25,7 +26,7 @@ const props = [
 
 export function BadgePage() {
   return (
-    <div>
+    <Flex direction="col" gap="none">
       <PageHero
         badge="Display"
         title="Badge"
@@ -59,23 +60,23 @@ export function BadgePage() {
         description="Badges work great inside table cells, card headers, or alongside text."
       >
         <Example title="Inline with text">
-          <div className="space-y-2">
-            <p className="flex items-center gap-2">
+          <Flex direction="col" gap="sm">
+            <Text as="p" className="flex items-center gap-2 !mt-0">
               Order #1042 <Badge variant="success">Delivered</Badge>
-            </p>
-            <p className="flex items-center gap-2">
+            </Text>
+            <Text as="p" className="flex items-center gap-2 !mt-0">
               Order #1041 <Badge variant="default">Processing</Badge>
-            </p>
-            <p className="flex items-center gap-2">
+            </Text>
+            <Text as="p" className="flex items-center gap-2 !mt-0">
               Order #1040 <Badge variant="destructive">Failed</Badge>
-            </p>
-          </div>
+            </Text>
+          </Flex>
         </Example>
       </Section>
 
       <Section title="Props">
         <PropTable props={props} />
       </Section>
-    </div>
+    </Flex>
   );
 }

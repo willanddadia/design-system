@@ -1,6 +1,7 @@
 import { Button } from '@lib/components/ui/button';
-import { Flex } from '@lib/components/layout/Flex';
-import { Heart, Search, Settings, Share2, Trash2, Edit } from 'lucide-react';
+import { Flex } from '@lib/components/layout/index';
+import { Text } from '@lib/components/ui/typography';
+import { Heart, Search, Settings, Share2, Trash2, Edit, ChevronRight } from 'lucide-react';
 import { Section, Example, PropTable, PageHero } from './DocLayout';
 
 const props = [
@@ -34,7 +35,7 @@ const props = [
 
 export function ButtonPage() {
   return (
-    <div>
+    <Flex direction="col" gap="none">
       <PageHero
         badge="Action"
         title="Button"
@@ -60,7 +61,8 @@ export function ButtonPage() {
             <Button variant="outline">Outline</Button>
             <Button variant="destructive">Destructive</Button>
             <Button variant="ghost">Ghost</Button>
-            <Button variant="link">Link</Button>
+            <Button variant="link" >Link</Button>
+            <Button variant="link" target='_blank'>External Link</Button>
           </Flex>
         </Example>
       </Section>
@@ -94,44 +96,46 @@ export function ButtonPage() {
 <Button size="icon" variant="ghost"><Edit className="w-5 h-5" /></Button>
 <Button size="icon" variant="destructive"><Trash2 className="w-5 h-5" /></Button>`}
         >
-          <div className="space-y-4">
-            <div>
-              <p className="text-xs text-muted-foreground mb-3">Variants</p>
+          <Flex direction="col" gap="md">
+            <Flex direction="col" gap="sm">
+              <Text variant="muted" size="xs" uppercase weight="medium" className="tracking-widest">
+                Variants
+              </Text>
               <Flex gap="sm" align="center">
                 <Button size="icon" variant="default">
-                  <Heart className="w-5 h-5" />
+                  <Heart className="size-5" />
                 </Button>
                 <Button size="icon" variant="secondary">
-                  <Share2 className="w-5 h-5" />
+                  <Share2 className="size-5" />
                 </Button>
                 <Button size="icon" variant="outline">
-                  <Settings className="w-5 h-5" />
+                  <Settings className="size-5" />
                 </Button>
                 <Button size="icon" variant="ghost">
-                  <Edit className="w-5 h-5" />
+                  <Edit className="size-5" />
                 </Button>
                 <Button size="icon" variant="destructive">
-                  <Trash2 className="w-5 h-5" />
+                  <Trash2 className="size-5" />
                 </Button>
               </Flex>
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground mb-3">
+            </Flex>
+            <Flex direction="col" gap="sm">
+              <Text variant="muted" size="xs" uppercase weight="medium" className="tracking-widest">
                 Sizes (with icon size adjustment)
-              </p>
+              </Text>
               <Flex gap="sm" align="center">
                 <Button size="icon" variant="default">
-                  <Search className="w-4 h-4" />
+                  <Search className="size-4" />
                 </Button>
                 <Button size="icon" variant="default">
-                  <Search className="w-5 h-5" />
+                  <Search className="size-5" />
                 </Button>
                 <Button size="icon" variant="default">
-                  <Search className="w-6 h-6" />
+                  <Search className="size-6" />
                 </Button>
               </Flex>
-            </div>
-          </div>
+            </Flex>
+          </Flex>
         </Example>
       </Section>
 
@@ -182,8 +186,6 @@ export function ButtonPage() {
           ]}
         />
       </Section>
-    </div>
+    </Flex>
   );
 }
-
-import { ChevronRight } from 'lucide-react';

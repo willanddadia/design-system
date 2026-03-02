@@ -13,6 +13,7 @@ const typographyVariants = cva('transition-colors', {
             destructive: 'text-destructive',
         },
         size: {
+            '2xs': 'text-[10px]',
             xs: 'text-xs',
             sm: 'text-sm',
             base: 'text-base',

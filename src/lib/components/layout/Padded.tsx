@@ -1,12 +1,15 @@
 import { HTMLAttributes, forwardRef } from 'react';
+import { Slot } from '@radix-ui/react-slot';
 
 export interface PaddedProps extends HTMLAttributes<HTMLDivElement> {
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   bordered?: boolean;
+  asChild?: boolean;
 }
 
 export const Padded = forwardRef<HTMLDivElement, PaddedProps>(
-  ({ padding = 'md', bordered = false, className = '', children, ...props }, ref) => {
+  ({ padding = 'md', bordered = false, asChild = false, className = '', children, ...props }, ref) => {
+    const Comp = asChild ? Slot : 'div';
     const paddings = {
       none: '',
       sm: 'p-2',
@@ -16,13 +19,13 @@ export const Padded = forwardRef<HTMLDivElement, PaddedProps>(
     };
 
     return (
-      <div
+      <Comp
         ref={ref}
         className={`${paddings[padding]} ${bordered ? 'border-2 border-border rounded-lg' : ''} ${className}`}
         {...props}
       >
         {children}
-      </div>
+      </Comp>
     );
   },
 );

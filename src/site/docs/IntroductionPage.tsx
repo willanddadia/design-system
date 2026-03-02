@@ -1,94 +1,120 @@
 import { PageHero, Section } from './DocLayout';
+import { Flex, Grid } from '@lib/components/layout';
+import { Paragraph } from '@lib/components/ui/typography';
 import { Card, CardHeader, CardTitle, CardContent } from '@lib/components/ui/card';
 import { Button } from '@lib/components/ui/button';
 import { Package, Smartphone, Palette, ShieldCheck } from 'lucide-react';
 
 export function IntroductionPage({ onGetStarted }: { onGetStarted: () => void }) {
   return (
-    <div>
+    <Flex direction="col" gap="none">
       <PageHero
         title="Design System"
         description="A professional UI library for building modern web applications with speed and consistency."
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <Grid cols={1} gap="lg" className="mb-12 md:grid-cols-2">
         <Card variant="bordered">
           <CardHeader>
-            <div className="w-10 h-10 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-4">
-              <Package className="w-6 h-6" />
-            </div>
+            <Flex
+              align="center"
+              justify="center"
+              className="size-10 bg-primary/10 text-primary rounded-lg mb-4"
+            >
+              <Package className="size-6" />
+            </Flex>
             <CardTitle>Atomic Components</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <Paragraph variant="muted" className="!mt-0">
               Highly reusable, focus-state compliant components built with accessibility in mind.
-            </p>
+            </Paragraph>
           </CardContent>
         </Card>
 
         <Card variant="bordered">
           <CardHeader>
-            <div className="w-10 h-10 bg-accent/10 text-accent rounded-lg flex items-center justify-center mb-4">
-              <Palette className="w-6 h-6" />
-            </div>
+            <Flex
+              align="center"
+              justify="center"
+              className="size-10 bg-accent/10 text-accent rounded-lg mb-4"
+            >
+              <Palette className="size-6" />
+            </Flex>
             <CardTitle>Design Tokens</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <Paragraph variant="muted" className="!mt-0">
               Consistent color, spacing, and typography systems managed through CSS variables.
-            </p>
+            </Paragraph>
           </CardContent>
         </Card>
 
         <Card variant="bordered">
           <CardHeader>
-            <div className="w-10 h-10 bg-green-500/10 text-green-600 rounded-lg flex items-center justify-center mb-4">
-              <Smartphone className="w-6 h-6" />
-            </div>
+            <Flex
+              align="center"
+              justify="center"
+              className="size-10 bg-green-500/10 text-green-600 rounded-lg mb-4"
+            >
+              <Smartphone className="size-6" />
+            </Flex>
             <CardTitle>Fully Responsive</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <Paragraph variant="muted" className="!mt-0">
               Layout primitives that handle responsiveness automatically across all devices.
-            </p>
+            </Paragraph>
           </CardContent>
         </Card>
 
         <Card variant="bordered">
           <CardHeader>
-            <div className="w-10 h-10 bg-destructive/10 text-destructive rounded-lg flex items-center justify-center mb-4">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
+            <Flex
+              align="center"
+              justify="center"
+              className="size-10 bg-destructive/10 text-destructive rounded-lg mb-4"
+            >
+              <ShieldCheck className="size-6" />
+            </Flex>
             <CardTitle>TypeScript Ready</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground">
+            <Paragraph variant="muted" className="!mt-0">
               First-class TypeScript support with comprehensive prop definitions for all components.
-            </p>
+            </Paragraph>
           </CardContent>
         </Card>
-      </div>
+      </Grid>
 
       <Section title="Ready to dive in?">
-        <p className="text-muted-foreground mb-6">
+        <Paragraph variant="muted" className="mb-6 !mt-0">
           Explore our growing library of components and start building your next project today.
-        </p>
-        <div className="flex flex-wrap gap-4">
+        </Paragraph>
+        <Flex gap="md" wrap>
           <Button size="lg" onClick={onGetStarted}>
             Explore Components
           </Button>
-          <a href="https://github.com/willanddadia/design-system" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" variant="outline">
+          <Button asChild size="lg" variant="outline">
+            <a
+              href="https://github.com/willanddadia/design-system"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub repository
-            </Button>
-          </a>
-          <a href="https://www.npmjs.com/package/@will-and/design-system" target="_blank" rel="noopener noreferrer">
-            <Button size="lg" variant="outline">
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline">
+            <a
+              href="https://www.npmjs.com/package/@will-and/design-system"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View on NPM
-            </Button>
-          </a>
-        </div>
+            </a>
+          </Button>
+        </Flex>
       </Section>
-    </div>
+    </Flex>
   );
 }
