@@ -42,7 +42,7 @@ export function ModalPage() {
   const [sideOpen, setSideOpen] = useState(false);
 
   return (
-    <div>
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Overlay"
         title="Modal"
@@ -149,6 +149,6 @@ export function ModalPage() {
           </Flex>
         </Flex>
       </SideModal>
-    </div>
+    </Flex>
   );
 }

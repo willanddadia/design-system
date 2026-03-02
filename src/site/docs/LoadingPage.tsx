@@ -17,7 +17,7 @@ export function LoadingPage() {
     };
 
     return (
-        <div className="space-y-12">
+        <Flex direction="col" gap="xl">
             <PageHero
                 badge="Feedback"
                 title="Loading & Skeletons"
@@ -131,6 +131,6 @@ export function LoadingPage() {
                     ]}
                 />
             </Section>
-        </div>
+        </Flex>
     );
 }

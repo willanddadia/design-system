@@ -23,7 +23,7 @@ const overflowProps = [
 
 export function LayoutPage() {
   return (
-    <div className="space-y-12">
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Layout"
         title="Layout Wrappers"
@@ -80,7 +80,7 @@ export function LayoutPage() {
         >
           <Grid cols={2} mdCols={4} gap="md">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-16 bg-muted border border-border rounded-lg flex items-center justify-center font-bold">
+              <div key={i} className="w-16 h-16 bg-muted border border-border rounded-lg flex items-center justify-center font-bold">
                 {i}
               </div>
             ))}
@@ -184,6 +184,6 @@ export function LayoutPage() {
       <Section title="Flex Props">
         <PropTable props={layoutProps} />
       </Section>
-    </div>
+    </Flex>
   );
 }

@@ -9,20 +9,16 @@ import {
 } from 'recharts';
 import {
     Activity,
-    ArrowUpRight,
-    ArrowDownRight,
-    Users,
-    DollarSign,
-    CreditCard,
-    Search,
-    Filter,
+    Plus,
+    Terminal,
+    Cpu,
+    Database,
+    Globe,
+    Lock,
     Download,
-    MoreHorizontal,
-    Plus
+    MoreHorizontal
 } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@lib/components/ui/card';
 import { Button } from '@lib/components/ui/button';
-import { Input } from '@lib/components/ui/input';
 import { Badge } from '@lib/components/ui/badge';
 import {
     Table,
@@ -33,373 +29,329 @@ import {
     TableRow
 } from '@lib/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@lib/components/ui/avatar';
-import { Flex, Grid, Container } from '@lib/components/layout';
+import { Flex, Grid, Container, Padded } from '@lib/components/layout';
 import { Heading, Paragraph, Text } from '@lib/components/ui/typography';
+import { Section } from './DocLayout';
 
 const data = [
-    { name: 'Jan', revenue: 4500, users: 2400 },
-    { name: 'Feb', revenue: 5200, users: 1398 },
-    { name: 'Mar', revenue: 4800, users: 9800 },
-    { name: 'Apr', revenue: 6100, users: 3908 },
-    { name: 'May', revenue: 5900, users: 4800 },
-    { name: 'Jun', revenue: 7200, users: 3800 },
+    { name: '01', revenue: 4500, load: 2400 },
+    { name: '02', revenue: 5200, load: 1398 },
+    { name: '03', revenue: 4800, load: 4800 },
+    { name: '04', revenue: 6100, load: 3908 },
+    { name: '05', revenue: 5900, load: 2800 },
+    { name: '06', revenue: 7200, load: 3800 },
 ];
 
 const transactions = [
     {
-        id: 'TX1234',
-        customer: 'Liam Johnson',
-        email: 'liam@example.com',
-        type: 'Sale',
-        status: 'Approved',
-        date: '2023-06-23',
-        amount: '$250.00',
+        id: 'SEC-8921',
+        origin: 'US-EAST-1',
+        type: 'ENCRYPT',
+        status: 'Success',
+        date: '2023.06.23',
+        latency: '12ms',
     },
     {
-        id: 'TX1235',
-        customer: 'Olivia Smith',
-        email: 'olivia@example.com',
-        type: 'Refund',
-        status: 'Declined',
-        date: '2023-06-24',
-        amount: '$150.00',
+        id: 'NET-4412',
+        origin: 'EU-WEST-2',
+        type: 'BRIDGE',
+        status: 'Warning',
+        date: '2023.06.24',
+        latency: '142ms',
     },
     {
-        id: 'TX1236',
-        customer: 'Noah Williams',
-        email: 'noah@example.com',
-        type: 'Subscription',
-        status: 'Approved',
-        date: '2023-06-25',
-        amount: '$350.00',
+        id: 'DATA-771',
+        origin: 'AP-SOUTH-1',
+        type: 'COLLECT',
+        status: 'Success',
+        date: '2023.06.25',
+        latency: '45ms',
     },
     {
-        id: 'TX1237',
-        customer: 'Emma Brown',
-        email: 'emma@example.com',
-        type: 'Sale',
-        status: 'Pending',
-        date: '2023-06-26',
-        amount: '$450.00',
-    },
-    {
-        id: 'TX1238',
-        customer: 'James Jones',
-        email: 'james@example.com',
-        type: 'Sale',
-        status: 'Approved',
-        date: '2023-06-27',
-        amount: '$550.00',
+        id: 'SYS-009',
+        origin: 'GLOBAL',
+        type: 'SYNC',
+        status: 'Wait',
+        date: '2023.06.26',
+        latency: '—',
     },
 ];
 
 export function WebSamplePage() {
     return (
-        <Container>
-            <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div
+            className="min-h-screen pb-20 animate-in fade-in duration-1000"
+            style={{
+                backgroundImage: `
+                    radial-gradient(circle at 2px 2px, hsl(var(--border) / 0.3) 1px, transparent 0)
+                `,
+                backgroundSize: '32px 32px'
+            }}
+        >
+            <Container>
                 <Flex direction="col" gap="xl">
-                    <Flex direction="col" mdDirection="row" mdAlign="center" justify="between" gap="md">
-                        <Flex direction="col" gap="none">
-                            <Heading size="4xl" weight="bold">
-                                Web Dashboard
-                            </Heading>
-                            <Paragraph size="lg" variant="muted">
-                                A comprehensive example of an analytics dashboard for desktop applications.
-                            </Paragraph>
+                    {/* Header Section */}
+                    <header className="pt-8 pb-4 border-b border-border/50">
+                        <Flex direction="col" mdDirection="row" mdAlign="end" justify="between" gap="lg">
+                            <Flex direction="col" gap="sm">
+                                <Flex align="center" gap="sm">
+                                    <div className="size-2 bg-primary rounded-full animate-pulse" />
+                                    <Text size="2xs" weight="black" uppercase internalClassName="tracking-[0.3em] text-primary">System Dashboard</Text>
+                                </Flex>
+                                <Heading size="5xl" weight="black" internalClassName="tracking-tighter">
+                                    Command Center
+                                </Heading>
+                                <Paragraph variant="muted" internalClassName="max-w-xl text-lg font-medium">
+                                    Real-time telemetry and infrastructure management console v4.0.2
+                                </Paragraph>
+                            </Flex>
+                            <Flex align="center" gap="sm" internalClassName="pb-1">
+                                <Button variant="outline" size="sm" internalClassName="font-bold uppercase tracking-wider text-[10px] h-9 px-4">
+                                    <Download className="mr-2 size-3" />
+                                    Export Logs
+                                </Button>
+                                <Button size="sm" internalClassName="font-bold uppercase tracking-wider text-[10px] h-9 px-4 shadow-lg shadow-primary/20">
+                                    <Plus className="mr-2 size-3" />
+                                    Initialize Node
+                                </Button>
+                            </Flex>
                         </Flex>
-                        <Flex align="center" gap="sm">
-                            <Button variant="outline" size="sm">
-                                <Download className="mr-2 size-4" />
-                                Export
-                            </Button>
-                            <Button size="sm">
-                                <Plus className="mr-2 size-4" />
-                                New Project
-                            </Button>
-                        </Flex>
-                    </Flex>
+                    </header>
 
-                    {/* KPI Cards */}
-                    <Grid cols={1} mdCols={2} lgCols={4} gap="md">
-                        <Card>
-                            <CardHeader>
-                                <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                    <CardTitle>
-                                        <Text size="sm" weight="medium" variant="muted">Total Revenue</Text>
-                                    </CardTitle>
-                                    <DollarSign className="size-4 text-muted-foreground" />
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <Text size="2xl" weight="bold">
-                                    $45,231.89
-                                </Text>
-                                <Paragraph size="xs" variant="success">
-                                    <Flex align="center" mt={0.25}>
-                                        <ArrowUpRight className="mr-1 size-3" />
-                                        +20.1% from last month
+                    {/* KPI Technical Cards */}
+                    <Grid cols={1} mdCols={2} lgCols={4} gap="lg">
+                        {[
+                            { label: 'Network Throughput', value: '45.2 GB/s', trend: '+12.5%', color: 'success', icon: Globe },
+                            { label: 'Total Requests', value: '1.2M', trend: '+5.2%', color: 'success', icon: Activity },
+                            { label: 'Avg Latency', value: '24ms', trend: '-2.1%', color: 'destructive', icon: Cpu },
+                            { label: 'Active Clusters', value: '573', trend: '+14', color: 'success', icon: Database },
+                        ].map((stat, i) => (
+                            <Padded
+                                key={i}
+                                bordered
+                                padding="none"
+                                internalClassName="bg-card/40 backdrop-blur-sm group hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
+                            >
+                                <div
+                                    className="p-6"
+                                    style={{
+                                        backgroundImage: `radial-gradient(circle, hsl(var(--border) / 0.5) 0.5px, transparent 0.5px)`,
+                                        backgroundSize: '12px 12px'
+                                    }}
+                                >
+                                    <Flex direction="col" gap="md">
+                                        <Flex align="center" justify="between">
+                                            <Text size="2xs" weight="black" uppercase variant="muted" internalClassName="tracking-widest opacity-60">
+                                                {stat.label}
+                                            </Text>
+                                            <stat.icon className="size-4 text-muted-foreground opacity-40 group-hover:text-primary group-hover:opacity-100 transition-all" />
+                                        </Flex>
+                                        <Flex direction="col" gap="none">
+                                            <Text size="3xl" weight="black" internalClassName="font-mono tracking-tighter">
+                                                {stat.value}
+                                            </Text>
+                                            <Flex align="center" gap="sm">
+                                                <div className={`size-1.5 rounded-full ${stat.color === 'success' ? 'bg-green-500' : 'bg-red-500'}`} />
+                                                <Text size="2xs" variant="muted" weight="bold" internalClassName="font-mono uppercase">
+                                                    {stat.trend} <span className="opacity-50">vs last segment</span>
+                                                </Text>
+                                            </Flex>
+                                        </Flex>
                                     </Flex>
-                                </Paragraph>
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                    <CardTitle>
-                                        <Text size="sm" weight="medium" variant="muted">Subscriptions</Text>
-                                    </CardTitle>
-                                    <Users className="size-4 text-muted-foreground" />
                                 </div>
-                            </CardHeader>
-                            <CardContent>
-                                <Text size="2xl" weight="bold">
-                                    +2350
-                                </Text>
-                                <Paragraph size="xs" variant="success">
-                                    <Flex align="center" mt={0.25}>
-                                        <ArrowUpRight className="mr-1 size-3" />
-                                        +180.1% from last month
-                                    </Flex>
-                                </Paragraph>
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                    <CardTitle>
-                                        <Text size="sm" weight="medium" variant="muted">Sales</Text>
-                                    </CardTitle>
-                                    <CreditCard className="size-4 text-muted-foreground" />
+                                <div className="absolute -right-4 -bottom-4 opacity-[0.02] group-hover:opacity-[0.05] transition-opacity">
+                                    <stat.icon className="size-24 rotate-12" />
                                 </div>
-                            </CardHeader>
-                            <CardContent>
-                                <Text size="2xl" weight="bold">
-                                    +12,234
-                                </Text>
-                                <Paragraph size="xs" variant="destructive">
-                                    <Flex align="center" mt={0.25}>
-                                        <ArrowDownRight className="mr-1 size-3" />
-                                        -19% from last month
-                                    </Flex>
-                                </Paragraph>
-                            </CardContent>
-                        </Card>
-                        <Card>
-                            <CardHeader>
-                                <div className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                    <CardTitle>
-                                        <Text size="sm" weight="medium" variant="muted">Active Now</Text>
-                                    </CardTitle>
-                                    <Activity className="size-4 text-muted-foreground" />
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <Text size="2xl" weight="bold">
-                                    +573
-                                </Text>
-                                <Paragraph size="xs" variant="success">
-                                    <Flex align="center" mt={0.25}>
-                                        <ArrowUpRight className="mr-1 size-3" />
-                                        +201 since last hour
-                                    </Flex>
-                                </Paragraph>
-                            </CardContent>
-                        </Card>
+                            </Padded>
+                        ))}
                     </Grid>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
-                        {/* Charts Section */}
-                        <div className="lg:col-span-4">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle>Overview</CardTitle>
-                                    <CardDescription>Performance metrics for the current year.</CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="h-[300px]">
+                    {/* Main Analytics Section */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        {/* Telemetry Chart */}
+                        <div className="lg:col-span-8">
+                            <Padded bordered padding="none" internalClassName="bg-card/30 backdrop-blur-md overflow-hidden flex flex-col h-full">
+                                <Flex align="center" justify="between" px={1.5} py={1} internalClassName="border-b border-border/40 bg-muted/20">
+                                    <Flex align="center" gap="sm">
+                                        <Terminal className="size-4 text-primary" />
+                                        <Text weight="black" size="xs" uppercase internalClassName="tracking-widest">Global Telemetry Stream</Text>
+                                    </Flex>
+                                    <Badge variant="outline" internalClassName="font-mono text-[9px] uppercase tracking-tighter border-primary/30 text-primary">Live Connection: Established</Badge>
+                                </Flex>
+                                <div className="p-8 flex-1">
+                                    <div className="h-[350px] w-full">
                                         <ResponsiveContainer width="100%" height="100%">
-                                            <AreaChart data={data}>
+                                            <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                                                 <defs>
-                                                    <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                                                        <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.3} />
+                                                    <linearGradient id="colorMain" x1="0" y1="0" x2="0" y2="1">
+                                                        <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.2} />
                                                         <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0} />
                                                     </linearGradient>
                                                 </defs>
-                                                <CartesianGrid strokeDasharray="3 3" className="stroke-muted/30" vertical={false} />
+                                                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--border) / 0.4)" />
                                                 <XAxis
                                                     dataKey="name"
-                                                    stroke="hsl(var(--muted-foreground))"
-                                                    fontSize={12}
-                                                    tickLine={false}
                                                     axisLine={false}
+                                                    tickLine={false}
+                                                    fontSize={10}
+                                                    tick={{ fill: 'hsl(var(--muted-foreground))', fontWeight: 700 }}
+                                                    dy={10}
                                                 />
                                                 <YAxis
-                                                    stroke="hsl(var(--muted-foreground))"
-                                                    fontSize={12}
-                                                    tickLine={false}
                                                     axisLine={false}
-                                                    tickFormatter={(value) => `$${value}`}
+                                                    tickLine={false}
+                                                    fontSize={10}
+                                                    tick={{ fill: 'hsl(var(--muted-foreground))', fontWeight: 700 }}
+                                                    tickFormatter={(v) => `${v / 1000}k`}
                                                 />
                                                 <ReChartsTooltip
                                                     contentStyle={{
-                                                        backgroundColor: 'hsl(var(--card))',
-                                                        borderColor: 'hsl(var(--border))',
+                                                        backgroundColor: '#0a0a0a',
+                                                        border: '1px solid hsl(var(--border)/0.5)',
                                                         borderRadius: '8px',
-                                                        fontSize: '12px',
+                                                        boxShadow: '0 10px 15px -3px rgba(0,0,0,0.5)',
+                                                        fontSize: '11px',
+                                                        fontWeight: 700,
+                                                        fontFamily: 'monospace'
                                                     }}
                                                 />
                                                 <Area
-                                                    type="monotone"
+                                                    type="stepAfter"
                                                     dataKey="revenue"
                                                     stroke="hsl(var(--primary))"
+                                                    strokeWidth={3}
                                                     fillOpacity={1}
-                                                    fill="url(#colorRevenue)"
-                                                    strokeWidth={2}
+                                                    fill="url(#colorMain)"
+                                                    animationDuration={2000}
                                                 />
                                             </AreaChart>
                                         </ResponsiveContainer>
                                     </div>
-                                </CardContent>
-                            </Card>
+                                </div>
+                                <div className="p-4 bg-muted/10 border-t border-border/40 flex justify-between items-center text-[10px] font-mono text-muted-foreground uppercase tracking-widest px-8">
+                                    <span>Offset: 0x018F</span>
+                                    <Flex gap="xl">
+                                        <span>Status: Operational</span>
+                                        <span>Load: 42%</span>
+                                    </Flex>
+                                </div>
+                            </Padded>
                         </div>
 
-                        {/* Recent Sales/Activity */}
-                        <div className="lg:col-span-3">
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle>Recent Sales</CardTitle>
-                                    <CardDescription>You made 265 sales this month.</CardDescription>
-                                </CardHeader>
-                                <CardContent>
-                                    <Flex direction="col" gap="xl">
+                        {/* Node Registry */}
+                        <div className="lg:col-span-4">
+                            <Padded bordered padding="none" internalClassName="bg-card/30 backdrop-blur-md overflow-hidden h-full flex flex-col">
+                                <header className="p-6 border-b border-border/40 bg-muted/20">
+                                    <Flex direction="col" gap="sm">
+                                        <Text weight="black" size="xs" uppercase internalClassName="tracking-widest">Node Registry</Text>
+                                        <Text size="2xs" variant="muted" internalClassName="font-mono">Total cluster nodes: 1,024</Text>
+                                    </Flex>
+                                </header>
+                                <div className="p-6 flex-1">
+                                    <Flex direction="col" gap="lg">
                                         {[1, 2, 3, 4, 5].map((i) => (
-                                            <Flex key={i} align="center" gap="md">
-                                                <Avatar>
-                                                    <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 10}`} />
-                                                    <AvatarFallback>U{i}</AvatarFallback>
-                                                </Avatar>
-                                                <Flex direction="col" gap="none">
-                                                    <Text size="sm" weight="medium">
-                                                        Olivia Martin
+                                            <Flex key={i} align="center" gap="md" internalClassName="group/node cursor-default">
+                                                <div className="relative">
+                                                    <Avatar internalClassName="ring-2 ring-border group-hover/node:ring-primary/50 transition-all">
+                                                        <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 60}`} />
+                                                        <AvatarFallback>N{i}</AvatarFallback>
+                                                    </Avatar>
+                                                    <div className="absolute -bottom-0.5 -right-0.5 size-3 bg-green-500 rounded-full border-2 border-background" />
+                                                </div>
+                                                <Flex direction="col" gap="none" internalClassName="flex-1">
+                                                    <Text size="sm" weight="black" internalClassName="tracking-tight group-hover/node:text-primary transition-colors">
+                                                        US-WEST-{i}
                                                     </Text>
-                                                    <Text size="sm" variant="muted">
-                                                        olivia.martin@email.com
+                                                    <Text size="2xs" variant="muted" internalClassName="font-mono">
+                                                        IP: 192.168.{i}.{i * 12}
                                                     </Text>
                                                 </Flex>
-                                                <div className="ml-auto">
-                                                    <Text size="sm" weight="medium">
-                                                        +$1,999.00
+                                                <div className="text-right">
+                                                    <Text size="xs" weight="black" internalClassName="font-mono">
+                                                        {i * 14}ms
                                                     </Text>
+                                                    <Text size="2xs" internalClassName="text-green-500 font-bold">READY</Text>
                                                 </div>
                                             </Flex>
                                         ))}
                                     </Flex>
-                                </CardContent>
-                            </Card>
+                                </div>
+                                <Button variant="ghost" internalClassName="w-full text-[10px] uppercase font-black tracking-[0.2em] h-12 rounded-none border-t border-border/40 bg-muted/10">
+                                    Scan All Nodes
+                                </Button>
+                            </Padded>
                         </div>
                     </div>
 
-                    {/* Data Table Section */}
-                    <Card>
-                        <CardHeader>
-                            <Flex align="center" justify="between">
-                                <Flex direction="col" gap="none">
-                                    <CardTitle>Transactions</CardTitle>
-                                    <CardDescription>Manage and view your recent store transactions.</CardDescription>
-                                </Flex>
-                                <Flex align="center" gap="sm">
-                                    <Flex align="center" gap="sm" internalClassName="relative hidden md:flex">
-                                        <Search className="absolute left-2.5 top-2.5 size-4 text-muted-foreground" />
-                                        <Input
-                                            type="search"
-                                            placeholder="Search transactions..."
-                                        />
-                                    </Flex>
-                                    <Button variant="outline" size="sm">
-                                        <Filter className="mr-2 size-4" />
-                                        Filters
-                                    </Button>
-                                </Flex>
-                            </Flex>
-                        </CardHeader>
-                        <CardContent>
-                            <Table>
-                                <TableHeader>
-                                    <TableRow>
-                                        <TableHead>Customer</TableHead>
-                                        <TableHead>
-                                            <span className="hidden md:table-cell">Type</span>
-                                        </TableHead>
-                                        <TableHead>
-                                            <span className="hidden md:table-cell">Status</span>
-                                        </TableHead>
-                                        <TableHead>
-                                            <span className="hidden md:table-cell">Date</span>
-                                        </TableHead>
-                                        <TableHead>
-                                            <div className="text-right">Amount</div>
-                                        </TableHead>
-                                        <TableHead />
-                                    </TableRow>
-                                </TableHeader>
-                                <TableBody>
-                                    {transactions.map((tx) => (
-                                        <TableRow key={tx.id}>
-                                            <TableCell>
-                                                <Text size="sm" weight="medium">
-                                                    {tx.customer}
-                                                </Text>
-                                                <div className="hidden md:block">
-                                                    <Text size="xs" variant="muted">
-                                                        {tx.email}
-                                                    </Text>
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div className="hidden md:table-cell">
-                                                    <Text size="xs">{tx.type}</Text>
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div className="hidden md:table-cell">
-                                                    <Badge
-                                                        variant={
-                                                            tx.status === 'Approved'
-                                                                ? 'success'
-                                                                : tx.status === 'Pending'
-                                                                    ? 'outline'
-                                                                    : 'destructive'
-                                                        }
-                                                    >
-                                                        {tx.status}
-                                                    </Badge>
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div className="hidden md:table-cell">
-                                                    <Text size="xs">{tx.date}</Text>
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <div className="text-right">
-                                                    <Text size="sm" weight="medium">
-                                                        {tx.amount}
-                                                    </Text>
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <Button variant="ghost" size="icon">
-                                                    <MoreHorizontal className="size-4" />
-                                                </Button>
-                                            </TableCell>
+                    {/* Transaction Log Table */}
+                    <Section
+                        title="Process Transaction Log"
+                        description="Audit stream for all low-level system operations across the planetary network."
+                    >
+                        <Padded bordered padding="none" internalClassName="bg-card/30 backdrop-blur-md overflow-hidden bg-white dark:bg-zinc-950/20">
+                            <div className="overflow-x-auto">
+                                <Table>
+                                    <TableHeader className="bg-muted/30 border-b-2 border-border/60">
+                                        <TableRow className="hover:bg-transparent">
+                                            <TableHead className="py-4 px-6 text-[10px] font-black uppercase tracking-widest">Process ID</TableHead>
+                                            <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest">Origin Cluster</TableHead>
+                                            <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest">Protocol</TableHead>
+                                            <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-right">Latency</TableHead>
+                                            <TableHead className="py-4 text-[10px] font-black uppercase tracking-widest text-center">Status</TableHead>
+                                            <TableHead className="py-4 px-6 text-right text-[10px] font-black uppercase tracking-widest">Action</TableHead>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </CardContent>
-                    </Card>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {transactions.map((tx) => (
+                                            <TableRow key={tx.id} className="border-b border-border/40 hover:bg-muted/10 transition-colors group/row">
+                                                <TableCell className="py-4 px-6">
+                                                    <Flex align="center" gap="sm">
+                                                        <Lock className="size-3 text-muted-foreground opacity-40 group-hover/row:text-primary group-hover/row:opacity-100 transition-all" />
+                                                        <Text size="xs" weight="black" internalClassName="font-mono text-primary">{tx.id}</Text>
+                                                    </Flex>
+                                                </TableCell>
+                                                <TableCell className="py-4">
+                                                    <Text size="xs" weight="bold" internalClassName="font-mono opacity-80">{tx.origin}</Text>
+                                                </TableCell>
+                                                <TableCell className="py-4">
+                                                    <Badge variant="outline" internalClassName="font-mono text-[9px] py-0 px-2 uppercase tracking-tighter border-muted-foreground/30">{tx.type}</Badge>
+                                                </TableCell>
+                                                <TableCell className="py-4 text-right">
+                                                    <Text size="xs" weight="black" internalClassName="font-mono">{tx.latency}</Text>
+                                                </TableCell>
+                                                <TableCell className="py-4">
+                                                    <div className="flex justify-center">
+                                                        <Badge
+                                                            variant={
+                                                                tx.status === 'Success'
+                                                                    ? 'success'
+                                                                    : tx.status === 'Wait'
+                                                                        ? 'outline'
+                                                                        : 'destructive'
+                                                            }
+                                                            internalClassName="h-5 text-[9px] uppercase tracking-tighter px-2"
+                                                        >
+                                                            {tx.status}
+                                                        </Badge>
+                                                    </div>
+                                                </TableCell>
+                                                <TableCell className="py-4 px-6 text-right">
+                                                    <Button variant="ghost" size="icon" internalClassName="size-8 rounded-lg group-hover/row:bg-primary group-hover/row:text-white transition-all">
+                                                        <MoreHorizontal className="size-4" />
+                                                    </Button>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </div>
+                            <div className="p-3 bg-muted/20 border-t border-border/40 text-[9px] font-mono text-center uppercase tracking-[0.3em] opacity-40">
+                                End of Telemetry Log
+                            </div>
+                        </Padded>
+                    </Section>
                 </Flex>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 }

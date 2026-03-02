@@ -40,7 +40,6 @@ export const Padded = forwardRef<HTMLDivElement, PaddedProps>(
       <Comp
         ref={ref}
         className={cn(
-          // @ts-ignore - dynamic index
           paddings[padding],
           bordered ? 'border-2 border-border rounded-lg' : '',
           getSpacingClasses({ m, mt, mr, mb, ml, mx, my, p, pt, pr, pb, pl, px, py }),

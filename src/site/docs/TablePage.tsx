@@ -55,7 +55,7 @@ const columns = [
 
 export function TablePage() {
   return (
-    <div>
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Data"
         title="Table"
@@ -126,6 +126,6 @@ export function TablePage() {
 }`}</pre>
         </Padded>
       </Section>
-    </div>
+    </Flex>
   );
 }

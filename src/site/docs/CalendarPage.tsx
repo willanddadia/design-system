@@ -14,7 +14,7 @@ export function CalendarPage() {
     });
 
     return (
-        <div className="space-y-12">
+        <Flex direction="col" gap="xl">
             <PageHero
                 badge="Form"
                 title="Calendar"
@@ -87,6 +87,6 @@ export function CalendarPage() {
                     The primary colors are derived from your <code>--primary</code> and <code>--accent</code> CSS variables.
                 </p>
             </Section>
-        </div>
+        </Flex>
     );
 }

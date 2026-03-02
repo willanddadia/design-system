@@ -20,7 +20,7 @@ const props = [
 
 export function BadgePage() {
   return (
-    <Flex direction="col" gap="none">
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Display"
         title="Badge"

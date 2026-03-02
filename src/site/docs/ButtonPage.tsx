@@ -35,7 +35,7 @@ const props = [
 
 export function ButtonPage() {
   return (
-    <Flex direction="col" gap="none">
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Action"
         title="Button"

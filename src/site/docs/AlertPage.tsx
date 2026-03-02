@@ -25,7 +25,7 @@ const props = [
 
 export function AlertPage() {
   return (
-    <Flex direction="col" gap="none">
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Feedback"
         title="Alert"

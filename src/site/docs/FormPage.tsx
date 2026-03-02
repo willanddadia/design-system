@@ -134,7 +134,7 @@ export function FormPage() {
   const [multiVal, setMultiVal] = useState<string[]>([]);
 
   return (
-    <div>
+    <Flex direction="col" gap="xl">
       <PageHero
         badge="Forms"
         title="Form Elements"
@@ -320,6 +320,6 @@ export function FormPage() {
         </Example>
         <PropTable props={selectBoxProps} />
       </Section>
-    </div>
+    </Flex>
   );
 }

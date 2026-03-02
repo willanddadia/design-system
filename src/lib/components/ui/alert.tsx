@@ -34,11 +34,13 @@ function Alert({
   onClose,
   title,
   children,
+  internalClassName,
   ...props
 }: Omit<React.ComponentProps<'div'>, 'className'> &
   VariantProps<typeof alertVariants> & {
     onClose?: () => void;
     title?: string;
+    internalClassName?: string;
   }) {
   const Icon = icons[variant as keyof typeof icons] || icons.default;
 
@@ -46,7 +48,7 @@ function Alert({
     <div
       data-slot="alert"
       role="alert"
-      className={cn(alertVariants({ variant }))}
+      className={cn(alertVariants({ variant }), internalClassName)}
       {...props}
     >
       <Icon />
@@ -67,22 +69,23 @@ function Alert({
   );
 }
 
-function AlertTitle({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>) {
+function AlertTitle({ internalClassName, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & { internalClassName?: string }) {
   return (
     <div
       data-slot="alert-title"
-      className={cn('line-clamp-1 min-h-4 font-medium tracking-tight')}
+      className={cn('line-clamp-1 min-h-4 font-medium tracking-tight', internalClassName)}
       {...props}
     />
   );
 }
 
-function AlertDescription({ ...props }: Omit<React.ComponentProps<'div'>, 'className'>) {
+function AlertDescription({ internalClassName, ...props }: Omit<React.ComponentProps<'div'>, 'className'> & { internalClassName?: string }) {
   return (
     <div
       data-slot="alert-description"
       className={cn(
-        'text-muted-foreground grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed'
+        'text-muted-foreground grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed',
+        internalClassName
       )}
       {...props}
     />

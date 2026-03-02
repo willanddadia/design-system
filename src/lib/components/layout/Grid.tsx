@@ -68,9 +68,7 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
         ref={ref}
         className={cn(
           'grid',
-          // @ts-ignore - dynamic index
           columns[cols],
-          // @ts-ignore - dynamic index
           gaps[gap],
           rowsClass,
           mdColsClass,
